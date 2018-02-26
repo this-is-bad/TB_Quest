@@ -24,12 +24,19 @@ namespace TB_Quest
 
 
         #region PROPERTIES
+
+        /// <summary>
+        /// the player's home village
+        /// </summary>
         public string HomeVillage
         {
             get { return _homeVillage; }
             set { _homeVillage = value; }
         }
 
+        /// <summary>
+        /// boolean that determines whether to use the default character greeting or the more verbose player greeting
+        /// </summary>
         public bool VerboseGreeting
         {
             get { return _verboseGreeting; }
@@ -56,6 +63,10 @@ namespace TB_Quest
 
         #region METHODS
 
+        /// <summary>
+        /// a more verbose greeting that overrides the bash character greeting
+        /// </summary>
+        /// <returns>string</returns>
         public override string Greeting()
         {
             if (_verboseGreeting)

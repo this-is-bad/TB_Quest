@@ -27,24 +27,36 @@ namespace TB_Quest
 
         #region PROPERTIES
 
+        /// <summary>
+        /// the descrition of the object
+        /// </summary>
         public string Description
         {
             get { return _description; }
             set { _description = value; }
         }
-
+        
+        /// <summary>
+        /// the current location ID of the object
+        /// </summary>
         public int LocationID
         {
             get { return _locationID; }
             set { _locationID = value; }
         }
 
+        /// <summary>
+        /// the unique ID of the object
+        /// </summary>
         public int ObjectID
         {
             get { return _objectID; }
             set { _objectID = value; }
         }
 
+        /// <summary>
+        /// the name of the object
+        /// </summary>
         public string Name
         {
             get { return _name; }

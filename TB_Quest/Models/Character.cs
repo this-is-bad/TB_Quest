@@ -13,6 +13,9 @@ namespace TB_Quest
     {
         #region ENUMERABLES
 
+        /// <summary>
+        /// available character races
+        /// </summary>
         public enum RaceType
         {
             None,
@@ -32,13 +35,19 @@ namespace TB_Quest
         #endregion
 
         #region PROPERTIES
-
+        
+        /// <summary>
+        /// the character's age
+        /// </summary>
         public int Age
         {
             get { return _age; }
             set { _age = value; }
         }
 
+        /// <summary>
+        /// the character's race
+        /// </summary>
         public RaceType Race
         {
             get { return _race; }
@@ -65,6 +74,10 @@ namespace TB_Quest
 
         #region METHODS
 
+        /// <summary>
+        /// default greeting message from the character
+        /// </summary>
+        /// <returns>string</returns>
         public virtual string Greeting()
         {
             return $"Hello, my name is {base.Name} and I am a {_race}.";
