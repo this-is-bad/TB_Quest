@@ -1,0 +1,6 @@
+E:\TB_Quest\TB_Quest\TB_Quest\bin\Debug\TB_Quest\bin\Debug\TB_Quest.exe.config
+E:\TB_Quest\TB_Quest\TB_Quest\bin\Debug\TB_Quest.exe
+E:\TB_Quest\TB_Quest\TB_Quest\bin\Debug\TB_Quest.pdb
+E:\TB_Quest\TB_Quest\TB_Quest\obj\Debug\TB_Quest.S1_Starter.csproj.CoreCompileInputs.cache
+E:\TB_Quest\TB_Quest\TB_Quest\obj\Debug\TB_Quest.exe
+E:\TB_Quest\TB_Quest\TB_Quest\obj\Debug\TB_Quest.pdb
