@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TB_Quest
 {
     /// <summary>
-    /// base class for game objects
+    /// class for location objects
     /// </summary>
     public class Location : GameObject
     {

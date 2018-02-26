@@ -25,27 +25,13 @@ namespace TB_Quest
 
         #region FIELDS
 
-        //private string _name;
-        //private int _locationID;
         private int _age;
         private RaceType _race;
-        //private Dictionary<objectId, Description> _inventory;
+        //private List<GameObject> _inventory;
 
         #endregion
 
         #region PROPERTIES
-
-        //public string Name
-        //{
-        //    get { return _name; }
-        //    set { _name = value; }
-        //}
-
-        //public int LocationID
-        //{
-        //    get { return _locationID; }
-        //    set { _locationID = value; }
-        //}
 
         public int Age
         {
