@@ -56,7 +56,7 @@ namespace TB_Quest
             string messageBoxText =
                 "You are currently in your room in your master's tower.\n"  +
                 " \n" +
-                "Before you begin your quest we must gather your base data.\n" +
+                "Before you begin your quest, you must prepare for your journey.\n" +
                 " \n" +
                 "You will be prompted for the required information. Please enter the information below.\n" +
                 " \n" +
