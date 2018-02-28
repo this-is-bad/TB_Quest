@@ -13,6 +13,10 @@ namespace TB_Quest
     {
         None,
         PlayerSetup,
+        PlayerNameChange,
+        PlayerAgeChange,
+        PlayerRaceChange,
+        PlayerLocationsVisited,
         LookAround,
         LookAt,
         PickUpItem,

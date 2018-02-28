@@ -30,7 +30,7 @@ namespace TB_Quest
 
         private int _age;
         private RaceType _race;
-        //private List<GameObject> _inventory;
+        private List<GameObject> _inventory;
 
         #endregion
 

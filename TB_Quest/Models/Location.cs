@@ -18,18 +18,39 @@ namespace TB_Quest
         #region FIELDS
 
         private List<int> _accessibleTo;
+        private bool _isAccessible;
+        private int _experiencePoints;
 
 
         #endregion
 
         #region PROPERTIES
-
+        /// <summary>
+        /// locations that the current location can be accessed from
+        /// </summary>
         public List<int> AccessibleTo
         {
             get { return _accessibleTo; }
             set { _accessibleTo = value; }
         }
 
+        /// <summary>
+        /// determines whether the location is accessible
+        /// </summary>
+        public bool IsAccessible
+        {
+            get { return _isAccessible; }
+            set { _isAccessible = value; }
+        }
+
+        /// <summary>
+        /// the number of experience points to be gained by visiting the location
+        /// </summary>
+        public int ExperiencePoints
+        {
+            get { return _experiencePoints; }
+            set { _experiencePoints = value; }
+        }
         #endregion
 
         #region CONSTRUCTORS

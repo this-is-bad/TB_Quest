@@ -32,6 +32,19 @@ namespace TB_Quest
                 }
         };
 
+        public static Menu PlayerSetup = new Menu()
+        {
+            MenuName = "PlayerSetup",
+            MenuTitle = "Player Setup",
+            MenuChoices = new Dictionary<char, PlayerAction>()
+                {
+                    { '1', PlayerAction.PlayerNameChange },
+                    { '2', PlayerAction.PlayerAgeChange },
+                    { '3', PlayerAction.PlayerRaceChange },
+                    { '4', PlayerAction.Travel }
+                }
+        };
+
         public static Menu MainMenu = new Menu()
         {
             MenuName = "MainMenu",
@@ -39,7 +52,11 @@ namespace TB_Quest
             MenuChoices = new Dictionary<char, PlayerAction>()
                 {
                     { '1', PlayerAction.PlayerInfo },
-                    { '2', PlayerAction.Exit }
+                    { '2', PlayerAction.LookAround },
+                    { '3', PlayerAction.Travel },
+                    { '4', PlayerAction.PlayerLocationsVisited },
+                    { '5', PlayerAction.ListLocations },
+                    { '0', PlayerAction.Exit }
                 }
         };
     }
