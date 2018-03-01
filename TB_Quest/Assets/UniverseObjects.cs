@@ -18,10 +18,16 @@ namespace TB_Quest
             {
                Name = "Wizard's Tower - Your Room",
                 LocationID = 1,
-                Description = "" +
-                    "" +
-                    "",
-                IsAccessible = true,
+                Description = "You are currently in your room in your master's tower.\n"  +
+                "It is a sparse room, containing nothing more than a bed, a desk, a light,\n" +
+                "and a small wardrobe -- an appropriate room for an apprentice.\n" +
+                " \n" +
+                "Before you begin your quest, you must prepare for your journey.\n" +
+                " \n" +
+                "You will be prompted for the required information. Please enter the information below.\n" +
+                " \n" +
+                "\tPress any key to begin.",
+        IsAccessible = true,
                 AccessTo =  new List<int>(){ 2 }
                 //ExperiencePoints = 10
             },

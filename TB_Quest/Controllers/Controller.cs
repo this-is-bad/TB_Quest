@@ -16,6 +16,7 @@ namespace TB_Quest
 
         private ConsoleView _gameConsoleView;
         private Player _gamePlayer;
+        private Universe _gameUniverse;
         private bool _playingGame;
 
         #endregion
@@ -50,7 +51,8 @@ namespace TB_Quest
         private void InitializeGame()
         {
             _gamePlayer = new Player();
-            _gameConsoleView = new ConsoleView(_gamePlayer);
+            _gameUniverse = new Universe();
+            _gameConsoleView = new ConsoleView(_gamePlayer, _gameUniverse);
             _playingGame = true;
 
             Console.CursorVisible = false;
@@ -114,6 +116,9 @@ namespace TB_Quest
 
                         case PlayerAction.PlayerInfo:
                             _gameConsoleView.DisplayPlayerInfo();
+                            break;
+                        case PlayerAction.ListLocations:
+                            _gameConsoleView.DisplayListOfLocations();
                             break;
 
                         case PlayerAction.Exit:

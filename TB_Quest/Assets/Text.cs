@@ -36,7 +36,7 @@ namespace TB_Quest
             return messageBoxText;
         }
 
-        public static string CurrrentLocationInfo()
+        public static string CurrrentLocationInfo() //(int locationId)
         {
             string messageBoxText =
             "You are currently in your master's tower -- a wondrous place, full of " +
@@ -175,6 +175,35 @@ namespace TB_Quest
             statusBoxText.Add($"Village: {player.HomeVillage}\n");
 
             return statusBoxText;
+        }
+
+        public static string ListLocations(IEnumerable<Location> Locations)
+        {
+            string messageBoxText =
+                "Locations\n" +
+                " \n" +
+
+                ///
+                /// display table header 
+                /// 
+                "ID".PadRight(10) + "Name".PadRight(30) + "\n" +
+                "---".PadRight(10) + "----------------------".PadRight(30) + "\n";
+
+            ///
+            /// display all locations
+            /// 
+            string LocationList = null;
+            foreach(Location location in Locations)
+            {
+                LocationList +=
+                    $"{location.LocationID}".PadRight(10) +
+                    $"{location.Name}".PadRight(30) +
+                    Environment.NewLine;
+            }
+
+            messageBoxText += LocationList;
+
+            return messageBoxText;
         }
 
         //internal static string InitializeQuestGetPlayerRace(Player player)

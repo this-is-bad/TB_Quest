@@ -27,6 +27,7 @@ namespace TB_Quest
         // declare game objects for the ConsoleView object to use
         //
         Player _gamePlayer;
+        Universe _gameUniverse;
 
         ViewStatus _viewStatus;
 
@@ -41,9 +42,10 @@ namespace TB_Quest
         /// <summary>
         /// default constructor to create the console view objects
         /// </summary>
-        public ConsoleView(Player gamePlayer)
+        public ConsoleView(Player gamePlayer, Universe gameUniverse)
         {
             _gamePlayer = gamePlayer;
+            _gameUniverse = gameUniverse;
 
             _viewStatus = ViewStatus.PlayerInitialization;
 
@@ -76,6 +78,12 @@ namespace TB_Quest
             DisplayMenuBox(menu);
             DisplayInputBox();
             DisplayStatusBox();
+        }
+
+        public void DisplayListOfLocations()
+        {
+            DisplayGamePlayScreen("List: Locations", Text.ListLocations
+                (_gameUniverse.Locations), ActionMenu.MainMenu, "");
         }
 
         /// <summary>

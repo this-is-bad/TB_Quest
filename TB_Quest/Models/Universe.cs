@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace TB_Quest
 {
-    class Universe
+    public class Universe
     {
         #region ***** define all lists to be maintained by the Universe object *****
 
         //
         // list of all locations
         //
-        private List<Location> _Locations;
+        private List<Location> _locations;
 
         public List<Location> Locations
         {
-            get { return _Locations; }
-            set { _Locations = value; }
+            get { return _locations; }
+            set { _locations = value; }
         }
 
         #endregion
@@ -45,29 +45,29 @@ namespace TB_Quest
         /// </summary>
         private void IntializeUniverse()
         {
-            _Locations = UniverseObjects.Locations;
+            _locations = UniverseObjects.Locations;
         }
 
         #endregion
 
         #region ***** define methods to return game element objects and information *****
 
-        public bool IsValidLocationId(int LocationId)
+        public bool IsValidLocationId(int LocationID)
         {
             List<int> LocationIds = new List<int>();
 
             //
             // create a list of location ids
             //
-            foreach (Location stl in _Locations)
+            foreach (Location loc in _locations)
             {
-                LocationIds.Add(stl.LocationID);
+                LocationIds.Add(loc.LocationID);
             }
 
             //
             // determine if the location id is a valid id and return the result
             //
-            if (LocationIds.Contains(LocationId))
+            if (LocationIds.Contains(LocationID))
             {
                 return true;
             }
@@ -81,11 +81,11 @@ namespace TB_Quest
         /// <summary>
         /// determine if a location is accessible to the player
         /// </summary>
-        /// <param name="LocationId"></param>
+        /// <param name="LocationID"></param>
         /// <returns>accessible</returns>
-        public bool IsAccessibleLocation(int LocationId)
+        public bool IsAccessibleLocation(int LocationID)
         {
-            Location Location = GetLocationById(LocationId);
+            Location Location = GetLocationById(LocationID);
             if (Location.IsAccessible == true)
             {
                 return true;
@@ -127,7 +127,7 @@ namespace TB_Quest
             //
             // run through the location list and grab the correct one
             //
-            foreach (Location location in _Locations)
+            foreach (Location location in _locations)
             {
                 if (location.LocationID == Id)
                 {
