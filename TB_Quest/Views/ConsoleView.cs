@@ -95,11 +95,23 @@ namespace TB_Quest
             PlayerAction choosenAction = PlayerAction.None;
 
             //
-            // TODO validate menu choices
+            // create an array of valid menu keys from menu dictionary
             //
-            ConsoleKeyInfo keyPressedInfo = Console.ReadKey();
-            char keyPressed = keyPressedInfo.KeyChar;
+            char[] validKeys = menu.MenuChoices.Keys.ToArray();
+
+            ///
+            /// validate key pressed as in MenuChoices dictionary
+            ///
+            char keyPressed;
+            do
+            {
+                ConsoleKeyInfo keyPressedInfo = Console.ReadKey();
+                keyPressed = keyPressedInfo.KeyChar;
+            } while (!validKeys.Contains(keyPressed));
+
             choosenAction = menu.MenuChoices[keyPressed];
+            Console.CursorVisible = true;
+
 
             return choosenAction;
         }

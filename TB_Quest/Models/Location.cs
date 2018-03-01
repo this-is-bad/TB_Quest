@@ -17,7 +17,7 @@ namespace TB_Quest
 
         #region FIELDS
 
-        private List<int> _accessibleTo;
+        private List<int> _accessTo;
         private bool _isAccessible;
         private int _experiencePoints;
 
@@ -28,10 +28,10 @@ namespace TB_Quest
         /// <summary>
         /// locations that the current location can be accessed from
         /// </summary>
-        public List<int> AccessibleTo
+        public List<int> AccessTo
         {
-            get { return _accessibleTo; }
-            set { _accessibleTo = value; }
+            get { return _accessTo; }
+            set { _accessTo = value; }
         }
 
         /// <summary>

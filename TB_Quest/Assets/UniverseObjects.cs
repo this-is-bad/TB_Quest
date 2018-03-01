@@ -22,7 +22,7 @@ namespace TB_Quest
                     "" +
                     "",
                 IsAccessible = true,
-                AccessibleTo =  new List<int>(){ 2 }
+                AccessTo =  new List<int>(){ 2 }
                 //ExperiencePoints = 10
             },
 
@@ -35,7 +35,7 @@ namespace TB_Quest
                     "",
                 //GeneralContents = "- stuff in the room -",
                 IsAccessible = true,
-                AccessibleTo =  new List<int>(){ 1, 3 }
+                AccessTo =  new List<int>(){ 1, 3 }
                 //ExperiencePoints = 10
             },
 
@@ -48,11 +48,11 @@ namespace TB_Quest
                               "",
                 //GeneralContents = "",
                 IsAccessible = false,
-                AccessibleTo =  new List<int>(){ 2, 4 }
+                AccessTo =  new List<int>(){ 2, 4 }
                 //ExperiencePoints = 20
             },
 
-                        new Location
+            new Location
             {
                Name = "The Wall",
                 LocationID = 4,
@@ -62,7 +62,203 @@ namespace TB_Quest
                               "",
                 //GeneralContents = "",
                 IsAccessible = true,
-                AccessibleTo =  new List<int>(){ 3, 5 }
+                AccessTo =  new List<int>(){ 3, 5 }
+                //ExperiencePoints = 10
+            },
+
+             new Location
+            {
+               Name = "Magic Hedge Maze - Entrance",
+                LocationID = 5,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 6, 9 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Magic Hedge Maze",
+                LocationID = 6,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 4, 5, 7 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Magic Hedge Maze",
+                LocationID = 7,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 6, 8, 11 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Magic Hedge Maze - Dead End",
+                LocationID = 8,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 7 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Magic Hedge Maze",
+                LocationID = 9,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 5, 10, 13 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Magic Hedge Maze",
+                LocationID = 10,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 9, 14 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Magic Hedge Maze",
+                LocationID = 11,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 7, 12, 15 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Magic Hedge Maze",
+                LocationID = 12,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 11, 16 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Magic Hedge Maze - Dead End",
+                LocationID = 13,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 9 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Magic Hedge Maze",
+                LocationID = 14,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 10, 17 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Magic Hedge Maze - Dead End",
+                LocationID = 15,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 11 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Magic Hedge Maze - Dead End",
+                LocationID = 16,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 12 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Lake of Acid",
+                LocationID = 17,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = false,
+                AccessTo =  new List<int>(){ 16, 18 }
+                //ExperiencePoints = 10
+            },
+
+            new Location
+            {
+               Name = "Ancient Battlefield",
+                LocationID = 18,
+
+                Description = "" +
+                              "" +
+                              "",
+                //GeneralContents = "",
+                IsAccessible = false,
+                AccessTo =  new List<int>(){ }
                 //ExperiencePoints = 10
             }
         };

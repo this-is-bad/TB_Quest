@@ -18,17 +18,7 @@ namespace TB_Quest
 
         public static string QuestIntro()
         {
-            byte[] utfBytes = System.Text.Encoding.UTF32.GetBytes("\u1F602");
-
-            // Convert utf-8 bytes to a string.
-            string s_unicode2 = System.Text.Encoding.UTF32.GetString(utfBytes);
-
-            //byte b = 1F602;
             string messageBoxText =
-            $"{s_unicode2}" +
-            $"我是一个中国人的" +
-            //$"{((char)"\u1F602").ToString()}" +
-            //$"{Encoding.Unicode.GetString("\u1F602")}" +
             "You are a fledgling wizard apprenticed to the master wizard Torvaldus. " +
             "You have learned that your master's nemesis, the evil wizard Mikrozoff has " +
             "sent the mighty dragon Jeedub'ex to lay waste to the realm.  " +
