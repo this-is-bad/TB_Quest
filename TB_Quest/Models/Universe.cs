@@ -116,36 +116,67 @@ namespace TB_Quest
         }
 
         /// <summary>
+        /// checks for valid location ID
+        /// </summary>
+        /// <param name="locationId"></param>
+        /// <returns>boolean</returns>
+        public bool IsValidLocation(int locationId)
+        {
+            List<int> locationIds = new List<int>();
+
+            //
+            // create a list of location IDs
+            // 
+            foreach (Location l in _locations)
+            {
+                locationIds.Add(l.LocationID);
+            }
+
+            //
+            // determine if the location ID is a valid ID and return the result
+            //
+            if (locationIds.Contains(locationId))
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// get a Location object using an Id
         /// </summary>
         /// <param name="Id">location Id</param>
         /// <returns>requested location</returns>
-        public Location GetLocationById(int Id)
+        public Location GetLocationById(int id)
         {
-            Location Location = null;
+            Location location = null;
 
             //
             // run through the location list and grab the correct one
             //
-            foreach (Location location in _locations)
+            foreach (Location loc in _locations)
             {
-                if (location.LocationID == Id)
+                if (loc.LocationID == id)
                 {
-                    Location = location;
+                    location = loc;
                 }
             }
 
             //
             // the specified ID was not found in the universe
-            // throw and exception
+            // throw an exception
             //
-            if (Location == null)
+            if (location == null)
             {
-                string feedbackMessage = $"The Location ID {Id} does not exist in the current Realm.";
-                throw new ArgumentException(Id.ToString(), feedbackMessage);
+                string feedbackMessage = $"The Location ID {id} does not exist in the current realm.";
+                throw new ArgumentException(id.ToString(), feedbackMessage);
             }
 
-            return Location;
+            return location;
         }
 
         #endregion
