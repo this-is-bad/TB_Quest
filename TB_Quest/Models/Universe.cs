@@ -52,7 +52,7 @@ namespace TB_Quest
 
         #region ***** define methods to return game element objects and information *****
 
-        public bool IsValidLocationId(int LocationID)
+        public bool IsValidLocationId(int locationId)
         {
             List<int> LocationIds = new List<int>();
 
@@ -67,7 +67,7 @@ namespace TB_Quest
             //
             // determine if the location id is a valid id and return the result
             //
-            if (LocationIds.Contains(LocationID))
+            if (LocationIds.Contains(locationId))
             {
                 return true;
             }
@@ -81,11 +81,11 @@ namespace TB_Quest
         /// <summary>
         /// determine if a location is accessible to the player
         /// </summary>
-        /// <param name="LocationID"></param>
+        /// <param name="locationId"></param>
         /// <returns>accessible</returns>
-        public bool IsAccessibleLocation(int LocationID)
+        public bool IsAccessibleLocation(int locationId)
         {
-            Location Location = GetLocationById(LocationID);
+            Location Location = GetLocationById(locationId);
             if (Location.IsAccessible == true)
             {
                 return true;
@@ -97,9 +97,9 @@ namespace TB_Quest
         }
 
         /// <summary>
-        /// return the next available ID for a Location object
+        /// return the max available ID for a Location object
         /// </summary>
-        /// <returns>next LocationObjectID </returns>
+        /// <returns>next Location.LocationID </returns>
         public int GetMaxLocationId()
         {
             int MaxId = 0;

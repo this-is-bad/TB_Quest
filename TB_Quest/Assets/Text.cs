@@ -206,6 +206,51 @@ namespace TB_Quest
             return messageBoxText;
         }
 
+        /// <summary>
+        /// parse the location name and description
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns>string</returns>
+        public static string LookAround(Location location)
+        {
+            string messageBoxText =
+                $"Current Location: {location.Name}\n" +
+                " \n " +
+                location.Description;
+
+            return messageBoxText;
+        }
+
+        public static string Travel(Player player, List<Location> locations)
+        {
+            string messageBoxText =
+                $"{player.Name}, where will you go next?\n" +
+                " \n " +
+
+                //
+                // display table header
+                //
+                "ID".PadRight(10) + "Name".PadRight(30) + "Accessible".PadRight(10) + "\n" +
+                "---".PadRight(10) + "----------------------".PadRight(30) + "-------".PadRight(10) + "\n";
+            // 
+            // display all locations except the current location
+            //
+            string locationList = null;
+            foreach (Location location in locations)
+            {
+                if (location.LocationID != player.LocationID)
+                {
+                    locationList +=
+                        $"{location.LocationID}".PadRight(10) +
+                        $"{location.Name}".PadRight(30) +
+                        $"{location.IsAccessible}".PadRight(10) +
+                        Environment.NewLine;
+                }
+            }
+            messageBoxText += locationList;
+
+            return messageBoxText;
+        }
         //internal static string InitializeQuestGetPlayerRace(Player player)
         //{
         //    throw new NotImplementedException();

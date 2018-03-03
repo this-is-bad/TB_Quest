@@ -538,6 +538,15 @@ namespace TB_Quest
             return player;
         }
 
+        /// <summary>
+        /// Display the details of the current location
+        /// </summary>
+        public void DisplayLookAround()
+        {
+            Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+            DisplayGamePlayScreen("Current Location", Text.LookAround(currentLocation), ActionMenu.MainMenu, "");
+        }
+
         #region ----- display responses to menu action choices -----
 
         public void DisplayPlayerInfo()

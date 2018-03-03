@@ -18,6 +18,7 @@ namespace TB_Quest
         private Player _gamePlayer;
         private Universe _gameUniverse;
         private bool _playingGame;
+        private Location _currentLocation;
 
         #endregion
 
@@ -113,7 +114,9 @@ namespace TB_Quest
                     {
                         case PlayerAction.None:
                             break;
-
+                        case PlayerAction.LookAround:
+                            _gameConsoleView.DisplayLookAround();
+                            break;
                         case PlayerAction.PlayerInfo:
                             _gameConsoleView.DisplayPlayerInfo();
                             break;
