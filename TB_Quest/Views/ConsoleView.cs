@@ -538,6 +538,8 @@ namespace TB_Quest
             return player;
         }
 
+        #region ----- display responses to menu action choices -----
+
         /// <summary>
         /// Display the details of the current location
         /// </summary>
@@ -547,13 +549,71 @@ namespace TB_Quest
             DisplayGamePlayScreen("Current Location", Text.LookAround(currentLocation), ActionMenu.MainMenu, "");
         }
 
-        #region ----- display responses to menu action choices -----
-
+        /// <summary>
+        /// display information about the player
+        /// </summary>
         public void DisplayPlayerInfo()
         {
             DisplayGamePlayScreen("Player Information", Text.PlayerInfo(_gamePlayer), ActionMenu.MainMenu, "");
         }
 
+        /// <summary>
+        /// get a location ID from the player
+        /// </summary>
+        /// <returns>int</returns>
+        public int DisplayGetNextLocation()
+        {
+            int locationId = 0;
+            bool validLocationId = false;
+            DisplayGamePlayScreen("Travel to a new location", Text.Travel(_gamePlayer, _gameUniverse.Locations),
+                ActionMenu.MainMenu, "");
+
+            while (!validLocationId)
+            {
+                //
+                // get an integer from the player
+                //
+                GetInteger($"Enter your new location {_gamePlayer.Name}: ", 1,
+                    _gameUniverse.GetMaxLocationId(), out locationId);
+
+                //
+                // validate integer as a valid location ID and determine accessibility
+                //
+                if (_gameUniverse.IsValidLocationId(locationId))
+                {
+                    if (_gameUniverse.IsAccessibleLocation(locationId))
+                    {
+                        validLocationId = true;
+                    }
+                    else
+                    {
+                        ClearInputBox();
+                        DisplayInputErrorMessage("That way is not open to you yet.  Please try again.");
+                    }
+                }
+                else
+                {
+                    DisplayInputErrorMessage("It appears you entered an invalid locationID.  Please try again.");
+                }
+            }
+
+            return locationId;
+        }
+
+        public void DisplayLocationsVisited()
+        {
+            //
+            // generate a list of locations that have been visited
+            //
+            List<Location> visitedLocations = new List<Location>();
+            foreach (int locationId in _gamePlayer.LocationsVisited)
+            {
+                visitedLocations.Add(_gameUniverse.GetLocationById(locationId));
+            }
+
+            DisplayGamePlayScreen("Locations Visited", Text.VisitedLocations
+                (visitedLocations), ActionMenu.MainMenu, "");
+        }
         #endregion
 
         #endregion

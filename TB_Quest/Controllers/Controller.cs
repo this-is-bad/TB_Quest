@@ -95,6 +95,7 @@ namespace TB_Quest
                 //
                 // prepare game play screen
                 //
+                _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
                 _gameConsoleView.DisplayGamePlayScreen("Current Location", Text.CurrrentLocationInfo(), ActionMenu.MainMenu, "");
 
                 //
@@ -102,6 +103,11 @@ namespace TB_Quest
                 //
                 while (_playingGame)
                 {
+                    //
+                    // process all flags, events, and stats
+                    //
+                    UpdateGameStatus();
+
                     //
                     // get next game action from player
                     //
@@ -114,14 +120,30 @@ namespace TB_Quest
                     {
                         case PlayerAction.None:
                             break;
-                        case PlayerAction.LookAround:
-                            _gameConsoleView.DisplayLookAround();
-                            break;
+                        
                         case PlayerAction.PlayerInfo:
                             _gameConsoleView.DisplayPlayerInfo();
                             break;
                         case PlayerAction.ListLocations:
                             _gameConsoleView.DisplayListOfLocations();
+                            break;
+                        case PlayerAction.LookAround:
+                            _gameConsoleView.DisplayLookAround();
+                            break;
+                        case PlayerAction.PlayerLocationsVisited:
+                            _gameConsoleView.DisplayLocationsVisited();
+                            break;
+                        case PlayerAction.Travel:
+                            //
+                            // get new location choice and update the current location property
+                            //
+                            _gamePlayer.LocationID = _gameConsoleView.DisplayGetNextLocation();
+                            _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+                            //
+                            // set the game play screen to the current location info format
+                            //
+                            _gameConsoleView.DisplayGamePlayScreen("Current Location", 
+                                Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
                             break;
 
                         case PlayerAction.Exit:
@@ -154,6 +176,9 @@ namespace TB_Quest
             _gamePlayer.HomeVillage = player.HomeVillage;
             _gamePlayer.LocationID = 1;
 
+            _gamePlayer.ExperiencePoints = 0;
+            _gamePlayer.Health = 100;
+            _gamePlayer.Lives = 3;
             //_gamePlayer.Name = "Random Guy";
             //_gamePlayer.Age = 33;
             //_gamePlayer.Race = Character.RaceType.Human;
@@ -181,6 +206,20 @@ namespace TB_Quest
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             Environment.Exit(1);
+        }
+
+        /// <summary>
+        /// add new location to the list of visited locations if this is the first visit
+        /// </summary>
+        private void UpdateGameStatus()
+        {
+            if (!_gamePlayer.HasVisited(_currentLocation.LocationID))
+            {
+                // 
+                // add new location to the list of visited locations if this is the first visit
+                //
+                _gamePlayer.LocationsVisited.Add(_currentLocation.LocationID);
+            }
         }
 
         #endregion

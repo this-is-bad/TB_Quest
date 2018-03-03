@@ -17,13 +17,34 @@ namespace TB_Quest
         #endregion
 
         #region FIELDS
+        private int _experiencePoints;
+        private int _health;
         private string _homeVillage;
-
+        private int _lives;
+        private List<int> _locationsVisited;
         private bool _verboseGreeting;
         #endregion
 
 
         #region PROPERTIES
+
+        /// <summary>
+        /// the player's experience points
+        /// </summary>
+        public int ExperiencePoints
+        {
+            get { return _experiencePoints; }
+            set { _experiencePoints = value; }
+        }
+
+        /// <summary>
+        /// the player's health
+        /// </summary>
+        public int Health
+        {
+            get { return _health; }
+            set { _health = value; }
+        }
 
         /// <summary>
         /// the player's home village
@@ -32,6 +53,24 @@ namespace TB_Quest
         {
             get { return _homeVillage; }
             set { _homeVillage = value; }
+        }
+
+        /// <summary>
+        /// the player's lives
+        /// </summary>
+        public int Lives
+        {
+            get { return _lives; }
+            set { _lives = value; }
+        }
+
+        /// <summary>
+        /// the locations visited by the player
+        /// </summary>
+        public List<int> LocationsVisited
+        {
+            get { return _locationsVisited; }
+            set { _locationsVisited = value; }
         }
 
         /// <summary>
@@ -50,12 +89,12 @@ namespace TB_Quest
 
         public Player()
         {
-
+            _locationsVisited = new List<int>();
         }
 
         public Player(string name, RaceType race, int locationID) : base(name, race, locationID)
         {
-
+            _locationsVisited = new List<int>();
         }
 
         #endregion
@@ -77,6 +116,23 @@ namespace TB_Quest
             else
             {
                 return base.Greeting();
+            }
+        }
+
+        /// <summary>
+        /// determines whether the player has visited a location
+        /// </summary>
+        /// <param name="_locationID"></param>
+        /// <returns>bool</returns>
+        public bool HasVisited(int _locationID)
+        {
+            if (LocationsVisited.Contains(_locationID))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         #endregion

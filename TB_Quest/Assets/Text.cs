@@ -36,7 +36,7 @@ namespace TB_Quest
             return messageBoxText;
         }
 
-        public static string CurrrentLocationInfo() //(int locationId)
+        public static string InitialLocationInfo() //(int locationId)
         {
             string messageBoxText =
             "You are currently in your master's tower -- a wondrous place, full of " +
@@ -173,6 +173,9 @@ namespace TB_Quest
             statusBoxText.Add($"Age: {player.Age}\n");
             statusBoxText.Add($"Race: {player.Race}\n");
             statusBoxText.Add($"Village: {player.HomeVillage}\n");
+            statusBoxText.Add($"Name: {player.ExperiencePoints}\n");
+            statusBoxText.Add($"Age: {player.Health}\n");
+            statusBoxText.Add($"Race: {player.Lives}\n");
 
             return statusBoxText;
         }
@@ -221,6 +224,27 @@ namespace TB_Quest
             return messageBoxText;
         }
 
+        /// <summary>
+        /// get the information for the current location
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns>string</returns>
+        public static string CurrentLocationInfo(Location location)
+        {
+            string messageBoxText =
+                $"Current Location: {location.Name}\n" +
+                " \n " +
+                location.Description;
+
+            return messageBoxText;
+        }
+
+        /// <summary>
+        /// get locations that can be traveled to
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="locations"></param>
+        /// <returns>string</returns>
         public static string Travel(Player player, List<Location> locations)
         {
             string messageBoxText =
@@ -251,6 +275,40 @@ namespace TB_Quest
 
             return messageBoxText;
         }
+
+        /// <summary>
+        /// get locations visited by the player
+        /// </summary>
+        /// <param name="locations"></param>
+        /// <returns>string</returns>
+        public static string VisitedLocations(IEnumerable<Location> locations)
+        {
+            string messageBoxText =
+                "Locations Visited\n" +
+                " \n " +
+
+                //
+                // display table header
+                //
+                "ID".PadRight(10) + "Name".PadRight(30) + "\n" +
+                "---".PadRight(10) + "----------------------".PadRight(30) + "\n";
+            //
+            // display all locations
+            //
+            string locationList = null;
+            foreach (Location location in locations)
+            {
+                locationList +=
+                    $"{location.LocationID}".PadRight(10) +
+                    $"{location.Name}".PadRight(30) +
+                    Environment.NewLine;
+            }
+
+            messageBoxText += locationList;
+
+            return messageBoxText;
+        }
+
         //internal static string InitializeQuestGetPlayerRace(Player player)
         //{
         //    throw new NotImplementedException();
