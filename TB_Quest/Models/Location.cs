@@ -19,6 +19,7 @@ namespace TB_Quest
 
         private List<int> _accessTo;
         private bool _isAccessible;
+        private string _generalContents;
         private int _experiencePoints;
 
 
@@ -44,6 +45,15 @@ namespace TB_Quest
         }
 
         /// <summary>
+        /// the objects in the location
+        /// </summary>
+        public string GeneralContents
+        {
+            get { return _generalContents; }
+            set { _generalContents = value; }
+        }
+
+        /// <summary>
         /// the number of experience points to be gained by visiting the location
         /// </summary>
         public int ExperiencePoints
@@ -57,7 +67,7 @@ namespace TB_Quest
 
         public Location()
         {
-
+      
         }
 
         public Location(string description, int locationID, string name, int objectID)

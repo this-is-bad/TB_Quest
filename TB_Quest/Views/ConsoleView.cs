@@ -185,9 +185,9 @@ namespace TB_Quest
         /// display splash screen
         /// </summary>
         /// <returns>player chooses to play</returns>
-        public bool DisplaySpashScreen()
+        public bool DisplaySplashScreen(bool start)
         {
-            bool playing = true;
+            bool playing = start;
             ConsoleKeyInfo keyPressed;
 
             Console.BackgroundColor = ConsoleTheme.SplashScreenBackgroundColor;
@@ -208,13 +208,23 @@ namespace TB_Quest
             Console.WriteLine(tabSpace + @"                     \_\                        ");
             Console.WriteLine(tabSpace + @"                                                ");
 
-            Console.SetCursorPosition(80, 25);
-            Console.Write("Press any key to continue or Esc to exit.");
-            keyPressed = Console.ReadKey();
-            if (keyPressed.Key == ConsoleKey.Escape)
+            Console.SetCursorPosition((start ? 39 : 50), 25);
+            if (start)
             {
-                playing = false;
+                Console.Write("Press any key to continue or Esc to exit.");
+
+                keyPressed = Console.ReadKey();
+                if (keyPressed.Key == ConsoleKey.Escape)
+                {
+                    playing = false;
+                }
             }
+            
+            if (!start)
+            {
+                Console.Write("Thank you for playing.");
+            }
+
 
             return playing;
         }
@@ -222,31 +232,31 @@ namespace TB_Quest
         /// <summary>
         /// display exit screen
         /// </summary>
-        public void DisplayExitScreen()
-        {
-            //ConsoleKeyInfo keyPressed;
+        //public void DisplayExitScreen()
+        //{
+        //    //ConsoleKeyInfo keyPressed;
 
-            Console.BackgroundColor = ConsoleTheme.SplashScreenBackgroundColor;
-            Console.ForegroundColor = ConsoleTheme.SplashScreenForegroundColor;
-            Console.Clear();
-            Console.CursorVisible = false;
+        //    Console.BackgroundColor = ConsoleTheme.SplashScreenBackgroundColor;
+        //    Console.ForegroundColor = ConsoleTheme.SplashScreenForegroundColor;
+        //    Console.Clear();
+        //    Console.CursorVisible = false;
 
 
-            Console.SetCursorPosition(0, 10);
-            string tabSpace = new String(' ', 35);
+        //    Console.SetCursorPosition(0, 10);
+        //    string tabSpace = new String(' ', 35);
 
-            Console.WriteLine(tabSpace + @" _____  ____      _____                     _   ");
-            Console.WriteLine(tabSpace + @"|_   _||  _ \    / ___ \                   | |  ");
-            Console.WriteLine(tabSpace + @"  | |  | |_| |  | |  | | _   _   ___   ___ | |_ ");
-            Console.WriteLine(tabSpace + @"  | |  |  _ \   | |  | || | | | / _ \ /  _|| __|");
-            Console.WriteLine(tabSpace + @"  | |  | |_| |  | |__| || \_/ ||  __/ _\ \ | |_ ");
-            Console.WriteLine(tabSpace + @"  \_/  |____/   \____  / \___/  \___| \__/ \__| ");
-            Console.WriteLine(tabSpace + @"                     \_\                        ");
-            Console.WriteLine(tabSpace + @"                                                ");
+        //    Console.WriteLine(tabSpace + @" _____  ____      _____                     _   ");
+        //    Console.WriteLine(tabSpace + @"|_   _||  _ \    / ___ \                   | |  ");
+        //    Console.WriteLine(tabSpace + @"  | |  | |_| |  | |  | | _   _   ___   ___ | |_ ");
+        //    Console.WriteLine(tabSpace + @"  | |  |  _ \   | |  | || | | | / _ \ /  _|| __|");
+        //    Console.WriteLine(tabSpace + @"  | |  | |_| |  | |__| || \_/ ||  __/ _\ \ | |_ ");
+        //    Console.WriteLine(tabSpace + @"  \_/  |____/   \____  / \___/  \___| \__/ \__| ");
+        //    Console.WriteLine(tabSpace + @"                     \_\                        ");
+        //    Console.WriteLine(tabSpace + @"                                                ");
 
-            Console.SetCursorPosition(80, 25);
-            Console.Write("Thank you for playing.");
-        }
+        //    Console.SetCursorPosition(80, 25);
+        //    Console.Write("Thank you for playing.");
+        //}
 
         /// <summary>
         /// initialize the console window settings
@@ -565,8 +575,14 @@ namespace TB_Quest
         {
             int locationId = 0;
             bool validLocationId = false;
-            DisplayGamePlayScreen("Travel to a new location", Text.Travel(_gamePlayer, _gameUniverse.Locations),
+            // original Text.Travel signature
+            //DisplayGamePlayScreen("Travel to a new location", Text.Travel(_gamePlayer, _gameUniverse.Locations),
+            //    ActionMenu.MainMenu, "");
+
+            // new Text.Travel signature
+            DisplayGamePlayScreen("Travel to a new location", Text.Travel(_gamePlayer),
                 ActionMenu.MainMenu, "");
+
 
             while (!validLocationId)
             {

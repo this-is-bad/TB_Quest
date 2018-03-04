@@ -15,7 +15,7 @@ namespace TB_Quest
         // console window configuration
         //
         public static int WindowWidth = 160;
-        public static int WindowHeight = 35;
+        public static int WindowHeight = 40;
         public static int WindowPositionLeft = 0;
         public static int WindowPositionTop = 0;
 
@@ -37,7 +37,7 @@ namespace TB_Quest
         //       the number of lines of text displayed by the footer should not change.
         public static int FooterWidth = 158;
         public static int FooterPositionLeft = 0;
-        public static int FooterPositionTop = 32;
+        public static int FooterPositionTop = 37;
 
         //
         // menu box configuration
@@ -51,7 +51,7 @@ namespace TB_Quest
         // message box configuration
         //
         public static int MessageBoxWidth = 118;
-        public static int MessageBoxHeight = 25;
+        public static int MessageBoxHeight = 30;
         public static int MessageBoxPositionLeft = 1;
         public static int MessageBoxPositionTop = 3;
 
@@ -61,13 +61,13 @@ namespace TB_Quest
         public static int InputBoxWidth = 118;
         public static int InputBoxHeight = 4;
         public static int InputBoxPositionLeft = 1;
-        public static int InputBoxPositionTop = 28;
+        public static int InputBoxPositionTop = 33;
 
         //
         // status box configuration
         //
         public static int StatusBoxWidth = 37;
-        public static int StatusBoxHeight = 9;
+        public static int StatusBoxHeight = 14;
         public static int StatusBoxPositionLeft = 120;
         public static int StatusBoxPositionTop = 23;
     }

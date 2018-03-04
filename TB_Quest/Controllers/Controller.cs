@@ -69,7 +69,7 @@ namespace TB_Quest
             //
             // display splash screen
             //
-            _playingGame = _gameConsoleView.DisplaySpashScreen();
+            _playingGame = _gameConsoleView.DisplaySplashScreen(true);
 
             //
             // player chooses to quit
@@ -96,7 +96,7 @@ namespace TB_Quest
                 // prepare game play screen
                 //
                 _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
-                _gameConsoleView.DisplayGamePlayScreen("Current Location", Text.CurrrentLocationInfo(), ActionMenu.MainMenu, "");
+                _gameConsoleView.DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
 
                 //
                 // game loop
@@ -168,22 +168,22 @@ namespace TB_Quest
         private void InitializeQuest()
         {
             // comment this out after it is fully implemented
-            Player player = _gameConsoleView.GetInitialPlayerInfo();
+            //Player player = _gameConsoleView.GetInitialPlayerInfo();
 
-            _gamePlayer.Name = player.Name;
-            _gamePlayer.Age = player.Age;
-            _gamePlayer.Race = player.Race;
-            _gamePlayer.HomeVillage = player.HomeVillage;
-            _gamePlayer.LocationID = 1;
-
+            //_gamePlayer.Name = player.Name;
+            //_gamePlayer.Age = player.Age;
+            //_gamePlayer.Race = player.Race;
+            //_gamePlayer.HomeVillage = player.HomeVillage;
+            //_gamePlayer.LocationID = 1;
+            Player player = new Player();
             _gamePlayer.ExperiencePoints = 0;
             _gamePlayer.Health = 100;
             _gamePlayer.Lives = 3;
-            //_gamePlayer.Name = "Random Guy";
-            //_gamePlayer.Age = 33;
-            //_gamePlayer.Race = Character.RaceType.Human;
-            //_gamePlayer.HomeVillage = "Hoth";
-            //_gamePlayer.LocationID = 1;
+            _gamePlayer.Name = "random guy";
+            _gamePlayer.Age = 33;
+            _gamePlayer.Race = Character.RaceType.Human;
+            _gamePlayer.HomeVillage = "hoth";
+            _gamePlayer.LocationID = 1;
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace TB_Quest
         /// </summary>
         private void QuitQuest()
         {
-            _gameConsoleView.DisplayExitScreen();
+            _gameConsoleView.DisplaySplashScreen(false);
             Timer timer = new Timer(1000);
             timer.Elapsed += Timer_Elapsed;
             //timer.Elapsed += async (sender, e) => await Timer_Elapsed();

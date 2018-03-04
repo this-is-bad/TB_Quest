@@ -52,6 +52,11 @@ namespace TB_Quest
 
         #region ***** define methods to return game element objects and information *****
 
+        /// <summary>
+        /// verify that location ID is valid
+        /// </summary>
+        /// <param name="locationId"></param>
+        /// <returns>bool</returns>
         public bool IsValidLocationId(int locationId)
         {
             List<int> LocationIds = new List<int>();
@@ -177,6 +182,20 @@ namespace TB_Quest
             }
 
             return location;
+        }
+
+        public List<Location> GetLocationsFromCurrentLocationID(int id)
+        {
+            Location location = GetLocationById(id);
+
+            List<Location> locations = new List<Location>(); ;
+
+            foreach (int locationId in location.AccessTo)
+            {
+                locations.Add(GetLocationById(locationId));
+            }
+
+            return locations;
         }
 
         #endregion

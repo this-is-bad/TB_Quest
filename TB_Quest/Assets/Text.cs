@@ -12,7 +12,7 @@ namespace TB_Quest
     public static class Text
     {
         public static List<string> HeaderText = new List<string>() { "TB Quest" };
-        public static List<string> FooterText = new List<string>() { "Game Programming Project, 2018" };
+        public static List<string> FooterText = new List<string>() { "Game Programmi0ng Project, 2018" };
 
         #region INTITIAL GAME SETUP
 
@@ -173,9 +173,9 @@ namespace TB_Quest
             statusBoxText.Add($"Age: {player.Age}\n");
             statusBoxText.Add($"Race: {player.Race}\n");
             statusBoxText.Add($"Village: {player.HomeVillage}\n");
-            statusBoxText.Add($"Name: {player.ExperiencePoints}\n");
-            statusBoxText.Add($"Age: {player.Health}\n");
-            statusBoxText.Add($"Race: {player.Lives}\n");
+            statusBoxText.Add($"Experience Points: {player.ExperiencePoints}\n");
+            statusBoxText.Add($"Health: {player.Health}\n");
+            statusBoxText.Add($"Lives: {player.Lives}\n");
 
             return statusBoxText;
         }
@@ -189,8 +189,8 @@ namespace TB_Quest
                 ///
                 /// display table header 
                 /// 
-                "ID".PadRight(10) + "Name".PadRight(30) + "\n" +
-                "---".PadRight(10) + "----------------------".PadRight(30) + "\n";
+                "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
+                "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
 
             ///
             /// display all locations
@@ -200,7 +200,7 @@ namespace TB_Quest
             {
                 LocationList +=
                     $"{location.LocationID}".PadRight(10) +
-                    $"{location.Name}".PadRight(30) +
+                    $"{location.Name}".PadRight(50) +
                     Environment.NewLine;
             }
 
@@ -219,7 +219,7 @@ namespace TB_Quest
             string messageBoxText =
                 $"Current Location: {location.Name}\n" +
                 " \n " +
-                location.Description;
+                location.GeneralContents;
 
             return messageBoxText;
         }
@@ -245,8 +245,48 @@ namespace TB_Quest
         /// <param name="player"></param>
         /// <param name="locations"></param>
         /// <returns>string</returns>
-        public static string Travel(Player player, List<Location> locations)
+        //public static string Travel(Player player, List<Location> locations)
+        //{
+        //    List<Location> locs = Location(player.LocationID;
+        //    string messageBoxText =
+        //        $"{player.Name}, where will you go next?\n" +
+        //        " \n " +
+
+        //        //
+        //        // display table header
+        //        //
+        //        "ID".PadRight(10) + "Name".PadRight(50) + "Accessible".PadRight(10) + "\n" +
+        //        "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "-------".PadRight(10) + "\n";
+        //    // 
+        //    // display all locations except the current location
+        //    //
+        //    string locationList = null;
+        //    foreach (Location location in locations)
+        //    {
+        //        if (location.LocationID != player.LocationID)
+        //        {
+        //            locationList +=
+        //                $"{location.LocationID}".PadRight(10) +
+        //                $"{location.Name}".PadRight(50) +
+        //                $"{location.IsAccessible}".PadRight(10) +
+        //                Environment.NewLine;
+        //        }
+        //    }
+        //    messageBoxText += locationList;
+
+        //    return messageBoxText;
+        //}
+
+        /// <summary>
+        /// get locations that can be traveled to
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="locations"></param>
+        /// <returns>string</returns>
+        public static string Travel(Player player)
         {
+            Location loc = Universe.GetLocationById(player.LocationID);
+            List<Location> locations = GetLocationsFromCurrentLocationID(loc);
             string messageBoxText =
                 $"{player.Name}, where will you go next?\n" +
                 " \n " +
@@ -254,8 +294,8 @@ namespace TB_Quest
                 //
                 // display table header
                 //
-                "ID".PadRight(10) + "Name".PadRight(30) + "Accessible".PadRight(10) + "\n" +
-                "---".PadRight(10) + "----------------------".PadRight(30) + "-------".PadRight(10) + "\n";
+                "ID".PadRight(10) + "Name".PadRight(50) + "Accessible".PadRight(10) + "\n" +
+                "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "-------".PadRight(10) + "\n";
             // 
             // display all locations except the current location
             //
@@ -266,7 +306,7 @@ namespace TB_Quest
                 {
                     locationList +=
                         $"{location.LocationID}".PadRight(10) +
-                        $"{location.Name}".PadRight(30) +
+                        $"{location.Name}".PadRight(50) +
                         $"{location.IsAccessible}".PadRight(10) +
                         Environment.NewLine;
                 }
@@ -290,8 +330,8 @@ namespace TB_Quest
                 //
                 // display table header
                 //
-                "ID".PadRight(10) + "Name".PadRight(30) + "\n" +
-                "---".PadRight(10) + "----------------------".PadRight(30) + "\n";
+                "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
+                "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
             //
             // display all locations
             //
@@ -300,13 +340,25 @@ namespace TB_Quest
             {
                 locationList +=
                     $"{location.LocationID}".PadRight(10) +
-                    $"{location.Name}".PadRight(30) +
+                    $"{location.Name}".PadRight(50) +
                     Environment.NewLine;
             }
 
             messageBoxText += locationList;
 
             return messageBoxText;
+        }
+
+        public static List<Location> GetLocationsFromCurrentLocation(Location location)
+        {
+            List<Location> locations = new List<Location>();
+
+            foreach (int locationId in location.AccessTo)
+            {
+                locations.Add(Universe.GetLocationById(locationId));
+            }
+
+            return locations;
         }
 
         //internal static string InitializeQuestGetPlayerRace(Player player)

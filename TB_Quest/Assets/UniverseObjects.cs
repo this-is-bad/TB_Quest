@@ -36,9 +36,10 @@ namespace TB_Quest
             {
                Name = "Wizard's Tower - Master's Magical Menagerie",
                 LocationID = 2,
-                Description = "" +
-                    "" +
-                    "",
+                Description = "You stand in your master's magical menagerie: a collection of magical artifacts, materials, books, contraptions, and even automata.  " +
+                    "While not a true menageries, containing no living things or even preserved specimens, the master's magical menagerie is a good bit of alliteration.  " +
+                    "So, you can take your semantics and shove them." +
+                    "In front of you is the section of the menagerie that contains the things you are allowed to touch.",
                 //GeneralContents = "- stuff in the room -",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 1, 3 }
@@ -49,11 +50,12 @@ namespace TB_Quest
             {
                Name = "Wizard's Tower - Entry Hall",
                 LocationID = 3,
-                Description = "" +
-                              "" +
-                              "",
+                Description = "You stand in the entry hall of your master's tower -- a modest room that portends nothing of the wondrous quest ahead of you.  " +
+                              "On the other side of the front door, your journey awaits.\n" +
+                              " \n " +
+                              "Step through the door when you are ready to begin your quest: a quest in which you will certainly perish.",
                 //GeneralContents = "",
-                IsAccessible = false,
+                IsAccessible = true,
                 AccessTo =  new List<int>(){ 2, 4 }
                 //ExperiencePoints = 20
             },
@@ -63,9 +65,12 @@ namespace TB_Quest
                Name = "The Wall",
                 LocationID = 4,
 
-                Description = "" +
-                              "" +
-                              "",
+                Description = "You have traveled many weeks to get here.  You crossed the Pits of Evil Fire.  " +
+                              "You scaled the Cliffs of Modest Scalability.  You perservered through Hodeg's " +
+                              "Valley of Cute Puppies and Cuddly Kittens.  You survived the interminable boredom " +
+                              "of the Featureless Plains.  You waded through the Swamp of the Indifferent Gators.  " +
+                              "You bested Cludar in an Indecision dance-off." +
+                              "  ",
                 //GeneralContents = "",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 3, 5 }
@@ -77,11 +82,14 @@ namespace TB_Quest
                Name = "Magic Hedge Maze - Entrance",
                 LocationID = 5,
 
-                Description = "" +
-                              "" +
+                Description = "You stand in the first room of the magical hedge maze.  Somewhere in this maze " +
+                              "lies a path to the lair of the dragon Jeedub'ex.  You are beginning to feel the " + 
+                              "weight of your quest.  Jeedub'ex is a powerful dragon that will surely kill you.\n" +
+                              " \n " +
+                              "Paths lead off to your left and right." +
                               "",
                 //GeneralContents = "",
-                IsAccessible = true,
+                IsAccessible = false,
                 AccessTo =  new List<int>(){ 6, 9 }
                 //ExperiencePoints = 10
             },
