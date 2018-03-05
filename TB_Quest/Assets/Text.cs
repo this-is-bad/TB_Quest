@@ -12,7 +12,7 @@ namespace TB_Quest
     public static class Text
     {
         public static List<string> HeaderText = new List<string>() { "TB Quest" };
-        public static List<string> FooterText = new List<string>() { "Game Programmi0ng Project, 2018" };
+        public static List<string> FooterText = new List<string>() { "Game Programming Project, 2018" };
 
         #region INTITIAL GAME SETUP
 
@@ -245,48 +245,8 @@ namespace TB_Quest
         /// <param name="player"></param>
         /// <param name="locations"></param>
         /// <returns>string</returns>
-        //public static string Travel(Player player, List<Location> locations)
-        //{
-        //    List<Location> locs = Location(player.LocationID;
-        //    string messageBoxText =
-        //        $"{player.Name}, where will you go next?\n" +
-        //        " \n " +
-
-        //        //
-        //        // display table header
-        //        //
-        //        "ID".PadRight(10) + "Name".PadRight(50) + "Accessible".PadRight(10) + "\n" +
-        //        "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "-------".PadRight(10) + "\n";
-        //    // 
-        //    // display all locations except the current location
-        //    //
-        //    string locationList = null;
-        //    foreach (Location location in locations)
-        //    {
-        //        if (location.LocationID != player.LocationID)
-        //        {
-        //            locationList +=
-        //                $"{location.LocationID}".PadRight(10) +
-        //                $"{location.Name}".PadRight(50) +
-        //                $"{location.IsAccessible}".PadRight(10) +
-        //                Environment.NewLine;
-        //        }
-        //    }
-        //    messageBoxText += locationList;
-
-        //    return messageBoxText;
-        //}
-
-        /// <summary>
-        /// get locations that can be traveled to
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="locations"></param>
-        /// <returns>string</returns>
-        public static string Travel(Player player)
+        public static string Travel(Player player, List<Location> locations)
         {
-            Location loc = Universe.GetLocationById(player.LocationID);
-            List<Location> locations = GetLocationsFromCurrentLocationID(loc);
             string messageBoxText =
                 $"{player.Name}, where will you go next?\n" +
                 " \n " +
@@ -315,6 +275,58 @@ namespace TB_Quest
 
             return messageBoxText;
         }
+
+        /// <summary>
+        /// get locations that can be traveled to
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="locations"></param>
+        /// <returns>string</returns>
+        //public static string Travel(Player player, List<Location> locations)
+        //{
+        //    Location loc = new Location();
+
+        //    do
+        //    {
+        //        foreach (Location location in locations)
+        //        {
+        //            if (location.LocationID == player.LocationID)
+        //            {
+        //                loc = location;
+        //                break;
+        //            }
+        //        }
+        //    }
+        //    while (loc.LocationID != player.LocationID);
+            
+        //    string messageBoxText =
+        //        $"{player.Name}, where will you go next?\n" +
+        //        " \n " +
+
+        //        //
+        //        // display table header
+        //        //
+        //        "ID".PadRight(10) + "Name".PadRight(50) + "Accessible".PadRight(10) + "\n" +
+        //        "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "-------".PadRight(10) + "\n";
+        //    // 
+        //    // display all locations except the current location
+        //    //
+        //    string locationList = null;
+        //    foreach (Location location in locations)
+        //    {
+        //        if (location.LocationID != loc.AccessTo)
+        //        {
+        //            locationList +=
+        //                $"{location.LocationID}".PadRight(10) +
+        //                $"{location.Name}".PadRight(50) +
+        //                $"{location.IsAccessible}".PadRight(10) +
+        //                Environment.NewLine;
+        //        }
+        //    }
+        //    messageBoxText += locationList;
+
+        //    return messageBoxText;
+        //}
 
         /// <summary>
         /// get locations visited by the player
@@ -347,18 +359,6 @@ namespace TB_Quest
             messageBoxText += locationList;
 
             return messageBoxText;
-        }
-
-        public static List<Location> GetLocationsFromCurrentLocation(Location location)
-        {
-            List<Location> locations = new List<Location>();
-
-            foreach (int locationId in location.AccessTo)
-            {
-                locations.Add(Universe.GetLocationById(locationId));
-            }
-
-            return locations;
         }
 
         //internal static string InitializeQuestGetPlayerRace(Player player)

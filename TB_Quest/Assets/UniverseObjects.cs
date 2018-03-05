@@ -73,37 +73,40 @@ namespace TB_Quest
                               "  ",
                 //GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 3, 5 }
+                AccessTo =  new List<int>(){ 3, 6 }
                 //ExperiencePoints = 10
             },
 
              new Location
             {
-               Name = "Magic Hedge Maze - Entrance",
+               Name = "Magic Hedge Maze",
                 LocationID = 5,
 
-                Description = "You stand in the first room of the magical hedge maze.  Somewhere in this maze " +
-                              "lies a path to the lair of the dragon Jeedub'ex.  You are beginning to feel the " + 
-                              "weight of your quest.  Jeedub'ex is a powerful dragon that will surely kill you.\n" +
+                Description = "Another room in the hedge maze." +
+                              "" +
+                              "\n" +
                               " \n " +
-                              "Paths lead off to your left and right." +
+                              "" +
                               "",
                 //GeneralContents = "",
-                IsAccessible = false,
+                IsAccessible = true,
                 AccessTo =  new List<int>(){ 6, 9 }
                 //ExperiencePoints = 10
             },
 
             new Location
             {
-               Name = "Magic Hedge Maze",
+               Name = "Magic Hedge Maze - Entrance",
                 LocationID = 6,
 
-                Description = "" +
-                              "" +
+                Description = "You stand in the first room of the magical hedge maze.  Somewhere in this maze " +
+                              "lies a path to the lair of the dragon Jeedub'ex.  You are beginning to feel the " +
+                              "weight of your quest.  Jeedub'ex is a powerful dragon that will surely kill you.\n" +
+                              " \n " +
+                              "Paths lead off to your left and right." +
                               "",
                 //GeneralContents = "",
-                IsAccessible = true,
+                IsAccessible = true, // false,
                 AccessTo =  new List<int>(){ 4, 5, 7 }
                 //ExperiencePoints = 10
             },
@@ -113,7 +116,7 @@ namespace TB_Quest
                Name = "Magic Hedge Maze",
                 LocationID = 7,
 
-                Description = "" +
+                Description = "Another room in the hedge maze." +
                               "" +
                               "",
                 //GeneralContents = "",
@@ -124,10 +127,10 @@ namespace TB_Quest
 
             new Location
             {
-               Name = "Magic Hedge Maze - Dead End",
+               Name = "Magic Hedge Maze",
                 LocationID = 8,
 
-                Description = "" +
+                Description = "Another dead end." +
                               "" +
                               "",
                 //GeneralContents = "",
@@ -141,7 +144,7 @@ namespace TB_Quest
                Name = "Magic Hedge Maze",
                 LocationID = 9,
 
-                Description = "" +
+                Description = "Another room in the hedge maze." +
                               "" +
                               "",
                 //GeneralContents = "",
@@ -155,7 +158,7 @@ namespace TB_Quest
                Name = "Magic Hedge Maze",
                 LocationID = 10,
 
-                Description = "" +
+                Description = "Another room in the hedge maze." +
                               "" +
                               "",
                 //GeneralContents = "",
@@ -169,7 +172,7 @@ namespace TB_Quest
                Name = "Magic Hedge Maze",
                 LocationID = 11,
 
-                Description = "" +
+                Description = "Another room in the hedge maze." +
                               "" +
                               "",
                 //GeneralContents = "",
@@ -183,7 +186,7 @@ namespace TB_Quest
                Name = "Magic Hedge Maze",
                 LocationID = 12,
 
-                Description = "" +
+                Description = "Another room in the hedge maze." +
                               "" +
                               "",
                 //GeneralContents = "",
@@ -194,10 +197,10 @@ namespace TB_Quest
 
             new Location
             {
-               Name = "Magic Hedge Maze - Dead End",
+               Name = "Magic Hedge Maze",
                 LocationID = 13,
 
-                Description = "" +
+                Description = "Another dead end." +
                               "" +
                               "",
                 //GeneralContents = "",
@@ -211,9 +214,14 @@ namespace TB_Quest
                Name = "Magic Hedge Maze",
                 LocationID = 14,
 
-                Description = "" +
+                Description = "Another room in the hedge maze.\n" +
+                              "Oh, wait.  This is not another room in the hedge maze.  Well, technically speaking, " +
+                              "it is another room in the hedge maze.  But, this room is different.  In the middle " +
+                              "of the room, a marble statue stands on a pedestal.  There is an opening in the south " +
+                              "wall of the room, beyond which lies a dull, red lake.  In front of the opening, a " +
+                              "basset hound sits on the ground, watching you." +
                               "" +
-                              "",
+                              "",       
                 //GeneralContents = "",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 10, 17 }
@@ -222,24 +230,24 @@ namespace TB_Quest
 
             new Location
             {
-               Name = "Magic Hedge Maze - Dead End",
+               Name = "Magic Hedge Maze",
                 LocationID = 15,
 
-                Description = "" +
+                Description = "Another room in the hedge maze." +
                               "" +
                               "",
                 //GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 11 }
+                AccessTo =  new List<int>(){ 11, 14}
                 //ExperiencePoints = 10
             },
 
             new Location
             {
-               Name = "Magic Hedge Maze - Dead End",
+               Name = "Magic Hedge Maze",
                 LocationID = 16,
 
-                Description = "" +
+                Description = "Another dead end." +
                               "" +
                               "",
                 //GeneralContents = "",
@@ -253,11 +261,21 @@ namespace TB_Quest
                Name = "Lake of Acid",
                 LocationID = 17,
 
-                Description = "" +
-                              "" +
-                              "",
+                Description = "You stand at the edge of a large, dull red lake.  No breeze disturbs the stilless of " +
+                              "the lake.  The air is dry, and smells faintly unpleasant.  There is no sign of life.  " +
+                              "No bird song, not even the sound of an insect breaks the heavy silence.  Only the " +
+                              "skeletons of various things, sparsely distributed around the lake's edge reveal the " +
+                              "cause of the undefinable dread you feel in this place.  The skeletons all end at the " +
+                              "lake's edge. \n" +
+                              " \n " +
+                              "That, and the brightly colored sign that reads: " +
+                              "\"Caution: Lake of Acid!  Swim at your own risk!\" \n" +
+                              " \n " +
+                              "In the middle of the lake, lies your next destination: a small island.  In the middle " +
+                              "this island, a stairway descends into the ground."
+                ,
                 //GeneralContents = "",
-                IsAccessible = false,
+                IsAccessible = true, // false,
                 AccessTo =  new List<int>(){ 16, 18 }
                 //ExperiencePoints = 10
             },
@@ -267,11 +285,14 @@ namespace TB_Quest
                Name = "Ancient Battlefield",
                 LocationID = 18,
 
-                Description = "" +
-                              "" +
+                Description = "You stand at the edge of an ancient battlefield: a location so remote and the casualties " +
+                              "so great that the few survivors abandoned everything where it lay.  Across an expansive rolling " + 
+                              "plain of short grass, fragments of weapons, armor, and machines of war jut out of the " +
+                              "ground like weeds.  Where the grass is thin, bones are exposed in the hard dirt, like " +
+                              "polished stones.  " +
                               "",
                 //GeneralContents = "",
-                IsAccessible = false,
+                IsAccessible = true, // false,
                 AccessTo =  new List<int>(){ }
                 //ExperiencePoints = 10
             }

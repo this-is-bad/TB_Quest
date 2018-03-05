@@ -494,51 +494,51 @@ namespace TB_Quest
             //
             // intro
             //
-            DisplayGamePlayScreen("Quest Preparation", Text.InitializeQuestIntro(), ActionMenu.QuestIntro, "");
-            GetContinueKey();
+            //DisplayGamePlayScreen("Quest Preparation", Text.InitializeQuestIntro(), ActionMenu.QuestIntro, "");
+            //GetContinueKey();
 
-            //
-            // get player's name
-            //
-            DisplayGamePlayScreen("Quest Preparation - Name", Text.InitializeQuestGetPlayerName(), ActionMenu.QuestIntro, "");
-            DisplayInputBoxPrompt("Enter your name: ");
-            player.Name = GetString();
+            ////
+            //// get player's name
+            ////
+            //DisplayGamePlayScreen("Quest Preparation - Name", Text.InitializeQuestGetPlayerName(), ActionMenu.QuestIntro, "");
+            //DisplayInputBoxPrompt("Enter your name: ");
+            //player.Name = GetString();
 
-            //
-            // get player's age
-            //
-            DisplayGamePlayScreen("Quest Preparation - Age", Text.InitializeQuestGetPlayerAge(player.Name), ActionMenu.QuestIntro, "");
-            int gamePlayerAge;
+            ////
+            //// get player's age
+            ////
+            //DisplayGamePlayScreen("Quest Preparation - Age", Text.InitializeQuestGetPlayerAge(player.Name), ActionMenu.QuestIntro, "");
+            //int gamePlayerAge;
 
-            GetInteger($"Enter your age {player.Name}: ", 0, 1000000, out gamePlayerAge);
-            player.Age = gamePlayerAge;
+            //GetInteger($"Enter your age {player.Name}: ", 0, 1000000, out gamePlayerAge);
+            //player.Age = gamePlayerAge;
 
-            //
-            // get player's race
-            //
-            DisplayGamePlayScreen("Quest Preparation - Race", Text.InitializeQuestGetPlayerRace(player), ActionMenu.QuestIntro, "");
-            DisplayInputBoxPrompt($"Enter your race {player.Name}: ");
-            player.Race = GetRace();
+            ////
+            //// get player's race
+            ////
+            //DisplayGamePlayScreen("Quest Preparation - Race", Text.InitializeQuestGetPlayerRace(player), ActionMenu.QuestIntro, "");
+            //DisplayInputBoxPrompt($"Enter your race {player.Name}: ");
+            //player.Race = GetRace();
 
-            //
-            // get player's home village
-            //
-            DisplayGamePlayScreen("Quest Preparation - Home Village", Text.InitializeQuestGetPlayerHomeVillage(player.Name), ActionMenu.QuestIntro, "");
-            DisplayInputBoxPrompt($"Enter your home village: ");
-            player.HomeVillage = GetString();
+            ////
+            //// get player's home village
+            ////
+            //DisplayGamePlayScreen("Quest Preparation - Home Village", Text.InitializeQuestGetPlayerHomeVillage(player.Name), ActionMenu.QuestIntro, "");
+            //DisplayInputBoxPrompt($"Enter your home village: ");
+            //player.HomeVillage = GetString();
 
-            //
-            // get player's choice of greeting
-            //
-            DisplayGamePlayScreen("Quest Preparation - Home Village", Text.InitializeQuestGetPlayerGreeting(), ActionMenu.QuestIntro, "");
-            DisplayInputBoxPrompt($"Would you like a verbose greeting? ");
-            player.VerboseGreeting = (GetString().ToLower() == "y" ? true: false);
+            ////
+            //// get player's choice of greeting
+            ////
+            //DisplayGamePlayScreen("Quest Preparation - Home Village", Text.InitializeQuestGetPlayerGreeting(), ActionMenu.QuestIntro, "");
+            //DisplayInputBoxPrompt($"Would you like a verbose greeting? ");
+            //player.VerboseGreeting = (GetString().ToLower() == "y" ? true: false);
 
-            //
-            // echo the player's info
-            //
-            DisplayGamePlayScreen("Quest Initialization - Complete", Text.InitializeQuestEchoPlayerInfo(player), ActionMenu.QuestIntro, "");
-            GetContinueKey();
+            ////
+            //// echo the player's info
+            ////
+            //DisplayGamePlayScreen("Quest Initialization - Complete", Text.InitializeQuestEchoPlayerInfo(player), ActionMenu.QuestIntro, "");
+            //GetContinueKey();
 
             // 
             // change view status to playing game
@@ -580,9 +580,11 @@ namespace TB_Quest
             //    ActionMenu.MainMenu, "");
 
             // new Text.Travel signature
-            DisplayGamePlayScreen("Travel to a new location", Text.Travel(_gamePlayer),
+            DisplayGamePlayScreen("Travel to a new location", Text.Travel(_gamePlayer, _gameUniverse.GetLocationsFromCurrentLocationID(_gamePlayer.LocationID)),
                 ActionMenu.MainMenu, "");
 
+            int currentLocationID = _gamePlayer.LocationID;
+            List<int> availableLocations = _gameUniverse.GetLocationIDsFromCurrentLocationID(currentLocationID);
 
             while (!validLocationId)
             {
@@ -597,18 +599,27 @@ namespace TB_Quest
                 //
                 if (_gameUniverse.IsValidLocationId(locationId))
                 {
-                    if (_gameUniverse.IsAccessibleLocation(locationId))
+                    if (availableLocations.Contains(locationId))
                     {
-                        validLocationId = true;
+                        if (_gameUniverse.IsAccessibleLocation(locationId))
+                        {
+                            validLocationId = true;
+                        }
+                        else
+                        {
+                            ClearInputBox();
+                            DisplayInputErrorMessage("That way is not open to you yet.  Please try again.");
+                        }
                     }
                     else
                     {
                         ClearInputBox();
-                        DisplayInputErrorMessage("That way is not open to you yet.  Please try again.");
+                        DisplayInputErrorMessage("You cannot reach that location from here.  Please try again.");
                     }
                 }
                 else
                 {
+                    ClearInputBox();
                     DisplayInputErrorMessage("It appears you entered an invalid locationID.  Please try again.");
                 }
             }

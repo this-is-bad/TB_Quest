@@ -184,6 +184,11 @@ namespace TB_Quest
             return location;
         }
 
+        /// <summary>
+        /// get a list of locations accessible from the current location
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>List<location></location></returns>
         public List<Location> GetLocationsFromCurrentLocationID(int id)
         {
             Location location = GetLocationById(id);
@@ -193,6 +198,25 @@ namespace TB_Quest
             foreach (int locationId in location.AccessTo)
             {
                 locations.Add(GetLocationById(locationId));
+            }
+
+            return locations;
+        }
+
+        /// <summary>
+        /// get a list of location IDs for locations that are accessible from the current location
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>List<location></location></returns>
+        public List<int> GetLocationIDsFromCurrentLocationID(int id)
+        {
+            Location location = GetLocationById(id);
+
+            List<int> locations = new List<int>(); ;
+
+            foreach (int locationId in location.AccessTo)
+            {
+                locations.Add(locationId);
             }
 
             return locations;

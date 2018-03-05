@@ -168,14 +168,14 @@ namespace TB_Quest
         private void InitializeQuest()
         {
             // comment this out after it is fully implemented
-            //Player player = _gameConsoleView.GetInitialPlayerInfo();
+            Player player = _gameConsoleView.GetInitialPlayerInfo();
 
             //_gamePlayer.Name = player.Name;
             //_gamePlayer.Age = player.Age;
             //_gamePlayer.Race = player.Race;
             //_gamePlayer.HomeVillage = player.HomeVillage;
             //_gamePlayer.LocationID = 1;
-            Player player = new Player();
+            //Player player = new Player();
             _gamePlayer.ExperiencePoints = 0;
             _gamePlayer.Health = 100;
             _gamePlayer.Lives = 3;
@@ -184,6 +184,7 @@ namespace TB_Quest
             _gamePlayer.Race = Character.RaceType.Human;
             _gamePlayer.HomeVillage = "hoth";
             _gamePlayer.LocationID = 1;
+           
         }
 
         /// <summary>
