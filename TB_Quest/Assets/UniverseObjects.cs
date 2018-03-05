@@ -27,9 +27,9 @@ namespace TB_Quest
                 "You will be prompted for the required information. Please enter the information below.\n" +
                 " \n" +
                 "\tPress any key to begin.",
-        IsAccessible = true,
-                AccessTo =  new List<int>(){ 2 }
-                //ExperiencePoints = 10
+                IsAccessible = true,
+                AccessTo =  new List<int>(){ 2 },
+                ExperiencePoints = 10
             },
 
             new Location
@@ -42,8 +42,8 @@ namespace TB_Quest
                     "In front of you is the section of the menagerie that contains the things you are allowed to touch.",
                 //GeneralContents = "- stuff in the room -",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 1, 3 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 1, 3 },
+                ExperiencePoints = 5
             },
 
             new Location
@@ -54,10 +54,10 @@ namespace TB_Quest
                               "On the other side of the front door, your journey awaits.\n" +
                               " \n " +
                               "Step through the door when you are ready to begin your quest: a quest in which you will certainly perish.",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 2, 4 }
-                //ExperiencePoints = 20
+                AccessTo =  new List<int>(){ 2, 4 },
+                ExperiencePoints = 5
             },
 
             new Location
@@ -71,10 +71,10 @@ namespace TB_Quest
                               "of the Featureless Plains.  You waded through the Swamp of the Indifferent Gators.  " +
                               "You bested Cludar in an Indecision dance-off." +
                               "  ",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 3, 6 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 3, 6 },
+                ExperiencePoints = 10
             },
 
              new Location
@@ -88,10 +88,10 @@ namespace TB_Quest
                               " \n " +
                               "" +
                               "",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 6, 9 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 6, 9 },
+                ExperiencePoints = 10
             },
 
             new Location
@@ -105,10 +105,10 @@ namespace TB_Quest
                               " \n " +
                               "Paths lead off to your left and right." +
                               "",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true, // false,
-                AccessTo =  new List<int>(){ 4, 5, 7 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 4, 5, 7 },
+                ExperiencePoints = 10
             },
 
             new Location
@@ -119,10 +119,10 @@ namespace TB_Quest
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 6, 8, 11 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 6, 8, 11 },
+                ExperiencePoints = 10
             },
 
             new Location
@@ -133,10 +133,10 @@ namespace TB_Quest
                 Description = "Another dead end." +
                               "" +
                               "",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 7 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 7 },
+                ExperiencePoints = -10
             },
 
             new Location
@@ -147,10 +147,10 @@ namespace TB_Quest
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 5, 10, 13 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 5, 10, 13 },
+                ExperiencePoints = 10
             },
 
             new Location
@@ -161,10 +161,10 @@ namespace TB_Quest
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 9, 14 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 9, 14 },
+                ExperiencePoints = 10
             },
 
             new Location
@@ -175,10 +175,10 @@ namespace TB_Quest
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 7, 12, 15 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 7, 12, 15 },
+                ExperiencePoints = 10
             },
 
             new Location
@@ -189,10 +189,10 @@ namespace TB_Quest
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 11, 16 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 11, 16 },
+                ExperiencePoints = 10
             },
 
             new Location
@@ -203,10 +203,10 @@ namespace TB_Quest
                 Description = "Another dead end." +
                               "" +
                               "",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 9 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 9 },
+                ExperiencePoints = -10
             },
 
             new Location
@@ -222,10 +222,10 @@ namespace TB_Quest
                               "basset hound sits on the ground, watching you." +
                               "" +
                               "",       
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 10, 17 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 10, 15, 17 },
+                ExperiencePoints = 10
             },
 
             new Location
@@ -236,10 +236,10 @@ namespace TB_Quest
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 11, 14}
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 11, 14},
+                ExperiencePoints = 10
             },
 
             new Location
@@ -250,10 +250,10 @@ namespace TB_Quest
                 Description = "Another dead end." +
                               "" +
                               "",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 12 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 12 },
+                ExperiencePoints = -10
             },
 
             new Location
@@ -272,12 +272,11 @@ namespace TB_Quest
                               "\"Caution: Lake of Acid!  Swim at your own risk!\" \n" +
                               " \n " +
                               "In the middle of the lake, lies your next destination: a small island.  In the middle " +
-                              "this island, a stairway descends into the ground."
-                ,
-                //GeneralContents = "",
+                              "this island, a stairway descends into the ground.",
+                GeneralContents = "",
                 IsAccessible = true, // false,
-                AccessTo =  new List<int>(){ 16, 18 }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ 14, 18 },
+                ExperiencePoints = 20
             },
 
             new Location
@@ -291,10 +290,10 @@ namespace TB_Quest
                               "ground like weeds.  Where the grass is thin, bones are exposed in the hard dirt, like " +
                               "polished stones.  " +
                               "",
-                //GeneralContents = "",
+                GeneralContents = "",
                 IsAccessible = true, // false,
-                AccessTo =  new List<int>(){ }
-                //ExperiencePoints = 10
+                AccessTo =  new List<int>(){ },
+                ExperiencePoints = 20
             }
         };
 

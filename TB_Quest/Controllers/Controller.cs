@@ -96,7 +96,16 @@ namespace TB_Quest
                 // prepare game play screen
                 //
                 _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
-                _gameConsoleView.DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
+                if (_gamePlayer.LocationID == 1)
+                {
+                    _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                    Text.CurrentLocationInfo(_currentLocation), ActionMenu.PlayerSetup, "");
+                }
+                else
+                {
+                    _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                        Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
+                }
 
                 //
                 // game loop
@@ -111,7 +120,15 @@ namespace TB_Quest
                     //
                     // get next game action from player
                     //
-                    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.MainMenu);
+                    if (_gamePlayer.LocationID == 1)
+                    {
+                        playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.PlayerSetup);
+                    }
+                    else
+                    {
+                        playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.MainMenu);
+                    }
+                    
 
                     //
                     // choose an action based on the player's menu choice
@@ -142,8 +159,16 @@ namespace TB_Quest
                             //
                             // set the game play screen to the current location info format
                             //
-                            _gameConsoleView.DisplayGamePlayScreen("Current Location", 
-                                Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
+                            if (_gamePlayer.LocationID == 1)
+                            {
+                                _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                                Text.CurrentLocationInfo(_currentLocation), ActionMenu.PlayerSetup, "");
+                            }
+                            else
+                            {
+                                _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                                    Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
+                            }
                             break;
 
                         case PlayerAction.Exit:
@@ -220,6 +245,11 @@ namespace TB_Quest
                 // add new location to the list of visited locations if this is the first visit
                 //
                 _gamePlayer.LocationsVisited.Add(_currentLocation.LocationID);
+
+                //
+                // update experience points for visiting locations
+                //
+                _gamePlayer.ExperiencePoints += _currentLocation.ExperiencePoints;
             }
         }
 

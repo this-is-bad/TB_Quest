@@ -41,7 +41,8 @@ namespace TB_Quest
                     { '1', PlayerAction.PlayerNameChange },
                     { '2', PlayerAction.PlayerAgeChange },
                     { '3', PlayerAction.PlayerRaceChange },
-                    { '4', PlayerAction.Travel }
+                    { '4', PlayerAction.LookAround },
+                    { '5', PlayerAction.Travel }
                 }
         };
 

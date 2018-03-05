@@ -260,13 +260,50 @@ namespace TB_Quest
             // display all locations except the current location
             //
             string locationList = null;
+            string cardinal;
+            int locationDiff;
             foreach (Location location in locations)
             {
+                cardinal = "";
+                locationDiff = 0;
+
                 if (location.LocationID != player.LocationID)
                 {
+                    
+                    if ((Enumerable.Range(5, 11).Contains(player.LocationID)) && location.Name.Contains("Hedge Maze"))
+                    {
+                        locationDiff = player.LocationID - location.LocationID;
+
+                        if (locationDiff > 1)
+                        {    
+                            cardinal = " - North";    
+                        }
+                        else if (locationDiff == -1)
+                        {
+                            cardinal = " - West";
+                        }
+                        else if (locationDiff == 1)
+                        {
+                            cardinal = " - East";
+                        }
+                        else if (locationDiff < -1)
+                        {
+                            cardinal = " - South";
+                        }
+                        else
+                        {
+                            cardinal = "";
+                        }
+
+                    }
+                    else
+                    {
+                        cardinal = "";
+                    }
+
                     locationList +=
                         $"{location.LocationID}".PadRight(10) +
-                        $"{location.Name}".PadRight(50) +
+                        $"{location.Name}{cardinal}".PadRight(50) +
                         $"{location.IsAccessible}".PadRight(10) +
                         Environment.NewLine;
                 }
