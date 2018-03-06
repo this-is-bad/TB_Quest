@@ -83,7 +83,7 @@ namespace TB_Quest
         public void DisplayListOfLocations()
         {
             DisplayGamePlayScreen("List: Locations", Text.ListLocations
-                (_gameUniverse.Locations), ActionMenu.MainMenu, "");
+                (_gameUniverse.Locations), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
         }
 
         /// <summary>
@@ -175,8 +175,13 @@ namespace TB_Quest
         /// <returns>character race value</returns>
         public Character.RaceType GetRace()
         {
+            string race = Console.ReadLine().Trim();
+            if (race.Length > 1)
+            {
+                race = race.Substring(0, 1).ToUpper() + race.Substring(1, (race.Length - 1)).ToLower();
+            }
             Character.RaceType raceType;
-            Enum.TryParse<Character.RaceType>(Console.ReadLine(), out raceType);
+            Enum.TryParse<Character.RaceType>(race, out raceType);
 
             return raceType;
         }
@@ -556,7 +561,7 @@ namespace TB_Quest
         public void DisplayLookAround()
         {
             Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
-            DisplayGamePlayScreen("Current Location", Text.LookAround(currentLocation), ActionMenu.MainMenu, "");
+            DisplayGamePlayScreen("Current Location", Text.LookAround(currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
         }
 
         /// <summary>
@@ -564,7 +569,7 @@ namespace TB_Quest
         /// </summary>
         public void DisplayPlayerInfo()
         {
-            DisplayGamePlayScreen("Player Information", Text.PlayerInfo(_gamePlayer), ActionMenu.MainMenu, "");
+            DisplayGamePlayScreen("Player Information", Text.PlayerInfo(_gamePlayer), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
         }
 
         /// <summary>
@@ -581,7 +586,7 @@ namespace TB_Quest
 
             // new Text.Travel signature
             DisplayGamePlayScreen("Travel to a new location", Text.Travel(_gamePlayer, _gameUniverse.GetLocationsFromCurrentLocationID(_gamePlayer.LocationID)),
-                ActionMenu.MainMenu, "");
+                ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
 
             int currentLocationID = _gamePlayer.LocationID;
             List<int> availableLocations = _gameUniverse.GetLocationIDsFromCurrentLocationID(currentLocationID);
@@ -599,8 +604,14 @@ namespace TB_Quest
                 //
                 if (_gameUniverse.IsValidLocationId(locationId))
                 {
+                    //
+                    // validate location ID is accessible from the current location
+                    //
                     if (availableLocations.Contains(locationId))
                     {
+                        //
+                        // validate that location is not locked
+                        //
                         if (_gameUniverse.IsAccessibleLocation(locationId))
                         {
                             validLocationId = true;
@@ -627,6 +638,9 @@ namespace TB_Quest
             return locationId;
         }
 
+        /// <summary>
+        /// generate a list of locations that have been visited
+        /// </summary>
         public void DisplayLocationsVisited()
         {
             //
@@ -639,10 +653,50 @@ namespace TB_Quest
             }
 
             DisplayGamePlayScreen("Locations Visited", Text.VisitedLocations
-                (visitedLocations), ActionMenu.MainMenu, "");
+                (visitedLocations), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
         }
-        #endregion
 
-        #endregion
-    }
+        /// <summary>
+        /// update the player character's name
+        /// </summary>
+        public void DisplayUpdatePlayerName()
+        {
+            Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+
+            DisplayGamePlayScreen("Quest Preparation - Name", Text.InitializeQuestGetPlayerName(), ActionMenu.QuestIntro, "");
+            DisplayInputBoxPrompt("Enter your name: ");
+            _gamePlayer.Name = GetString();
+
+            DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+        }
+        /// <summary>
+        /// update the player character's age
+        /// </summary>
+        public void DisplayUpdatePlayerAge()
+        {
+            Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+
+            DisplayGamePlayScreen("Quest Preparation - Age", Text.InitializeQuestGetPlayerAge(_gamePlayer.Name), ActionMenu.QuestIntro, "");
+            int gamePlayerAge;
+
+            GetInteger($"Enter your age {_gamePlayer.Name}: ", 0, 1000000, out gamePlayerAge);
+            _gamePlayer.Age = gamePlayerAge;
+            DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+        }
+        /// <summary>
+        /// update the player character's age
+        /// </summary>
+        public void DisplayUpdatePlayerRace()
+        {
+            Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+
+            DisplayGamePlayScreen("Quest Preparation - Race", Text.InitializeQuestGetPlayerRace(_gamePlayer), ActionMenu.QuestIntro, "");
+            DisplayInputBoxPrompt($"Enter your race {_gamePlayer.Name}: ");
+            _gamePlayer.Race = GetRace();
+            DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+        }
+            #endregion
+
+            #endregion
+        }
 }

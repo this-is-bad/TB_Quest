@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace TB_Quest
 {
+
     class Program
     {
+        /// <summary>
+        /// global variable used to change the menu to the setup menu when current LocationID is "1"
+        /// </summary>
+        public static bool Setup { get; set; }
+
         /// <summary>
         /// instantiate the game controller, passing all control to the new Controller object
         /// </summary>

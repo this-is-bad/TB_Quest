@@ -42,7 +42,8 @@ namespace TB_Quest
                     { '2', PlayerAction.PlayerAgeChange },
                     { '3', PlayerAction.PlayerRaceChange },
                     { '4', PlayerAction.LookAround },
-                    { '5', PlayerAction.Travel }
+                    { '5', PlayerAction.Travel },
+                    { '0', PlayerAction.Exit }
                 }
         };
 
@@ -60,5 +61,25 @@ namespace TB_Quest
                     { '0', PlayerAction.Exit }
                 }
         };
+
+#region METHODS
+
+        public static Menu ReturnMenu(Menu menu)
+        {
+            Menu newMenu = new Menu();
+            if (Program.Setup)
+            {
+                newMenu = PlayerSetup;
+            }
+            else
+            {
+                newMenu = (menu == null ? MainMenu : menu);
+            }
+
+            return newMenu;
+        }
+
+#endregion
+
     }
 }

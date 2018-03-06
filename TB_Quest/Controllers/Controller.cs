@@ -56,6 +56,8 @@ namespace TB_Quest
             _gameConsoleView = new ConsoleView(_gamePlayer, _gameUniverse);
             _playingGame = true;
 
+            Program.Setup = true; 
+
             Console.CursorVisible = false;
         }
 
@@ -96,16 +98,20 @@ namespace TB_Quest
                 // prepare game play screen
                 //
                 _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
-                if (_gamePlayer.LocationID == 1)
-                {
-                    _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                    Text.CurrentLocationInfo(_currentLocation), ActionMenu.PlayerSetup, "");
-                }
-                else
-                {
-                    _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                        Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
-                }
+
+                _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                        Text.CurrentLocationInfo(_currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+
+                //if (_gamePlayer.LocationID == 1)
+                //{
+                //    _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                //    Text.CurrentLocationInfo(_currentLocation), ActionMenu.PlayerSetup, "");
+                //}
+                //else
+                //{
+                //    _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                //        Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
+                //}
 
                 //
                 // game loop
@@ -120,14 +126,16 @@ namespace TB_Quest
                     //
                     // get next game action from player
                     //
-                    if (_gamePlayer.LocationID == 1)
-                    {
-                        playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.PlayerSetup);
-                    }
-                    else
-                    {
-                        playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.MainMenu);
-                    }
+                    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.ReturnMenu(ActionMenu.MainMenu));
+
+                    //if (_gamePlayer.LocationID == 1)
+                    //{
+                    //    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.PlayerSetup);
+                    //}
+                    //else
+                    //{
+                    //    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.MainMenu);
+                    //}
                     
 
                     //
@@ -137,7 +145,16 @@ namespace TB_Quest
                     {
                         case PlayerAction.None:
                             break;
-                        
+
+                        case PlayerAction.PlayerNameChange:
+                            _gameConsoleView.DisplayUpdatePlayerName();
+                            break;
+                        case PlayerAction.PlayerAgeChange:
+                            _gameConsoleView.DisplayUpdatePlayerAge();
+                            break;
+                        case PlayerAction.PlayerRaceChange:
+                            _gameConsoleView.DisplayUpdatePlayerRace();
+                            break;
                         case PlayerAction.PlayerInfo:
                             _gameConsoleView.DisplayPlayerInfo();
                             break;
@@ -155,20 +172,33 @@ namespace TB_Quest
                             // get new location choice and update the current location property
                             //
                             _gamePlayer.LocationID = _gameConsoleView.DisplayGetNextLocation();
+
+                            if (_gamePlayer.LocationID == 1)
+                            {
+                                Program.Setup = true;
+                            }
+                            else
+                            {
+                                Program.Setup = false;
+                            }
                             _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
                             //
                             // set the game play screen to the current location info format
                             //
-                            if (_gamePlayer.LocationID == 1)
-                            {
-                                _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                                Text.CurrentLocationInfo(_currentLocation), ActionMenu.PlayerSetup, "");
-                            }
-                            else
-                            {
-                                _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                                    Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
-                            }
+
+                            _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                                Text.CurrentLocationInfo(_currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+
+                            //if (_gamePlayer.LocationID == 1)
+                            //{
+                            //    _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                            //    Text.CurrentLocationInfo(_currentLocation), ActionMenu.PlayerSetup, "");
+                            //}
+                            //else
+                            //{
+                            //    _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                            //        Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
+                            //}
                             break;
 
                         case PlayerAction.Exit:
