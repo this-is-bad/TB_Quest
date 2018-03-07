@@ -11,6 +11,12 @@ namespace TB_Quest
     /// </summary>
     class UniverseObjects
     {
+
+        #region ITEMS
+
+        #endregion
+
+        #region LOCATIONS
         private static List<Location> locations = new List<Location>()
         {
 
@@ -21,12 +27,7 @@ namespace TB_Quest
                 Description = "You are currently in your room in your master's tower.\n"  +
                 "It is a sparse room, containing nothing more than a bed, a desk, a light,\n" +
                 "and a small wardrobe -- an appropriate room for an apprentice.\n",
-                //" \n" +
-                //"Before you begin your quest, you must prepare for your journey.\n" +
-                //" \n" +
-                //"You will be prompted for the required information. Please enter the information below.\n" +
-                //" \n" +
-                //"\tPress any key to begin.",
+                GeneralContents = "There's nothing of interest in this room, you included.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 2 },
                 ExperiencePoints = 10
@@ -40,7 +41,7 @@ namespace TB_Quest
                     "While not a true menageries, containing no living things or even preserved specimens, the master's magical menagerie is a good bit of alliteration.  " +
                     "So, you can take your semantics and shove them." +
                     "In front of you is the section of the menagerie that contains the things you are allowed to touch.",
-                //GeneralContents = "- stuff in the room -",
+                GeneralContents = "Wizard swag coming in a future update",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 1, 3 },
                 ExperiencePoints = 5
@@ -54,7 +55,8 @@ namespace TB_Quest
                               "On the other side of the front door, your journey awaits.\n" +
                               " \n " +
                               "Step through the door when you are ready to begin your quest: a quest in which you will certainly perish.",
-                GeneralContents = "",
+                GeneralContents = "Taking a look around before you set out on your adventure, you notice that this hallway is significantly safer than what waits " +
+                                  "for you on the other side of the door.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 2, 4 },
                 ExperiencePoints = 5
@@ -65,13 +67,18 @@ namespace TB_Quest
                Name = "The Wall",
                 LocationID = 4,
 
-                Description = "You have traveled many weeks to get here.  You crossed the Pits of Evil Fire.  " +
-                              "You scaled the Cliffs of Modest Scalability.  You perservered through Hodeg's " +
+                Description = "You have traveled many weeks and faced many trials to get here.  You crossed the Pits of Evil Fire.  " +
+                              "Then, you crossed the Evil Pits of Fire.  You out-styled Cliff the Conjurer in a bare-knuckled contest of coiffure-mancy.  " +
+                              "You scaled the Cliffs (no relation) of Modest Scalability.  You perservered through Hodeg's " +
                               "Valley of Cute Puppies and Cuddly Kittens.  You survived the interminable boredom " +
                               "of the Featureless Plains.  You waded through the Swamp of the Indifferent Gators.  " +
-                              "You bested Cludar in an Indecision dance-off." +
-                              "  ",
-                GeneralContents = "",
+                              "You cavorted across the sea on a pirate party cruise.  You braved the many perils of the Perilous Path.  " +
+                              "You bested Cludar the Fleet-Footed in an Indecision Dance-off.  You did some other stuff too.  And, finally, you " +
+                              "have reached a wall.",
+                GeneralContents = "In front of you stands the Long Wall, measuring 15 feet high and hundreds of miles long.  But, your path does not end here.  " +
+                                  "It continues through an opening in the wall, beyond which lies the Magic Hedge Maze.  In front of the opening, a wizard blocks " +
+                                  "your path.  He looks determined to stay there.  You could use magic to scale the Wall but the need to enforce a narrative prevents " +
+                                  "you from doing so.  You will have to find a way through the opening.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 3, 6 },
                 ExperiencePoints = 10
@@ -88,8 +95,12 @@ namespace TB_Quest
                               " \n " +
                               "" +
                               "",
-                GeneralContents = "",
+                GeneralContents = "The Magic Hedge Maze consists of lush, vibrant green hedges growing 10 feet high.  " +
+                                  "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
+                                  "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
+                                  "foliage.",
                 IsAccessible = true,
+
                 AccessTo =  new List<int>(){ 6, 9 },
                 ExperiencePoints = 10
             },
@@ -101,11 +112,11 @@ namespace TB_Quest
 
                 Description = "You stand in the first room of the magical hedge maze.  Somewhere in this maze " +
                               "lies a path to the lair of the dragon Jeedub'ex.  You are beginning to feel the " +
-                              "weight of your quest.  Jeedub'ex is a powerful dragon that will surely kill you.\n" +
-                              " \n " +
-                              "Paths lead off to your left and right." +
-                              "",
-                GeneralContents = "",
+                              "weight of your quest.  Jeedub'ex is a powerful dragon that will surely kill you.\n",
+                GeneralContents = "The Magic Hedge Maze consists of lush, vibrant green hedges growing 10 feet high.  " +
+                                  "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
+                                  "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
+                                  "foliage.",
                 IsAccessible = true, // false,
                 AccessTo =  new List<int>(){ 4, 5, 7 },
                 ExperiencePoints = 10
@@ -119,7 +130,10 @@ namespace TB_Quest
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
-                GeneralContents = "",
+                GeneralContents = "The Magic Hedge Maze consists of lush, vibrant green hedges growing 10 feet high.  " +
+                                  "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
+                                  "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
+                                  "foliage.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 6, 8, 11 },
                 ExperiencePoints = 10
@@ -133,7 +147,10 @@ namespace TB_Quest
                 Description = "Another dead end." +
                               "" +
                               "",
-                GeneralContents = "",
+                GeneralContents = "The Magic Hedge Maze consists of lush, vibrant green hedges growing 10 feet high.  " +
+                                  "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
+                                  "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
+                                  "foliage.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 7 },
                 ExperiencePoints = -10
@@ -147,7 +164,10 @@ namespace TB_Quest
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
-                GeneralContents = "",
+                GeneralContents = "The Magic Hedge Maze consists of lush, vibrant green hedges growing 10 feet high.  " +
+                                  "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
+                                  "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
+                                  "foliage.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 5, 10, 13 },
                 ExperiencePoints = 10
@@ -161,7 +181,10 @@ namespace TB_Quest
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
-                GeneralContents = "",
+                GeneralContents = "The Magic Hedge Maze consists of lush, vibrant green hedges growing 10 feet high.  " +
+                                  "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
+                                  "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
+                                  "foliage.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 9, 14 },
                 ExperiencePoints = 10
@@ -175,7 +198,10 @@ namespace TB_Quest
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
-                GeneralContents = "",
+                GeneralContents = "The Magic Hedge Maze consists of lush, vibrant green hedges growing 10 feet high.  " +
+                                  "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
+                                  "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
+                                  "foliage.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 7, 12, 15 },
                 ExperiencePoints = 10
@@ -189,7 +215,10 @@ namespace TB_Quest
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
-                GeneralContents = "",
+                GeneralContents = "The Magic Hedge Maze consists of lush, vibrant green hedges growing 10 feet high.  " +
+                                  "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
+                                  "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
+                                  "foliage.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 11, 16 },
                 ExperiencePoints = 10
@@ -203,7 +232,10 @@ namespace TB_Quest
                 Description = "Another dead end." +
                               "" +
                               "",
-                GeneralContents = "",
+                GeneralContents = "The Magic Hedge Maze consists of lush, vibrant green hedges growing 10 feet high.  " +
+                                  "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
+                                  "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
+                                  "foliage.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 9 },
                 ExperiencePoints = -10
@@ -222,7 +254,12 @@ namespace TB_Quest
                               "basset hound sits on the ground, watching you." +
                               "" +
                               "",       
-                GeneralContents = "",
+                GeneralContents = "As you approach the basset hound, it speaks to you.  Standing in front of the opening, " +
+                                  "he says \"You can't pass until you find the exit.\" \n" +
+                                  " \n " +
+                                  "Looking around you notice a plaque at the base of the statue that reads \"This way to " +
+                                  "the exit\".  The statue, a life-size figure of a robed woman, points to the west wall of " +
+                                  "the room where there appears to be no exit.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 10, 15, 17 },
                 ExperiencePoints = 10
@@ -236,7 +273,10 @@ namespace TB_Quest
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
-                GeneralContents = "",
+                GeneralContents = "The Magic Hedge Maze consists of lush, vibrant green hedges growing 10 feet high.  " +
+                                  "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
+                                  "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
+                                  "foliage.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 11, 14},
                 ExperiencePoints = 10
@@ -250,7 +290,10 @@ namespace TB_Quest
                 Description = "Another dead end." +
                               "" +
                               "",
-                GeneralContents = "",
+                GeneralContents = "The Magic Hedge Maze consists of lush, vibrant green hedges growing 10 feet high.  " +
+                                  "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
+                                  "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
+                                  "foliage.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 12 },
                 ExperiencePoints = -10
@@ -273,7 +316,7 @@ namespace TB_Quest
                               " \n " +
                               "In the middle of the lake, lies your next destination: a small island.  In the middle " +
                               "this island, a stairway descends into the ground.",
-                GeneralContents = "",
+                GeneralContents = "You see no way to get across the lake of acid.  Perhaps something in your inventory might be of use.",
                 IsAccessible = true, // false,
                 AccessTo =  new List<int>(){ 14, 18 },
                 ExperiencePoints = 20
@@ -288,9 +331,15 @@ namespace TB_Quest
                               "so great that the few survivors abandoned everything where it lay.  Across an expansive rolling " + 
                               "plain of short grass, fragments of weapons, armor, and machines of war jut out of the " +
                               "ground like weeds.  Where the grass is thin, bones are exposed in the hard dirt, like " +
-                              "polished stones.  " +
+                              "white cobblestones.  " +
                               "",
-                GeneralContents = "",
+                GeneralContents = "In the distance, you see what must be the enemy you came to confront.  Thirty feet tall " +
+                                  "when sitting on its rear haunches, with iridescent black and green scales, a ridge of short, " +
+                                  "deep red spines running along its back, and large horns like a springbok's, Jeedub-ex " +
+                                  "is at once the most beautiful and fearsome creature you have ever seen.  Presently, it holds " +
+                                  "a decapitated ox in both of its nimble front claws, pouring the contents of their vascular systems " +
+                                  "into its gaping maw.  Not a drop of blood reaches the ground.  Truly, Jeedub-ex is an accomplished " +
+                                  "two-fisted drinker.  For a moment, you stand transfixed in awe before realizing you are going to die.",
                 IsAccessible = true, // false,
                 AccessTo =  new List<int>(){ },
                 ExperiencePoints = 20
@@ -298,5 +347,16 @@ namespace TB_Quest
         };
 
         public static List<Location> Locations { get => locations; set => locations = value; }
+
+        #endregion
+
+        #region NPCs
+
+        #endregion
+
+        #region TREASURE
+
+        #endregion
+
     }
 }

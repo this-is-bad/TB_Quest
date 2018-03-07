@@ -314,58 +314,6 @@ namespace TB_Quest
         }
 
         /// <summary>
-        /// get locations that can be traveled to
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="locations"></param>
-        /// <returns>string</returns>
-        //public static string Travel(Player player, List<Location> locations)
-        //{
-        //    Location loc = new Location();
-
-        //    do
-        //    {
-        //        foreach (Location location in locations)
-        //        {
-        //            if (location.LocationID == player.LocationID)
-        //            {
-        //                loc = location;
-        //                break;
-        //            }
-        //        }
-        //    }
-        //    while (loc.LocationID != player.LocationID);
-            
-        //    string messageBoxText =
-        //        $"{player.Name}, where will you go next?\n" +
-        //        " \n " +
-
-        //        //
-        //        // display table header
-        //        //
-        //        "ID".PadRight(10) + "Name".PadRight(50) + "Accessible".PadRight(10) + "\n" +
-        //        "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "-------".PadRight(10) + "\n";
-        //    // 
-        //    // display all locations except the current location
-        //    //
-        //    string locationList = null;
-        //    foreach (Location location in locations)
-        //    {
-        //        if (location.LocationID != loc.AccessTo)
-        //        {
-        //            locationList +=
-        //                $"{location.LocationID}".PadRight(10) +
-        //                $"{location.Name}".PadRight(50) +
-        //                $"{location.IsAccessible}".PadRight(10) +
-        //                Environment.NewLine;
-        //        }
-        //    }
-        //    messageBoxText += locationList;
-
-        //    return messageBoxText;
-        //}
-
-        /// <summary>
         /// get locations visited by the player
         /// </summary>
         /// <param name="locations"></param>

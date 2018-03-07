@@ -665,7 +665,10 @@ namespace TB_Quest
 
             DisplayGamePlayScreen("Quest Preparation - Name", Text.InitializeQuestGetPlayerName(), ActionMenu.QuestIntro, "");
             DisplayInputBoxPrompt("Enter your name: ");
-            _gamePlayer.Name = GetString();
+
+            string name = GetString();
+        
+            _gamePlayer.Name = (name == "" ? _gamePlayer.Name : name) ;
 
             DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
         }
@@ -679,7 +682,7 @@ namespace TB_Quest
             DisplayGamePlayScreen("Quest Preparation - Age", Text.InitializeQuestGetPlayerAge(_gamePlayer.Name), ActionMenu.QuestIntro, "");
             int gamePlayerAge;
 
-            GetInteger($"Enter your age {_gamePlayer.Name}: ", 0, 1000000, out gamePlayerAge);
+            GetInteger($"Enter your age {_gamePlayer.Name}: ", 0, 10000, out gamePlayerAge);
             _gamePlayer.Age = gamePlayerAge;
             DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
         }
@@ -692,7 +695,8 @@ namespace TB_Quest
 
             DisplayGamePlayScreen("Quest Preparation - Race", Text.InitializeQuestGetPlayerRace(_gamePlayer), ActionMenu.QuestIntro, "");
             DisplayInputBoxPrompt($"Enter your race {_gamePlayer.Name}: ");
-            _gamePlayer.Race = GetRace();
+            Character.RaceType raceType = GetRace();
+            _gamePlayer.Race = (raceType == Character.RaceType.None ? _gamePlayer.Race : raceType);
             DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
         }
             #endregion
