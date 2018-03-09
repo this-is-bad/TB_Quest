@@ -27,6 +27,8 @@ namespace TB_Quest
         PlayerInfo,
         PlayerInventory,
         PlayerTreasure,
+        AdminMenu,
+        ListCharacters,
         ListLocations,
         ListItems,
         ListTreasures,

@@ -80,11 +80,55 @@ namespace TB_Quest
             DisplayStatusBox();
         }
 
+        public void DisplayAdminMenu()
+        {
+            DisplayGamePlayScreen("Admin Menu", "", ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
+        }
+
+        /// <summary>
+        /// show all locations in the game
+        /// </summary>
         public void DisplayListOfLocations()
         {
             DisplayGamePlayScreen("List: Locations", Text.ListLocations
-                (_gameUniverse.Locations), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+                (_gameUniverse.Locations), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
         }
+
+        /// <summary>
+        /// show all items in the game
+        /// </summary>
+        public void DisplayListOfItems()
+        {
+            DisplayGamePlayScreen("List: Items", Text.ListItems
+                (_gameUniverse.Items), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
+        }
+
+        /// <summary>
+        /// show all characters in the game
+        /// </summary>
+        public void DisplayListOfCharacters()
+        {
+            DisplayGamePlayScreen("List: Characters", Text.ListCharacters
+                (_gameUniverse.Characters), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
+        }
+
+        /// <summary>
+        /// show all treasures in the game
+        /// </summary>
+        public void DisplayListOfTreasures()
+        {
+            DisplayGamePlayScreen("List: Treasures", Text.ListTreasures
+                (_gameUniverse.Treasures), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
+        }
+
+        /// <summary>
+        /// show all objects of the specified type in the game
+        /// </summary>
+        //public void DisplayListOfObjects()
+        //{
+        //    DisplayGamePlayScreen("List: Locations", Text.ListObjects //Text.ListLocations
+        //        (_gameUniverse.Locations), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
+        //}
 
         /// <summary>
         /// wait for any keystroke to continue
@@ -145,7 +189,7 @@ namespace TB_Quest
             DisplayInputBoxPrompt(prompt);
             while (!validResponse)
             {
-                if (int.TryParse(Console.ReadLine(), out integerChoice))
+               if (int.TryParse(Console.ReadLine(), out integerChoice))
                 {
                     if (integerChoice >= minimumValue && integerChoice <= maximumValue)
                     {
@@ -233,35 +277,6 @@ namespace TB_Quest
 
             return playing;
         }
-
-        /// <summary>
-        /// display exit screen
-        /// </summary>
-        //public void DisplayExitScreen()
-        //{
-        //    //ConsoleKeyInfo keyPressed;
-
-        //    Console.BackgroundColor = ConsoleTheme.SplashScreenBackgroundColor;
-        //    Console.ForegroundColor = ConsoleTheme.SplashScreenForegroundColor;
-        //    Console.Clear();
-        //    Console.CursorVisible = false;
-
-
-        //    Console.SetCursorPosition(0, 10);
-        //    string tabSpace = new String(' ', 35);
-
-        //    Console.WriteLine(tabSpace + @" _____  ____      _____                     _   ");
-        //    Console.WriteLine(tabSpace + @"|_   _||  _ \    / ___ \                   | |  ");
-        //    Console.WriteLine(tabSpace + @"  | |  | |_| |  | |  | | _   _   ___   ___ | |_ ");
-        //    Console.WriteLine(tabSpace + @"  | |  |  _ \   | |  | || | | | / _ \ /  _|| __|");
-        //    Console.WriteLine(tabSpace + @"  | |  | |_| |  | |__| || \_/ ||  __/ _\ \ | |_ ");
-        //    Console.WriteLine(tabSpace + @"  \_/  |____/   \____  / \___/  \___| \__/ \__| ");
-        //    Console.WriteLine(tabSpace + @"                     \_\                        ");
-        //    Console.WriteLine(tabSpace + @"                                                ");
-
-        //    Console.SetCursorPosition(80, 25);
-        //    Console.Write("Thank you for playing.");
-        //}
 
         /// <summary>
         /// initialize the console window settings
@@ -499,8 +514,8 @@ namespace TB_Quest
             //
             // intro
             //
-            //DisplayGamePlayScreen("Quest Preparation", Text.InitializeQuestIntro(), ActionMenu.QuestIntro, "");
-            //GetContinueKey();
+            DisplayGamePlayScreen("Quest Preparation", Text.InitializeQuestIntro(), ActionMenu.QuestIntro, "");
+            GetContinueKey();
 
             ////
             //// get player's name
@@ -514,7 +529,6 @@ namespace TB_Quest
             ////
             //DisplayGamePlayScreen("Quest Preparation - Age", Text.InitializeQuestGetPlayerAge(player.Name), ActionMenu.QuestIntro, "");
             //int gamePlayerAge;
-
             //GetInteger($"Enter your age {player.Name}: ", 0, 1000000, out gamePlayerAge);
             //player.Age = gamePlayerAge;
 
@@ -537,7 +551,7 @@ namespace TB_Quest
             ////
             //DisplayGamePlayScreen("Quest Preparation - Home Village", Text.InitializeQuestGetPlayerGreeting(), ActionMenu.QuestIntro, "");
             //DisplayInputBoxPrompt($"Would you like a verbose greeting? ");
-            //player.VerboseGreeting = (GetString().ToLower() == "y" ? true: false);
+            //player.VerboseGreeting = (GetString().ToLower() == "y" ? true : false);
 
             ////
             //// echo the player's info

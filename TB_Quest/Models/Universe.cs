@@ -11,14 +11,47 @@ namespace TB_Quest
         #region ***** define all lists to be maintained by the Universe object *****
 
         //
+        // list of all characters
+        //
+        private List<Character> _characters;
+
+        //
+        // list of all items
+        //
+        private List<Item> _items;
+
+        //
         // list of all locations
         //
         private List<Location> _locations;
+
+        //
+        // list of all treasures
+        //
+        private List<Treasure> _treasures;
+
+        public List<Character> Characters
+        {
+            get { return _characters; }
+            set { _characters = value; }
+        }
+
+        public List<Item> Items
+        {
+            get { return _items; }
+            set { _items = value; }
+        }
 
         public List<Location> Locations
         {
             get { return _locations; }
             set { _locations = value; }
+        }
+
+        public List<Treasure> Treasures
+        {
+            get { return _treasures; }
+            set { _treasures = value; }
         }
 
         #endregion
@@ -46,6 +79,9 @@ namespace TB_Quest
         private void IntializeUniverse()
         {
             _locations = UniverseObjects.Locations;
+            _items = UniverseObjects.Items;
+            _treasures = UniverseObjects.Treasures;
+            _characters = UniverseObjects.Characters;
         }
 
         #endregion

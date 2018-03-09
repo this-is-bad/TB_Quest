@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -180,6 +181,57 @@ namespace TB_Quest
             return statusBoxText;
         }
 
+        /// <summary>
+        /// take a generic list of objects and return a list of those objects
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="PolyList"></param>
+        /// <returns>string</returns>
+        //public static string ListObjects<T>(List<T> PolyList)
+        //{
+        //    Type typ = PolyList.GetType();
+        //    string s = typ.ToString();
+        //    string messageBoxText =
+        //        $"{s} \n" +
+        //        " \n" +
+
+        //        ///
+        //        /// display table header 
+        //        /// 
+        //        "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
+        //        "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
+
+        //    IList<PropertyInfo> props = new List<PropertyInfo>(typ.GetProperties());
+
+        //    foreach (PropertyInfo prop in props)
+        //    {
+        //        object propValue = prop.GetValue(PolyList, null);
+
+        //        // Do something with propValue
+        //    }
+        //    ///
+        //    /// display all locations
+        //    /// 
+        //    string ObjectList = null;
+        //    foreach (Object obj in PolyList)
+
+        //    {
+        //        ObjectList +=
+        //            $"{obj.ObjectID}".PadRight(10) +
+        //            $"{obj.Name}".PadRight(50) +
+        //            Environment.NewLine;
+        //    }
+
+        //    messageBoxText += ObjectList;
+
+        //    return messageBoxText;
+        //}
+
+        /// <summary>
+        /// return all Locations in the game
+        /// </summary>
+        /// <param name="Locations"></param>
+        /// <returns>string</returns>
         public static string ListLocations(IEnumerable<Location> Locations)
         {
             string messageBoxText =
@@ -205,6 +257,108 @@ namespace TB_Quest
             }
 
             messageBoxText += LocationList;
+
+            return messageBoxText;
+        }
+
+        /// <summary>
+        /// return all Items in the game
+        /// </summary>
+        /// <param name="Items"></param>
+        /// <returns>string</returns>
+        public static string ListItems(IEnumerable<Item> Items)
+        {
+            string messageBoxText =
+                "Items\n" +
+                " \n" +
+
+                ///
+                /// display table header 
+                /// 
+                "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
+                "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
+
+            ///
+            /// display all locations
+            /// 
+            string ItemList = null;
+            foreach (Item item in Items)
+            {
+                ItemList +=
+                    $"{item.LocationID}".PadRight(10) +
+                    $"{item.Name}".PadRight(50) +
+                    Environment.NewLine;
+            }
+
+            messageBoxText += ItemList;
+
+            return messageBoxText;
+        }
+
+        /// <summary>
+        /// return all Characters in the game
+        /// </summary>
+        /// <param name="Characters"></param>
+        /// <returns>string</returns>
+        public static string ListCharacters(IEnumerable<Character> Characters)
+        {
+            string messageBoxText =
+                "Items\n" +
+                " \n" +
+
+                ///
+                /// display table header 
+                /// 
+                "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
+                "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
+
+            ///
+            /// display all locations
+            /// 
+            string CharacterList = null;
+            foreach (Character character in Characters)
+            {
+                CharacterList +=
+                    $"{character.LocationID}".PadRight(10) +
+                    $"{character.Name}".PadRight(50) +
+                    Environment.NewLine;
+            }
+
+            messageBoxText += CharacterList;
+
+            return messageBoxText;
+        }
+
+        /// <summary>
+        /// return all Treasures in the game
+        /// </summary>
+        /// <param name="Treasures"></param>
+        /// <returns>string</returns>
+        public static string ListTreasures(IEnumerable<Treasure> Treasures)
+        {
+            string messageBoxText =
+                "Items\n" +
+                " \n" +
+
+                ///
+                /// display table header 
+                /// 
+                "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
+                "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
+
+            ///
+            /// display all locations
+            /// 
+            string TreasureList = null;
+            foreach (Treasure treasure in Treasures)
+            {
+                TreasureList +=
+                    $"{treasure.LocationID}".PadRight(10) +
+                    $"{treasure.Name}".PadRight(50) +
+                    Environment.NewLine;
+            }
+
+            messageBoxText += TreasureList;
 
             return messageBoxText;
         }

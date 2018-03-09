@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TB_Quest
 {
-    class Treasure : GameObject
+    public class Treasure : GameObject
     {
     }
 }

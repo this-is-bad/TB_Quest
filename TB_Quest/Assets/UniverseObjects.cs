@@ -13,7 +13,18 @@ namespace TB_Quest
     {
 
         #region ITEMS
+        private static List<Item> items = new List<Item>()
+        {
+            new Item
+            {
+                Name = "Portable Hole",
+                Description = "",
+                LocationID = 2,
+                ObjectID = 23
+            }
+        };
 
+        public static List<Item> Items { get => items; set => items = value; }
         #endregion
 
         #region LOCATIONS
@@ -23,6 +34,7 @@ namespace TB_Quest
             new Location
             {
                Name = "Wizard's Tower - Your Room",
+                ObjectID = 5,
                 LocationID = 1,
                 Description = "You are currently in your room in your master's tower.\n"  +
                 "It is a sparse room, containing nothing more than a bed, a desk, a light,\n" +
@@ -37,6 +49,7 @@ namespace TB_Quest
             {
                Name = "Wizard's Tower - Master's Magical Menagerie",
                 LocationID = 2,
+                 ObjectID = 6,
                 Description = "You stand in your master's magical menagerie: a collection of magical artifacts, materials, books, contraptions, and even automata.  " +
                     "While not a true menageries, containing no living things or even preserved specimens, the master's magical menagerie is a good bit of alliteration.  " +
                     "So, you can take your semantics and shove them." +
@@ -51,6 +64,7 @@ namespace TB_Quest
             {
                Name = "Wizard's Tower - Entry Hall",
                 LocationID = 3,
+                 ObjectID = 7,
                 Description = "You stand in the entry hall of your master's tower -- a modest room that portends nothing of the wondrous quest ahead of you.  " +
                               "On the other side of the front door, your journey awaits.\n" +
                               " \n " +
@@ -66,7 +80,7 @@ namespace TB_Quest
             {
                Name = "The Wall",
                 LocationID = 4,
-
+                ObjectID = 8,
                 Description = "You have traveled many weeks and faced many trials to get here.  You crossed the Pits of Evil Fire.  " +
                               "Then, you crossed the Evil Pits of Fire.  You out-styled Cliff the Conjurer in a bare-knuckled contest of coiffure-mancy.  " +
                               "You scaled the Cliffs (no relation) of Modest Scalability.  You perservered through Hodeg's " +
@@ -88,7 +102,7 @@ namespace TB_Quest
             {
                Name = "Magic Hedge Maze",
                 LocationID = 5,
-
+                ObjectID = 9,
                 Description = "Another room in the hedge maze." +
                               "" +
                               "\n" +
@@ -109,7 +123,7 @@ namespace TB_Quest
             {
                Name = "Magic Hedge Maze - Entrance",
                 LocationID = 6,
-
+                ObjectID = 10,
                 Description = "You stand in the first room of the magical hedge maze.  Somewhere in this maze " +
                               "lies a path to the lair of the dragon Jeedub'ex.  You are beginning to feel the " +
                               "weight of your quest.  Jeedub'ex is a powerful dragon that will surely kill you.\n",
@@ -126,7 +140,7 @@ namespace TB_Quest
             {
                Name = "Magic Hedge Maze",
                 LocationID = 7,
-
+                ObjectID = 11,
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
@@ -143,7 +157,7 @@ namespace TB_Quest
             {
                Name = "Magic Hedge Maze",
                 LocationID = 8,
-
+                ObjectID = 12,
                 Description = "Another dead end." +
                               "" +
                               "",
@@ -160,7 +174,7 @@ namespace TB_Quest
             {
                Name = "Magic Hedge Maze",
                 LocationID = 9,
-
+                ObjectID = 13,
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
@@ -177,7 +191,7 @@ namespace TB_Quest
             {
                Name = "Magic Hedge Maze",
                 LocationID = 10,
-
+                ObjectID = 14,
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
@@ -194,7 +208,7 @@ namespace TB_Quest
             {
                Name = "Magic Hedge Maze",
                 LocationID = 11,
-
+                ObjectID = 15,
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
@@ -211,7 +225,7 @@ namespace TB_Quest
             {
                Name = "Magic Hedge Maze",
                 LocationID = 12,
-
+                ObjectID = 16,
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
@@ -228,7 +242,7 @@ namespace TB_Quest
             {
                Name = "Magic Hedge Maze",
                 LocationID = 13,
-
+                ObjectID = 17,
                 Description = "Another dead end." +
                               "" +
                               "",
@@ -245,7 +259,7 @@ namespace TB_Quest
             {
                Name = "Magic Hedge Maze",
                 LocationID = 14,
-
+                ObjectID = 18,
                 Description = "Another room in the hedge maze.\n" +
                               "Oh, wait.  This is not another room in the hedge maze.  Well, technically speaking, " +
                               "it is another room in the hedge maze.  But, this room is different.  In the middle " +
@@ -269,7 +283,7 @@ namespace TB_Quest
             {
                Name = "Magic Hedge Maze",
                 LocationID = 15,
-
+                ObjectID = 19,
                 Description = "Another room in the hedge maze." +
                               "" +
                               "",
@@ -286,7 +300,7 @@ namespace TB_Quest
             {
                Name = "Magic Hedge Maze",
                 LocationID = 16,
-
+                ObjectID = 20,
                 Description = "Another dead end." +
                               "" +
                               "",
@@ -303,7 +317,7 @@ namespace TB_Quest
             {
                Name = "Lake of Acid",
                 LocationID = 17,
-
+                ObjectID = 21,
                 Description = "You stand at the edge of a large, dull red lake.  No breeze disturbs the stilless of " +
                               "the lake.  The air is dry, and smells faintly unpleasant.  There is no sign of life.  " +
                               "No bird song, not even the sound of an insect breaks the heavy silence.  Only the " +
@@ -326,7 +340,7 @@ namespace TB_Quest
             {
                Name = "Ancient Battlefield",
                 LocationID = 18,
-
+                ObjectID = 22,
                 Description = "You stand at the edge of an ancient battlefield: a location so remote and the casualties " +
                               "so great that the few survivors abandoned everything where it lay.  Across an expansive rolling " + 
                               "plain of short grass, fragments of weapons, armor, and machines of war jut out of the " +
@@ -347,15 +361,55 @@ namespace TB_Quest
         };
 
         public static List<Location> Locations { get => locations; set => locations = value; }
-
+       
+        
         #endregion
 
         #region NPCs
+        private static List<Character> characters = new List<Character>()
+        {
+            new Character
+            {
+                Name = "Evil? Wizard",
+                Description = "",
+                LocationID = 4,
+                ObjectID = 1
+            },
 
+            new Character
+            {
+                Name = "Basset Hound",
+                Description = "",
+                LocationID = 14,
+                ObjectID = 2
+            },
+
+            new Character
+            {
+                Name = "Jeedub'ex",
+                Description = "",
+                LocationID = 18,
+                ObjectID = 3
+            }
+        };
+
+        public static List<Character> Characters { get => characters; set => characters = value; }
         #endregion
 
         #region TREASURE
-
+        private static List<Treasure> treasures = new List<Treasure>()
+        {
+            new Treasure
+            {
+                Name = "Gem-encrusted jewel",
+                Description = "This appears to be a large ruby, studded with diamonds, sapphires, and more rubies.  " + 
+                              "In actuality, it is a gaudy piece of cheap costume jewelry crafted (using the term loosely), " +
+                              "by someone with more free time than sense, and even less taste.",
+                LocationID = 4,
+                ObjectID = 24
+            }
+        };
+        public static List<Treasure> Treasures { get => treasures; set => treasures = value; }
         #endregion
 
     }

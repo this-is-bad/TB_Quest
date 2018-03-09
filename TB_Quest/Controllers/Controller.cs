@@ -158,8 +158,20 @@ namespace TB_Quest
                         case PlayerAction.PlayerInfo:
                             _gameConsoleView.DisplayPlayerInfo();
                             break;
-                        case PlayerAction.ListLocations:
+                        case PlayerAction.ListCharacters:
+                            _gameConsoleView.DisplayListOfCharacters();
+                            break;
+                       case PlayerAction.ListItems:
+                            _gameConsoleView.DisplayListOfItems();
+                            break;
+                       case PlayerAction.ListLocations:
                             _gameConsoleView.DisplayListOfLocations();
+                            break;
+                       case PlayerAction.ListTreasures:
+                            _gameConsoleView.DisplayListOfTreasures();
+                            break;
+                        case PlayerAction.AdminMenu:
+                            _gameConsoleView.DisplayAdminMenu();
                             break;
                         case PlayerAction.LookAround:
                             _gameConsoleView.DisplayLookAround();
@@ -231,6 +243,7 @@ namespace TB_Quest
             //_gamePlayer.HomeVillage = player.HomeVillage;
             //_gamePlayer.LocationID = 1;
             //Player player = new Player();
+            _gamePlayer.ObjectID = 0;
             _gamePlayer.ExperiencePoints = 0;
             _gamePlayer.Health = 100;
             _gamePlayer.Lives = 3;

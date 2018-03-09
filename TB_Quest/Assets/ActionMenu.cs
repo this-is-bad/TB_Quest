@@ -32,6 +32,26 @@ namespace TB_Quest
                 }
         };
 
+        /// <summary>
+        /// main menu for the game
+        /// </summary>
+        public static Menu AdminMenu = new Menu()
+        {
+            MenuName = "AdminMenu",
+            MenuTitle = "Admin Menu",
+            MenuChoices = new Dictionary<char, PlayerAction>()
+                {
+                    { '1', PlayerAction.ListCharacters },
+                    { '2', PlayerAction.ListItems },
+                    { '3', PlayerAction.ListTreasures },
+                    { '4', PlayerAction.ListLocations },
+                    { '0', PlayerAction.Exit }
+                }
+        };
+
+        /// <summary>
+        /// setup menu for the player character
+        /// </summary>
         public static Menu PlayerSetup = new Menu()
         {
             MenuName = "PlayerSetup",
@@ -47,6 +67,9 @@ namespace TB_Quest
                 }
         };
 
+        /// <summary>
+        /// main menu for the game
+        /// </summary>
         public static Menu MainMenu = new Menu()
         {
             MenuName = "MainMenu",
@@ -57,7 +80,7 @@ namespace TB_Quest
                     { '2', PlayerAction.LookAround },
                     { '3', PlayerAction.Travel },
                     { '4', PlayerAction.PlayerLocationsVisited },
-                    { '5', PlayerAction.ListLocations },
+                    { '5', PlayerAction.AdminMenu },
                     { '0', PlayerAction.Exit }
                 }
         };
