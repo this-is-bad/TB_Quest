@@ -32,6 +32,7 @@ namespace TB_Quest
         ListLocations,
         ListItems,
         ListTreasures,
+        ReturnMainMenu,
         Exit
     }
 }

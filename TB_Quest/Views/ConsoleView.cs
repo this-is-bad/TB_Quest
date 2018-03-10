@@ -77,60 +77,11 @@ namespace TB_Quest
             DisplayMessageBox(messageBoxHeaderText, messageBoxText);
             DisplayMenuBox(menu);
             DisplayInputBox();
+            DisplayInputBoxPrompt(inputBoxPrompt);
             DisplayStatusBox();
         }
 
-        public void DisplayAdminMenu()
-        {
-            DisplayGamePlayScreen("Admin Menu", "", ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
-        }
-
-        /// <summary>
-        /// show all locations in the game
-        /// </summary>
-        public void DisplayListOfLocations()
-        {
-            DisplayGamePlayScreen("List: Locations", Text.ListLocations
-                (_gameUniverse.Locations), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
-        }
-
-        /// <summary>
-        /// show all items in the game
-        /// </summary>
-        public void DisplayListOfItems()
-        {
-            DisplayGamePlayScreen("List: Items", Text.ListItems
-                (_gameUniverse.Items), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
-        }
-
-        /// <summary>
-        /// show all characters in the game
-        /// </summary>
-        public void DisplayListOfCharacters()
-        {
-            DisplayGamePlayScreen("List: Characters", Text.ListCharacters
-                (_gameUniverse.Characters), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
-        }
-
-        /// <summary>
-        /// show all treasures in the game
-        /// </summary>
-        public void DisplayListOfTreasures()
-        {
-            DisplayGamePlayScreen("List: Treasures", Text.ListTreasures
-                (_gameUniverse.Treasures), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
-        }
-
-        /// <summary>
-        /// show all objects of the specified type in the game
-        /// </summary>
-        //public void DisplayListOfObjects()
-        //{
-        //    DisplayGamePlayScreen("List: Locations", Text.ListObjects //Text.ListLocations
-        //        (_gameUniverse.Locations), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
-        //}
-
-        /// <summary>
+         /// <summary>
         /// wait for any keystroke to continue
         /// </summary>
         public void GetContinueKey()
@@ -570,12 +521,88 @@ namespace TB_Quest
         #region ----- display responses to menu action choices -----
 
         /// <summary>
+        /// show all locations in the game
+        /// </summary>
+        public void DisplayListOfLocations()
+        {
+            ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
+
+            DisplayGamePlayScreen("List: Locations", Text.ListLocations
+                (_gameUniverse.Locations), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
+        }
+
+        /// <summary>
+        /// show all items in the game
+        /// </summary>
+        public void DisplayListOfItems()
+        {
+            ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
+
+            DisplayGamePlayScreen("List: Items", Text.ListItems
+                (_gameUniverse.Items), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
+        }
+
+        /// <summary>
+        /// show all characters in the game
+        /// </summary>
+        public void DisplayListOfCharacters()
+        {
+            ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
+
+            DisplayGamePlayScreen("List: Characters", Text.ListCharacters
+                (_gameUniverse.Characters), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
+        }
+
+        /// <summary>
+        /// show all treasures in the game
+        /// </summary>
+        public void DisplayListOfTreasures()
+        {
+            ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
+
+            DisplayGamePlayScreen("List: Treasures", Text.ListTreasures
+                (_gameUniverse.Treasures), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
+        }
+
+        /// <summary>
+        /// show the main menu
+        /// </summary>
+        public void DisplayMainMenu()
+        {
+
+            ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
+            DisplayGamePlayScreen("Main Menu", "", ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
+        }
+
+        /// <summary>
+        /// show the admin menu
+        /// </summary>
+        public void DisplayAdminMenu()
+        {
+            ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
+
+            DisplayGamePlayScreen("Admin Menu", "View the objects in the game.", ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
+        }
+
+        /// <summary>
+        /// show all objects of the specified type in the game
+        /// </summary>
+        //public void DisplayListOfObjects()
+        //{
+        //    DisplayGamePlayScreen("List: Locations", Text.ListObjects //Text.ListLocations
+        //        (_gameUniverse.Locations), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
+        //}
+
+        /// <summary>
         /// Display the details of the current location
         /// </summary>
         public void DisplayLookAround()
         {
+            ActionMenu.CurrentActionMenu = ActionMenu.CurrentActionMenu;
+
             Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
-            DisplayGamePlayScreen("Current Location", Text.LookAround(currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+            DisplayGamePlayScreen("Current Location", Text.LookAround(currentLocation), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
         }
 
         /// <summary>
@@ -583,7 +610,9 @@ namespace TB_Quest
         /// </summary>
         public void DisplayPlayerInfo()
         {
-            DisplayGamePlayScreen("Player Information", Text.PlayerInfo(_gamePlayer), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+            ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
+            DisplayGamePlayScreen("Player Information", Text.PlayerInfo(_gamePlayer), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
         }
 
         /// <summary>
@@ -598,9 +627,11 @@ namespace TB_Quest
             //DisplayGamePlayScreen("Travel to a new location", Text.Travel(_gamePlayer, _gameUniverse.Locations),
             //    ActionMenu.MainMenu, "");
 
+            ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
             // new Text.Travel signature
             DisplayGamePlayScreen("Travel to a new location", Text.Travel(_gamePlayer, _gameUniverse.GetLocationsFromCurrentLocationID(_gamePlayer.LocationID)),
-                ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+                ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
 
             int currentLocationID = _gamePlayer.LocationID;
             List<int> availableLocations = _gameUniverse.GetLocationIDsFromCurrentLocationID(currentLocationID);
@@ -666,8 +697,10 @@ namespace TB_Quest
                 visitedLocations.Add(_gameUniverse.GetLocationById(locationId));
             }
 
+            ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
             DisplayGamePlayScreen("Locations Visited", Text.VisitedLocations
-                (visitedLocations), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+                (visitedLocations), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
         }
 
         /// <summary>
@@ -677,14 +710,16 @@ namespace TB_Quest
         {
             Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
 
-            DisplayGamePlayScreen("Quest Preparation - Name", Text.InitializeQuestGetPlayerName(), ActionMenu.QuestIntro, "");
+            ActionMenu.CurrentActionMenu = ActionMenu.PlayerSetup;
+
+            DisplayGamePlayScreen("Quest Preparation - Name", Text.InitializeQuestGetPlayerName(), ActionMenu.CurrentActionMenu, "");
             DisplayInputBoxPrompt("Enter your name: ");
 
             string name = GetString();
         
             _gamePlayer.Name = (name == "" ? _gamePlayer.Name : name) ;
 
-            DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+            DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
         }
         /// <summary>
         /// update the player character's age
@@ -693,12 +728,15 @@ namespace TB_Quest
         {
             Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
 
-            DisplayGamePlayScreen("Quest Preparation - Age", Text.InitializeQuestGetPlayerAge(_gamePlayer.Name), ActionMenu.QuestIntro, "");
+            ActionMenu.CurrentActionMenu = ActionMenu.PlayerSetup;
+
+
+            DisplayGamePlayScreen("Quest Preparation - Age", Text.InitializeQuestGetPlayerAge(_gamePlayer.Name), ActionMenu.CurrentActionMenu, "");
             int gamePlayerAge;
 
             GetInteger($"Enter your age {_gamePlayer.Name}: ", 0, 10000, out gamePlayerAge);
             _gamePlayer.Age = gamePlayerAge;
-            DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+            DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
         }
         /// <summary>
         /// update the player character's age
@@ -707,14 +745,58 @@ namespace TB_Quest
         {
             Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
 
-            DisplayGamePlayScreen("Quest Preparation - Race", Text.InitializeQuestGetPlayerRace(_gamePlayer), ActionMenu.QuestIntro, "");
+            ActionMenu.CurrentActionMenu = ActionMenu.PlayerSetup;
+
+            DisplayGamePlayScreen("Quest Preparation - Race", Text.InitializeQuestGetPlayerRace(_gamePlayer), ActionMenu.CurrentActionMenu, "");
             DisplayInputBoxPrompt($"Enter your race {_gamePlayer.Name}: ");
             Character.RaceType raceType = GetRace();
             _gamePlayer.Race = (raceType == Character.RaceType.None ? _gamePlayer.Race : raceType);
-            DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+            DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
         }
-            #endregion
 
-            #endregion
+        public void DisplayLookAt()
+        {
+
         }
+
+
+        public void DisplayPickUpItem()
+        {
+
+        }
+
+
+        public void DisplayPickUpTreasure()
+        {
+
+        }
+
+
+        public void DisplayPutDownItem()
+        {
+
+        }
+
+
+        public void DisplayPutDownTreasure()
+        {
+
+        }
+
+
+        public void DisplayPlayerInventory()
+        {
+
+        }
+
+
+        public void DisplayPlayerTreasure()
+        {
+
+        }
+
+        #endregion
+
+        #endregion
+    }
 }

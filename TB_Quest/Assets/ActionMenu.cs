@@ -11,6 +11,11 @@ namespace TB_Quest
     /// </summary>
     public static class ActionMenu
     {
+        /// <summary>
+        /// global variable used to change the menu to the setup menu when current LocationID is "1"
+        /// </summary>
+        public static Menu CurrentActionMenu { get; set; }
+
         public static Menu QuestIntro = new Menu()
         {
             MenuName = "QuestIntro",
@@ -45,7 +50,7 @@ namespace TB_Quest
                     { '2', PlayerAction.ListItems },
                     { '3', PlayerAction.ListTreasures },
                     { '4', PlayerAction.ListLocations },
-                    { '0', PlayerAction.Exit }
+                    { '0', PlayerAction.ReturnMainMenu }
                 }
         };
 
@@ -96,7 +101,7 @@ namespace TB_Quest
             }
             else
             {
-                newMenu = (menu == null ? MainMenu : menu);
+                newMenu = (menu ?? MainMenu);
             }
 
             return newMenu;

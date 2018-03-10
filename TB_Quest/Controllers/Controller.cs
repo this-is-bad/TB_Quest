@@ -99,19 +99,10 @@ namespace TB_Quest
                 //
                 _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
 
-                _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                        Text.CurrentLocationInfo(_currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
+                ActionMenu.CurrentActionMenu = ActionMenu.PlayerSetup;
 
-                //if (_gamePlayer.LocationID == 1)
-                //{
-                //    _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                //    Text.CurrentLocationInfo(_currentLocation), ActionMenu.PlayerSetup, "");
-                //}
-                //else
-                //{
-                //    _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                //        Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
-                //}
+                _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                        Text.CurrentLocationInfo(_currentLocation), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
 
                 //
                 // game loop
@@ -126,18 +117,8 @@ namespace TB_Quest
                     //
                     // get next game action from player
                     //
-                    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.ReturnMenu(ActionMenu.MainMenu));
-
-                    //if (_gamePlayer.LocationID == 1)
-                    //{
-                    //    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.PlayerSetup);
-                    //}
-                    //else
-                    //{
-                    //    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.MainMenu);
-                    //}
-                    
-
+                    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu));
+            
                     //
                     // choose an action based on the player's menu choice
                     //
@@ -161,14 +142,17 @@ namespace TB_Quest
                         case PlayerAction.ListCharacters:
                             _gameConsoleView.DisplayListOfCharacters();
                             break;
-                       case PlayerAction.ListItems:
+                        case PlayerAction.ListItems:
                             _gameConsoleView.DisplayListOfItems();
                             break;
-                       case PlayerAction.ListLocations:
+                        case PlayerAction.ListLocations:
                             _gameConsoleView.DisplayListOfLocations();
                             break;
-                       case PlayerAction.ListTreasures:
+                        case PlayerAction.ListTreasures:
                             _gameConsoleView.DisplayListOfTreasures();
+                            break;
+                        case PlayerAction.ReturnMainMenu:
+                            _gameConsoleView.DisplayMainMenu();
                             break;
                         case PlayerAction.AdminMenu:
                             _gameConsoleView.DisplayAdminMenu();
@@ -178,6 +162,27 @@ namespace TB_Quest
                             break;
                         case PlayerAction.PlayerLocationsVisited:
                             _gameConsoleView.DisplayLocationsVisited();
+                            break;
+                        case PlayerAction.LookAt:
+                            _gameConsoleView.DisplayLookAt();
+                            break;
+                        case PlayerAction.PickUpItem:
+                            _gameConsoleView.DisplayPickUpItem();
+                            break;
+                        case PlayerAction.PickUpTreasure:
+                            _gameConsoleView.DisplayPickUpTreasure();
+                            break;
+                        case PlayerAction.PutDownItem:
+                            _gameConsoleView.DisplayPutDownItem();
+                            break;
+                        case PlayerAction.PutDownTreasure:
+                            _gameConsoleView.DisplayPutDownTreasure();
+                            break;
+                        case PlayerAction.PlayerInventory:
+                            _gameConsoleView.DisplayPlayerInventory();
+                            break;
+                        case PlayerAction.PlayerTreasure:
+                            _gameConsoleView.DisplayPlayerTreasure();
                             break;
                         case PlayerAction.Travel:
                             //
@@ -199,19 +204,8 @@ namespace TB_Quest
                             //
 
                             _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                                Text.CurrentLocationInfo(_currentLocation), ActionMenu.ReturnMenu(ActionMenu.MainMenu), "");
-
-                            //if (_gamePlayer.LocationID == 1)
-                            //{
-                            //    _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                            //    Text.CurrentLocationInfo(_currentLocation), ActionMenu.PlayerSetup, "");
-                            //}
-                            //else
-                            //{
-                            //    _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                            //        Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
-                            //}
-                            break;
+                                Text.CurrentLocationInfo(_currentLocation), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
+                              break;
 
                         case PlayerAction.Exit:
                             _playingGame = false;
