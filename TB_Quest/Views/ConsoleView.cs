@@ -572,7 +572,8 @@ namespace TB_Quest
 
             ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
 
-            DisplayGamePlayScreen("Main Menu", "", ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
+            DisplayGamePlayScreen("Current Location",
+                                Text.CurrentLocationInfo(_gameUniverse.GetLocationById(_gamePlayer.LocationID)), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "Enter your menu choice: ");
         }
 
         /// <summary>

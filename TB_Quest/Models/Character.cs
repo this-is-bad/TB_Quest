@@ -30,7 +30,8 @@ namespace TB_Quest
 
         private int _age;
         private RaceType _race;
-        private List<GameObject> _inventory;
+        private List<Item> _inventory;
+        private List<Treasure> _treasureHorde;
 
         #endregion
 
@@ -54,13 +55,32 @@ namespace TB_Quest
             set { _race = value; }
         }
 
+        /// <summary>
+        /// the character's inventory
+        /// </summary>
+        public List<Item> Inventory
+        {
+            get { return _inventory; }
+            set { _inventory = value; }
+        }
+
+        /// <summary>
+        /// the character's list of treasures
+        /// </summary>
+        public List<Treasure> TreasureHorde
+        {
+            get { return _treasureHorde; }
+            set { _treasureHorde = value; }
+        }
+
         #endregion
 
         #region CONSTRUCTORS
 
         public Character()
         {
-
+            _inventory = new List<Item>();
+            _treasureHorde = new List<Treasure>();
         }
 
         public Character(string name, RaceType race, int locationID)
@@ -68,6 +88,8 @@ namespace TB_Quest
             base.Name = name;
             _race = race;
             base.LocationID = locationID;
+            _inventory = new List<Item>();
+            _treasureHorde = new List<Treasure>();
         }
 
         #endregion

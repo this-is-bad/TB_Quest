@@ -153,13 +153,27 @@ namespace TB_Quest
 
         public static string PlayerInfo(Player gamePlayer)
         {
+            List<Item> itemList = gamePlayer.Inventory;
+            List<Treasure> treasureList = gamePlayer.TreasureHorde;
+            string items;
+            string treasures;
+
+            items = ListItems(itemList);
+            treasures = ListTreasures(treasureList);
+
             string messageBoxText =
                 $"\tPlayer Name: {gamePlayer.Name}\n" +
                 $"\tPlayer Age: {gamePlayer.Age}\n" +
                 $"\tPlayer Race: {gamePlayer.Race}\n" +
                 $"\tPlayer Home Village: {gamePlayer.HomeVillage}\n" +
                 $"\tPlayer Greeting: {gamePlayer.Greeting()}\n" +
-                " \n";
+                " \n " +
+                items +
+                " \n " +
+                treasures;
+
+
+
 
             return messageBoxText;
         }
@@ -279,7 +293,7 @@ namespace TB_Quest
                 "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
 
             ///
-            /// display all locations
+            /// display all items
             /// 
             string ItemList = null;
             foreach (Item item in Items)
@@ -337,7 +351,7 @@ namespace TB_Quest
         public static string ListTreasures(IEnumerable<Treasure> Treasures)
         {
             string messageBoxText =
-                "Items\n" +
+                "Treasures\n" +
                 " \n" +
 
                 ///
@@ -499,10 +513,5 @@ namespace TB_Quest
 
             return messageBoxText;
         }
-
-        //internal static string InitializeQuestGetPlayerRace(Player player)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

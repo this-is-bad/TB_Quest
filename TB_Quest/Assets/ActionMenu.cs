@@ -90,7 +90,28 @@ namespace TB_Quest
                 }
         };
 
-#region METHODS
+        /// <summary>
+        /// item interaction menu for the game
+        /// </summary>
+        public static Menu ItemMenu = new Menu()
+        {
+            MenuName = "ItemMenu",
+            MenuTitle = "Item Menu",
+            MenuChoices = new Dictionary<char, PlayerAction>()
+                {
+                    { '1', PlayerAction.LookAt },
+                    { '2', PlayerAction.PickUpItem },
+                    { '3', PlayerAction.PutDownItem },
+                    { '4', PlayerAction.PickUpTreasure },
+                    { '5', PlayerAction.PutDownTreasure },
+                    { '6', PlayerAction.PlayerInventory },
+                    { '7', PlayerAction.PlayerTreasure },
+                    { '0', PlayerAction.ReturnMainMenu }
+                }
+        };
+  
+        
+        #region METHODS
 
         public static Menu ReturnMenu(Menu menu)
         {
