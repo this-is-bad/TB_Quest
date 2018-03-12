@@ -17,8 +17,6 @@ namespace TB_Quest
         #endregion
 
         #region FIELDS
-        private int _experiencePoints;
-        private int _health;
         private string _homeVillage;
         private int _lives;
         private List<int> _locationsVisited;
@@ -27,24 +25,6 @@ namespace TB_Quest
 
 
         #region PROPERTIES
-
-        /// <summary>
-        /// the player's experience points
-        /// </summary>
-        public int ExperiencePoints
-        {
-            get { return _experiencePoints; }
-            set { _experiencePoints = value; }
-        }
-
-        /// <summary>
-        /// the player's health
-        /// </summary>
-        public int Health
-        {
-            get { return _health; }
-            set { _health = value; }
-        }
 
         /// <summary>
         /// the player's home village

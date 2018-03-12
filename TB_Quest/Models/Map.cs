@@ -17,13 +17,13 @@ namespace TB_Quest
 
         #region FIELDS
         private List<Location> _locationList;
-
+        private Dictionary<int, int> _locationAccessList;
         #endregion
 
         #region PROPERTIES
 
         /// <summary>
-        /// determines whether the location is accessible
+        /// list of locations
         /// </summary>
         public List<Location> LocationList
         {
@@ -31,6 +31,14 @@ namespace TB_Quest
             set { _locationList = value; }
         }
 
+        /// <summary>
+        /// dictionary that contains
+        /// </summary>
+        public Dictionary<int, int> LocationAccessList
+        {
+            get { return _locationAccessList; }
+            set { _locationAccessList = value; }
+        }
 
         #endregion
 

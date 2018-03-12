@@ -33,7 +33,7 @@ namespace TB_Quest
 
             new Location
             {
-               Name = "Wizard's Tower - Your Room",
+               Name = "Player's Tower - Your Room",
                 ObjectID = 5,
                 LocationID = 1,
                 Description = "You are currently in your room in your master's tower.\n"  +
@@ -47,14 +47,14 @@ namespace TB_Quest
 
             new Location
             {
-               Name = "Wizard's Tower - Master's Magical Menagerie",
+               Name = "Player's Tower - Master's Magical Menagerie",
                 LocationID = 2,
                  ObjectID = 6,
                 Description = "You stand in your master's magical menagerie: a collection of magical artifacts, materials, books, contraptions, and even automata.  " +
                     "While not a true menageries, containing no living things or even preserved specimens, the master's magical menagerie is a good bit of alliteration.  " +
                     "So, you can take your semantics and shove them." +
                     "In front of you is the section of the menagerie that contains the things you are allowed to touch.",
-                GeneralContents = "Wizard swag coming in a future update",
+                GeneralContents = "Player swag coming in a future update",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 1, 3 },
                 ExperiencePoints = 5
@@ -62,7 +62,7 @@ namespace TB_Quest
 
             new Location
             {
-               Name = "Wizard's Tower - Entry Hall",
+               Name = "Player's Tower - Entry Hall",
                 LocationID = 3,
                  ObjectID = 7,
                 Description = "You stand in the entry hall of your master's tower -- a modest room that portends nothing of the wondrous quest ahead of you.  " +
@@ -148,7 +148,7 @@ namespace TB_Quest
                                   "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
                                   "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
                                   "foliage.",
-                IsAccessible = true,
+                IsAccessible = false, //true,
                 AccessTo =  new List<int>(){ 6, 8, 11 },
                 ExperiencePoints = 10
             },
@@ -370,7 +370,7 @@ namespace TB_Quest
         {
             new Character
             {
-                Name = "Evil? Wizard",
+                Name = "Evil? Player",
                 Description = "",
                 LocationID = 4,
                 ObjectID = 1

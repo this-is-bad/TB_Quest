@@ -28,7 +28,9 @@ namespace TB_Quest
 
         #region FIELDS
 
+        private int _experiencePoints;
         private int _age;
+        private int _health;
         private RaceType _race;
         private List<Item> _inventory;
         private List<Treasure> _treasureHorde;
@@ -36,7 +38,16 @@ namespace TB_Quest
         #endregion
 
         #region PROPERTIES
-        
+
+        /// <summary>
+        /// the character's experience points
+        /// </summary>
+        public int ExperiencePoints
+        {
+            get { return _experiencePoints; }
+            set { _experiencePoints = value; }
+        }
+
         /// <summary>
         /// the character's age
         /// </summary>
@@ -44,6 +55,15 @@ namespace TB_Quest
         {
             get { return _age; }
             set { _age = value; }
+        }
+
+        /// <summary>
+        /// the character's health
+        /// </summary>
+        public int Health
+        {
+            get { return _health; }
+            set { _health = value; }
         }
 
         /// <summary>
