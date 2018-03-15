@@ -91,7 +91,7 @@ namespace TB_Quest
         private void IntializeUniverse()
         {
             _locations = UniverseObjects.Locations;
-            _gameObjects = UniverseObjects.gameObjects;
+            _gameObjects = UniverseObjects.GameObjects;
             _items = UniverseObjects.Items;
             _treasures = UniverseObjects.Treasures;
             _characters = UniverseObjects.Characters;
@@ -272,7 +272,7 @@ namespace TB_Quest
         }
 
         /// <summary>
-        /// determine if the game object ID is a valid ID and return the result
+        /// determine if the game object ID is a valid ID for the current location and return the result
         /// </summary>
         /// <param name="gameObjectId"></param>
         /// <param name="currentLocationId"></param>
@@ -305,6 +305,11 @@ namespace TB_Quest
             }
         }
 
+        /// <summary>
+        /// get a GameObject that matches the ID passed to it
+        /// </summary>
+        /// <param name="iD"></param>
+        /// <returns>GameObject</returns>
         public GameObject GetGameObjectById(int iD)
         {
             GameObject gameObjectToReturn = null;
@@ -354,6 +359,27 @@ namespace TB_Quest
             return gameObjects;
         }
 
+        /// <summary>
+        /// get a list of GameObjects for the current location ID
+        /// </summary>
+        /// <param name="locationId"></param>
+        /// <returns> List<GameObject></returns>
+        public List<GameObject> GetGameObjectsBySpaceTimeLocationId(int locationId)
+        {
+            List<GameObject> gameObjects = new List<GameObject>();
+
+            //
+            // run through the game object list and grab all that are in the current location
+            //
+            foreach (GameObject gameObject in _gameObjects)
+            {
+                if (gameObject.LocationID == locationId)
+                {
+                    GameObjects.Add(gameObject);
+                }
+            }
+            return gameObjects;
+        }
         #endregion
     }
 }

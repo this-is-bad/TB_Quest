@@ -9,7 +9,7 @@ namespace TB_Quest
     /// <summary>
     /// static class to hold all objects in the game universe; locations, game objects, npc's
     /// </summary>
-    class UniverseObjects
+    public static partial class UniverseObjects
     {
 
         #region ITEMS
@@ -43,6 +43,7 @@ namespace TB_Quest
         public static List<GameObject> GameObjects { get => gameObjects; set => gameObjects = value; }
 
         #endregion
+
         #region LOCATIONS
         private static List<Location> locations = new List<Location>()
         {
