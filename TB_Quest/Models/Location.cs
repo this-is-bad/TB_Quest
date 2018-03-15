@@ -26,6 +26,12 @@ namespace TB_Quest
         #endregion
 
         #region PROPERTIES
+
+        public override string Description { get; set; }
+        public override int LocationID { get; set; }
+        public override string Name { get; set; }
+        public override int ObjectID { get; set; }
+
         /// <summary>
         /// locations that the current location can be accessed from
         /// </summary>
@@ -72,10 +78,10 @@ namespace TB_Quest
 
         public Location(string description, int locationID, string name, int objectID)
         {
-            base.Description = description;
-            base.LocationID = locationID;
-            base.Name = name;
-            base.ObjectID = objectID;
+            Description = description;
+            LocationID = locationID;
+            Name = name;
+            ObjectID = objectID;
 
         }
 

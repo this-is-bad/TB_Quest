@@ -39,6 +39,11 @@ namespace TB_Quest
 
         #region PROPERTIES
 
+        public override string Description { get; set; }
+        public override int LocationID { get; set; }
+        public override string Name { get; set; }
+        public override int ObjectID { get; set; }
+
         /// <summary>
         /// the character's experience points
         /// </summary>
@@ -105,9 +110,9 @@ namespace TB_Quest
 
         public Character(string name, RaceType race, int locationID)
         {
-            base.Name = name;
+            Name = name;
             _race = race;
-            base.LocationID = locationID;
+            LocationID = locationID;
             _inventory = new List<Item>();
             _treasureHorde = new List<Treasure>();
         }
@@ -122,7 +127,7 @@ namespace TB_Quest
         /// <returns>string</returns>
         public virtual string Greeting()
         {
-            return $"Hello, my name is {base.Name} and I am a {_race}.";
+            return $"Hello, my name is {Name} and I am a {_race}.";
         }
 
         #endregion

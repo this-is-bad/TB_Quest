@@ -10,44 +10,56 @@ namespace TB_Quest
     {
         #region ***** define all lists to be maintained by the Universe object *****
 
+
+        private List<Character> _characters;
+
+        private List<GameObject> _gameObjects;
+
+        private List<Item> _items;
+
+        private List<Location> _locations;
+
+        private List<Treasure> _treasures;
+
         //
         // list of all characters
         //
-        private List<Character> _characters;
-
-        //
-        // list of all items
-        //
-        private List<Item> _items;
-
-        //
-        // list of all locations
-        //
-        private List<Location> _locations;
-
-        //
-        // list of all treasures
-        //
-        private List<Treasure> _treasures;
-
         public List<Character> Characters
         {
             get { return _characters; }
             set { _characters = value; }
         }
 
+        //
+        // list of all objects in the game
+        //
+        public List<GameObject> GameObjects
+        {
+            get { return _gameObjects; }
+            set { _gameObjects = value; }
+        }
+
+        //
+        // list of all items
+        //
         public List<Item> Items
         {
             get { return _items; }
             set { _items = value; }
         }
 
+        //
+        // list of all locations
+        //
         public List<Location> Locations
         {
             get { return _locations; }
             set { _locations = value; }
         }
 
+        //
+        // list of all treasures
+        //
         public List<Treasure> Treasures
         {
             get { return _treasures; }
@@ -79,6 +91,7 @@ namespace TB_Quest
         private void IntializeUniverse()
         {
             _locations = UniverseObjects.Locations;
+            _gameObjects = UniverseObjects.gameObjects;
             _items = UniverseObjects.Items;
             _treasures = UniverseObjects.Treasures;
             _characters = UniverseObjects.Characters;
@@ -256,6 +269,89 @@ namespace TB_Quest
             }
 
             return locations;
+        }
+
+        /// <summary>
+        /// determine if the game object ID is a valid ID and return the result
+        /// </summary>
+        /// <param name="gameObjectId"></param>
+        /// <param name="currentLocationId"></param>
+        /// <returns>bool</returns>
+        public bool IsValidObjectByLocationId(int gameObjectId, int currentLocationId)
+        {
+            List<int> gameObjectIds = new List<int>();
+
+            //
+            // create a list of game object IDs in the current location
+            //
+            foreach (GameObject gameObject in _gameObjects)
+            {
+                if (gameObject.LocationID == currentLocationId)
+                {
+                    gameObjectIds.Add(gameObject.ObjectID);
+                }
+            }
+
+            //
+            // determine if the game object ID is a valid ID and return the result
+            //
+            if (gameObjectIds.Contains(gameObjectId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public GameObject GetGameObjectById(int iD)
+        {
+            GameObject gameObjectToReturn = null;
+
+            //
+            // run through the game object list and grab the correct one
+            //
+            foreach (GameObject gameObject in _gameObjects)
+            {
+                if (gameObject.ObjectID == iD)
+                {
+                    gameObjectToReturn = gameObject; 
+                }
+            }
+
+            //
+            // the specified ID was not found in the universe
+            // throw an exception
+            //
+            if (gameObjectToReturn == null)
+            {
+                string feedbackMessage = $"The Game Object ID {iD} does not exist in the current Universe.";
+                throw new ArgumentException(feedbackMessage, iD.ToString());
+            }
+
+            return gameObjectToReturn;
+
+        }
+
+        /// <summary>
+        /// get a list of locations accessible from the current location
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>List<location></location></returns>
+        public List<GameObject> GetLocationsByLocationID(int locationId)
+        {
+            List<GameObject> gameObjects = new List<GameObject>(); ;
+
+            foreach (GameObject gameObject in gameObjects)
+            {
+                if (gameObject.LocationID == locationId)
+                {
+                    gameObjects.Add(gameObject);
+                }
+            }
+
+            return gameObjects;
         }
 
         #endregion

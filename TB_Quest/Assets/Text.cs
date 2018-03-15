@@ -13,7 +13,7 @@ namespace TB_Quest
     public static class Text
     {
         public static List<string> HeaderText = new List<string>() { "TB Quest" };
-        public static List<string> FooterText = new List<string>() { "Game Programming Project, 2018" };
+        public static List<string> FooterText = new List<string>() { "Shayne Jones, 2018" };
 
         #region INTITIAL GAME SETUP
 

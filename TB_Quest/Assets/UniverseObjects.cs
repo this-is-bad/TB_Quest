@@ -27,6 +27,22 @@ namespace TB_Quest
         public static List<Item> Items { get => items; set => items = value; }
         #endregion
 
+        #region GAMEOBJECTS
+
+        private static List<GameObject> gameObjects = new List<GameObject>()
+        {
+            new Item
+            {
+                Name = "Portable Hole",
+                Description = "",
+                LocationID = 2,
+                ObjectID = 23
+            }
+        };
+
+        public static List<GameObject> GameObjects { get => gameObjects; set => gameObjects = value; }
+
+        #endregion
         #region LOCATIONS
         private static List<Location> locations = new List<Location>()
         {
@@ -362,6 +378,20 @@ namespace TB_Quest
 
         public static List<Location> Locations { get => locations; set => locations = value; }
        
+        public static List<Location> Loc(List<GameObject> objList)
+        {
+            List<Location> locationList = new List<Location>();
+
+            foreach (GameObject gObj in objList)
+            {
+                if (gObj is Location)
+                {
+                    locationList.Add((Location)gObj);
+                }
+            }
+
+            return locationList;
+        }
         
         #endregion
 
