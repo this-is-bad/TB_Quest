@@ -364,7 +364,7 @@ namespace TB_Quest
         /// </summary>
         /// <param name="locationId"></param>
         /// <returns> List<GameObject></returns>
-        public List<GameObject> GetGameObjectsBySpaceTimeLocationId(int locationId)
+        public List<GameObject> GetGameObjectsByLocationId(int locationId)
         {
             List<GameObject> gameObjects = new List<GameObject>();
 

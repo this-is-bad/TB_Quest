@@ -142,6 +142,9 @@ namespace TB_Quest
                         case PlayerAction.ListCharacters:
                             _gameConsoleView.DisplayListOfCharacters();
                             break;
+                        case PlayerAction.ListGameObjects:
+                            _gameConsoleView.DisplayListOfAllGameObjects();
+                            break;
                         case PlayerAction.ListItems:
                             _gameConsoleView.DisplayListOfItems();
                             break;

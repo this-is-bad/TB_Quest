@@ -137,20 +137,32 @@ namespace TB_Quest
             bool validResponse = false;
             integerChoice = 0;
 
+            //
+            // validate on range if either minimumValue or maximumValue are not 0
+            //
+            bool validateRange = (minimumValue != 0 || maximumValue != 0);
+
             DisplayInputBoxPrompt(prompt);
             while (!validResponse)
             {
-               if (int.TryParse(Console.ReadLine(), out integerChoice))
+                if (int.TryParse(Console.ReadLine(), out integerChoice))
                 {
-                    if (integerChoice >= minimumValue && integerChoice <= maximumValue)
+                    if (validateRange)
                     {
-                        validResponse = true;
+                        if (integerChoice >= minimumValue && integerChoice <= maximumValue)
+                        {
+                            validResponse = true;
+                        }
+                        else
+                        {
+                            ClearInputBox();
+                            DisplayInputErrorMessage($"You must enter an integer value between {minimumValue} and {maximumValue}. Please try again.");
+                            DisplayInputBoxPrompt(prompt);
+                        }
                     }
                     else
                     {
-                        ClearInputBox();
-                        DisplayInputErrorMessage($"You must enter an integer value between {minimumValue} and {maximumValue}. Please try again.");
-                        DisplayInputBoxPrompt(prompt);
+                        validResponse = true;
                     }
                 }
                 else
@@ -160,6 +172,8 @@ namespace TB_Quest
                     DisplayInputBoxPrompt(prompt);
                 }
             }
+
+            Console.CursorVisible = false; 
 
             return true;
         }
@@ -794,6 +808,63 @@ namespace TB_Quest
         public void DisplayPlayerTreasure()
         {
 
+        }
+
+        /// <summary>
+        /// display all inanimate objects in the game
+        /// </summary>
+        public void DisplayListOfAllGameObjects ()
+        {
+            ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
+            DisplayGamePlayScreen("List: Game Objects", Text.ListAllGameObjects(_gameUniverse.GameObjects), ActionMenu.CurrentActionMenu, "");
+        }
+
+        /// <summary>
+        /// displays a list of objects in the current location and accepts user input for an object id
+        /// </summary>
+        /// <returns>int</returns>
+        public int DisplayGetGameObjectsToLookAt()
+        {
+            int gameObjectId = 0;
+            bool validGameObjectId = false;
+            //
+            // get a list of game objects in the current location
+            //
+            List<GameObject> gameObjectsInLocation = _gameUniverse.GetGameObjectsByLocationId(_gamePlayer.LocationID);
+
+            if (gameObjectsInLocation.Count > 0)
+            {
+                ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+                DisplayGamePlayScreen("Look at an object", Text.GameObjectsChooseList(gameObjectsInLocation), ActionMenu.CurrentActionMenu, "");
+
+                while (!validGameObjectId)
+                {
+                    //
+                    //get an integer from the player
+                    //
+                    GetInteger($"Enter the ID number of the object you wish to look at: ", 0, 0, out gameObjectId);
+
+                    //
+                    // validate integer as a valid game object id and in current location
+                    //
+                    if (_gameUniverse.IsValidObjectByLocationId(gameObjectId, _gamePlayer.LocationID))
+                    {
+                        validGameObjectId = true;
+                    }
+                    else
+                    {
+                        ClearInputBox();
+                        DisplayInputErrorMessage("It appears you entered an invalid game object ID.  Please try again.");
+                    }
+                }
+            }
+            else
+            {
+                ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+                DisplayGamePlayScreen("Look at an object", Text.GameObjectsChooseList(gameObjectsInLocation), ActionMenu.CurrentActionMenu, "");
+            }
+
+            return gameObjectId;
         }
 
         #endregion

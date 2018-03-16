@@ -50,6 +50,7 @@ namespace TB_Quest
                     { '2', PlayerAction.ListItems },
                     { '3', PlayerAction.ListTreasures },
                     { '4', PlayerAction.ListLocations },
+                    { '5', PlayerAction.ListGameObjects},
                     { '0', PlayerAction.ReturnMainMenu }
                 }
         };
