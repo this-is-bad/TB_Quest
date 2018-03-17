@@ -548,13 +548,13 @@ namespace TB_Quest
         /// <summary>
         /// show all items in the game
         /// </summary>
-        public void DisplayListOfItems()
-        {
-            ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
+        //public void DisplayListOfInanimateObjects()
+        //{
+        //    ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
 
-            DisplayGamePlayScreen("List: Items", Text.ListItems
-                (_gameUniverse.Items), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
-        }
+        //    DisplayGamePlayScreen("List: Items", Text.ListItems
+        //        (_gameUniverse.Items), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
+        //}
 
         /// <summary>
         /// show all characters in the game
@@ -608,17 +608,6 @@ namespace TB_Quest
         //    DisplayGamePlayScreen("List: Locations", Text.ListObjects //Text.ListLocations
         //        (_gameUniverse.Locations), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
         //}
-
-        /// <summary>
-        /// Display the details of the current location
-        /// </summary>
-        public void DisplayLookAround()
-        {
-            ActionMenu.CurrentActionMenu = ActionMenu.CurrentActionMenu;
-
-            Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
-            DisplayGamePlayScreen("Current Location", Text.LookAround(currentLocation), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
-        }
 
         /// <summary>
         /// display information about the player
@@ -799,12 +788,6 @@ namespace TB_Quest
         }
 
 
-        public void DisplayPlayerInventory()
-        {
-
-        }
-
-
         public void DisplayPlayerTreasure()
         {
 
@@ -865,6 +848,45 @@ namespace TB_Quest
             }
 
             return gameObjectId;
+        }
+
+        /// <summary>
+        /// show information about an object
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public void DisplayGameObjectInfo (GameObject gameObject)
+        {
+            ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+            DisplayGamePlayScreen("Current Location", Text.LookAt(gameObject), ActionMenu.CurrentActionMenu, "");
+        }
+
+        /// <summary>
+        /// display the details of the current location
+        /// </summary>
+        public void DisplayLookAround()
+        {
+            //
+            // get current location
+            //
+            Location currentLocation = _gameUniverse.GetLocationByLocationID(_gamePlayer.LocationID);
+
+            //
+            // get list of game objects in the current location
+            //
+            List<GameObject> gameObjectsInCurrentLocation = _gameUniverse.GetGameObjectsByLocationId(_gamePlayer.LocationID);
+
+            string messageBoxText = Text.LookAround(currentLocation) + Environment.NewLine + Environment.NewLine;
+            messageBoxText += Text.GameObjectsChooseList(gameObjectsInCurrentLocation);
+
+            ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+            DisplayGamePlayScreen("Current Location", messageBoxText, ActionMenu.CurrentActionMenu, "");
+        }
+
+        public void DisplayInventory()
+        {
+            ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
+            DisplayGamePlayScreen("Current Inventory", Text.CurrentInventory(_gamePlayer.Inventory), ActionMenu.CurrentActionMenu, "");
         }
 
         #endregion

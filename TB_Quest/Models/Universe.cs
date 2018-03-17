@@ -306,6 +306,40 @@ namespace TB_Quest
         }
 
         /// <summary>
+        /// determine if the inanimate object ID is a valid ID for the current location and return the result
+        /// </summary>
+        /// <param name="inanimateObjectId"></param>
+        /// <param name="currentLocationId"></param>
+        /// <returns>bool</returns>
+        public bool IsValidInanimateObjectByLocationId(int inanimateObjectId, int currentLocationId)
+        {
+            List<int> inanimateObjectIds = new List<int>();
+
+            //
+            // create a list of inanimate object IDs in the current location
+            //
+            foreach (GameObject gameObject in _gameObjects)
+            {
+                if (gameObject.LocationID == currentLocationId && gameObject is InanimateObject)
+                {
+                    inanimateObjectIds.Add(gameObject.ObjectID);
+                }
+            }
+
+            //
+            // determine if the game object ID is a valid ID and return the result
+            //
+            if (inanimateObjectIds.Contains(inanimateObjectId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// get a GameObject that matches the ID passed to it
         /// </summary>
         /// <param name="iD"></param>
@@ -340,23 +374,44 @@ namespace TB_Quest
         }
 
         /// <summary>
+        /// get a location by its location ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Location</returns>
+        public Location GetLocationByLocationID(int locationId)
+        {
+            Location returnLocation = new Location();
+
+           foreach (Location location in _locations)
+            {
+                if (location.LocationID == locationId)
+                {
+                    returnLocation = location;
+                    break;
+                }
+            }
+
+            return returnLocation;
+        }
+
+        /// <summary>
         /// get a list of locations accessible from the current location
         /// </summary>
         /// <param name="id"></param>
         /// <returns>List<location></location></returns>
-        public List<GameObject> GetLocationsByLocationID(int locationId)
+        public List<Location> GetLocationsByLocationID(int locationId)
         {
-            List<GameObject> gameObjects = new List<GameObject>(); ;
+            List<Location> locations = new List<Location>();
 
-            foreach (GameObject gameObject in gameObjects)
+            foreach (Location location in locations)
             {
-                if (gameObject.LocationID == locationId)
+                if (location.LocationID == locationId)
                 {
-                    gameObjects.Add(gameObject);
+                    locations.Add(location);
                 }
             }
 
-            return gameObjects;
+            return locations;
         }
 
         /// <summary>
@@ -371,7 +426,7 @@ namespace TB_Quest
             //
             // run through the game object list and grab all that are in the current location
             //
-            foreach (GameObject gameObject in _gameObjects)
+            foreach (GameObject gameObject in _gameObjects.ToList())
             {
                 if (gameObject.LocationID == locationId)
                 {

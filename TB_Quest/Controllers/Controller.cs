@@ -56,6 +56,12 @@ namespace TB_Quest
             _gameConsoleView = new ConsoleView(_gamePlayer, _gameUniverse);
             _playingGame = true;
 
+            //
+            // add initial items to the player's inventory
+            //
+            _gamePlayer.Inventory.Add(_gameUniverse.GetGameObjectById(23) as InanimateObject);
+            _gamePlayer.Inventory.Add(_gameUniverse.GetGameObjectById(24) as InanimateObject);
+
             Program.Setup = true; 
 
             Console.CursorVisible = false;
@@ -145,9 +151,9 @@ namespace TB_Quest
                         case PlayerAction.ListGameObjects:
                             _gameConsoleView.DisplayListOfAllGameObjects();
                             break;
-                        case PlayerAction.ListItems:
-                            _gameConsoleView.DisplayListOfItems();
-                            break;
+                        //case PlayerAction.ListItems:
+                        //    _gameConsoleView.DisplayListOfItems();
+                        //    break;
                         case PlayerAction.ListLocations:
                             _gameConsoleView.DisplayListOfLocations();
                             break;
@@ -167,22 +173,23 @@ namespace TB_Quest
                             _gameConsoleView.DisplayLocationsVisited();
                             break;
                         case PlayerAction.LookAt:
-                            _gameConsoleView.DisplayLookAt();
+                            //_gameConsoleView.DisplayLookAt();
+                            LookAtAction();
                             break;
-                        case PlayerAction.PickUpItem:
+                        case PlayerAction.PickUp:
                             _gameConsoleView.DisplayPickUpItem();
                             break;
-                        case PlayerAction.PickUpTreasure:
-                            _gameConsoleView.DisplayPickUpTreasure();
-                            break;
-                        case PlayerAction.PutDownItem:
+                        case PlayerAction.PutDown:
                             _gameConsoleView.DisplayPutDownItem();
                             break;
-                        case PlayerAction.PutDownTreasure:
-                            _gameConsoleView.DisplayPutDownTreasure();
-                            break;
-                        case PlayerAction.PlayerInventory:
-                            _gameConsoleView.DisplayPlayerInventory();
+                        //case PlayerAction.PickUpTreasure:
+                        //    _gameConsoleView.DisplayPickUpTreasure();
+                        //    break;
+                        //case PlayerAction.PutDownTreasure:
+                        //    _gameConsoleView.DisplayPutDownTreasure();
+                        //    break;
+                        case PlayerAction.Inventory:
+                            _gameConsoleView.DisplayInventory();
                             break;
                         case PlayerAction.PlayerTreasure:
                             _gameConsoleView.DisplayPlayerTreasure();
@@ -290,6 +297,33 @@ namespace TB_Quest
                 // update experience points for visiting locations
                 //
                 _gamePlayer.ExperiencePoints += _currentLocation.ExperiencePoints;
+            }
+        }
+
+        /// <summary>
+        /// look at an object
+        /// </summary>
+        private void LookAtAction()
+        {
+            //
+            // display a list of inanimate objects in the locaction and get a player choice
+            //
+            int gameObjectToLookAtId = _gameConsoleView.DisplayGetGameObjectsToLookAt();
+
+            //
+            // display game object info
+            //
+            if (gameObjectToLookAtId != 0)
+            {
+                //
+                // get the game object from the universe
+                //
+                GameObject gameObject = _gameUniverse.GetGameObjectById(gameObjectToLookAtId);
+
+                //
+                // display information for the chosen object
+                //
+                _gameConsoleView.DisplayGameObjectInfo(gameObject);
             }
         }
 

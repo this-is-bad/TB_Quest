@@ -11,39 +11,6 @@ namespace TB_Quest
     /// </summary>
     public static partial class UniverseObjects
     {
-
-        #region ITEMS
-        private static List<Item> items = new List<Item>()
-        {
-            new Item
-            {
-                Name = "Portable Hole",
-                Description = "",
-                LocationID = 2,
-                ObjectID = 23
-            }
-        };
-
-        public static List<Item> Items { get => items; set => items = value; }
-        #endregion
-
-        #region GAMEOBJECTS
-
-        private static List<GameObject> gameObjects = new List<GameObject>()
-        {
-            new Item
-            {
-                Name = "Portable Hole",
-                Description = "",
-                LocationID = 2,
-                ObjectID = 23
-            }
-        };
-
-        public static List<GameObject> GameObjects { get => gameObjects; set => gameObjects = value; }
-
-        #endregion
-
         #region LOCATIONS
         private static List<Location> locations = new List<Location>()
         {
@@ -68,8 +35,8 @@ namespace TB_Quest
                 LocationID = 2,
                  ObjectID = 6,
                 Description = "You stand in your master's magical menagerie: a collection of magical artifacts, materials, books, contraptions, and even automata.  " +
-                    "While not a true menageries, containing no living things or even preserved specimens, the master's magical menagerie is a good bit of alliteration.  " +
-                    "So, you can take your semantics and shove them." +
+                    "While not a true menagerie, containing no living things or even preserved specimens, the master's magical menagerie is a good bit of alliteration.  " +
+                    "So, you can take your semantics and shove them.  " +
                     "In front of you is the section of the menagerie that contains the things you are allowed to touch.",
                 GeneralContents = "Player swag coming in a future update",
                 IsAccessible = true,
@@ -395,53 +362,5 @@ namespace TB_Quest
         }
         
         #endregion
-
-        #region NPCs
-        private static List<Character> characters = new List<Character>()
-        {
-            new Character
-            {
-                Name = "Evil? Player",
-                Description = "",
-                LocationID = 4,
-                ObjectID = 1
-            },
-
-            new Character
-            {
-                Name = "Basset Hound",
-                Description = "",
-                LocationID = 14,
-                ObjectID = 2
-            },
-
-            new Character
-            {
-                Name = "Jeedub'ex",
-                Description = "",
-                LocationID = 18,
-                ObjectID = 3
-            }
-        };
-
-        public static List<Character> Characters { get => characters; set => characters = value; }
-        #endregion
-
-        #region TREASURE
-        private static List<Treasure> treasures = new List<Treasure>()
-        {
-            new Treasure
-            {
-                Name = "Gem-encrusted jewel",
-                Description = "This appears to be a large ruby, studded with diamonds, sapphires, and more rubies.  " + 
-                              "In actuality, it is a gaudy piece of cheap costume jewelry crafted (using the term loosely), " +
-                              "by someone with more free time than sense, and even less taste.",
-                LocationID = 4,
-                ObjectID = 24
-            }
-        };
-        public static List<Treasure> Treasures { get => treasures; set => treasures = value; }
-        #endregion
-
     }
 }

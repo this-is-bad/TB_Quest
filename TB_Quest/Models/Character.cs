@@ -32,7 +32,7 @@ namespace TB_Quest
         private int _age;
         private int _health;
         private RaceType _race;
-        private List<Item> _inventory;
+        private List<InanimateObject> _inventory;
         private List<Treasure> _treasureHorde;
 
         #endregion
@@ -83,7 +83,7 @@ namespace TB_Quest
         /// <summary>
         /// the character's inventory
         /// </summary>
-        public List<Item> Inventory
+        public List<InanimateObject> Inventory
         {
             get { return _inventory; }
             set { _inventory = value; }
@@ -104,7 +104,7 @@ namespace TB_Quest
 
         public Character()
         {
-            _inventory = new List<Item>();
+            _inventory = new List<InanimateObject>();
             _treasureHorde = new List<Treasure>();
         }
 
@@ -113,7 +113,7 @@ namespace TB_Quest
             Name = name;
             _race = race;
             LocationID = locationID;
-            _inventory = new List<Item>();
+            _inventory = new List<InanimateObject>();
             _treasureHorde = new List<Treasure>();
         }
 

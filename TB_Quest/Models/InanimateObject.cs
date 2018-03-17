@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TB_Quest
 {
-    class InanimateObject : GameObject
+    public class InanimateObject : GameObject
     {
 #region FIELDS
 
@@ -74,7 +74,13 @@ namespace TB_Quest
             set { _value = value; }
         }
 
-#endregion
+        #endregion
+
+        #region CONSTRUCTORS
+        public InanimateObject()
+        {
+        }
+        #endregion
 
     }
 }

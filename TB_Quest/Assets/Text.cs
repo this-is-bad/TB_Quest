@@ -153,24 +153,16 @@ namespace TB_Quest
 
         public static string PlayerInfo(Player gamePlayer)
         {
-            List<Item> itemList = gamePlayer.Inventory;
-            List<Treasure> treasureList = gamePlayer.TreasureHorde;
-            string items;
-            string treasures;
-
-            items = ListItems(itemList);
-            treasures = ListTreasures(treasureList);
-
-            string messageBoxText =
+                        string messageBoxText =
                 $"\tPlayer Name: {gamePlayer.Name}\n" +
                 $"\tPlayer Age: {gamePlayer.Age}\n" +
                 $"\tPlayer Race: {gamePlayer.Race}\n" +
                 $"\tPlayer Home Village: {gamePlayer.HomeVillage}\n" +
                 $"\tPlayer Greeting: {gamePlayer.Greeting()}\n" +
                 " \n " +
-                items +
+                CurrentInventory(gamePlayer.Inventory) +
                 " \n " +
-                treasures;
+                ListTreasures(gamePlayer.TreasureHorde);
 
 
 
@@ -305,6 +297,71 @@ namespace TB_Quest
             }
 
             messageBoxText += ItemList;
+
+            return messageBoxText;
+        }
+
+        public static string ListInventory(IEnumerable<InanimateObject> inanimateObjects)
+        {
+            string messageBoxText =
+                "Items\n" +
+                " \n" +
+
+                ///
+                /// display table header 
+                /// 
+                "ID".PadRight(10) + "Name".PadRight(40) + "Type".PadRight(20) + "\n" +
+                "---".PadRight(10) + "-------------------------".PadRight(40) + 
+                "------".PadRight(20) + "\n";
+
+            ///
+            /// display all items
+            /// 
+            string inventoryList = null;
+            foreach (InanimateObject inanimateObject in inanimateObjects)
+            {
+                inventoryList +=
+                    $"{inanimateObject.ObjectID}".PadRight(10) +
+                    $"{inanimateObject.Name}".PadRight(40) +
+                    $"{inanimateObject.InanimateObjType.ToString()}".PadRight(20) +
+                    Environment.NewLine;
+            }
+
+            messageBoxText += inventoryList;
+
+            return messageBoxText;
+        }
+
+        /// <summary>
+        /// return all inanimate objects in the game
+        /// </summary>
+        /// <param name="inanimateObjects"></param>
+        /// <returns>string</returns>
+        public static string ListInanimateObjects(IEnumerable<InanimateObject> inanimateObjects)
+        {
+            string messageBoxText =
+                "Objects\n" +
+                " \n" +
+
+                ///
+                /// display table header 
+                /// 
+                "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
+                "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
+
+            ///
+            /// display all items
+            /// 
+            string inanimateObjectList = null;
+            foreach (InanimateObject inanimateObject in inanimateObjects)
+            {
+                inanimateObjectList +=
+                    $"{inanimateObject.LocationID}".PadRight(10) +
+                    $"{inanimateObject.Name}".PadRight(50) +
+                    Environment.NewLine;
+            }
+
+            messageBoxText += inanimateObjectList;
 
             return messageBoxText;
         }
@@ -595,6 +652,78 @@ namespace TB_Quest
             return messageBoxText;
         }
 
+        /// <summary>
+        /// display information about an inanimate object
+        /// </summary>
+        /// <param name="gameObject"></param>
+        /// <returns>string</returns>
+        public static string LookAt(GameObject gameObject)
+        {
+            string messageBoxText = "";
 
+            messageBoxText =
+                $"{gameObject.Name}\n" +
+                " \n " +
+                gameObject.Description + " \n" +
+                " \n";
+
+            if (gameObject is InanimateObject)
+            {
+                InanimateObject inanimateObject = gameObject as InanimateObject;
+
+                messageBoxText += $"The {inanimateObject.Name} has a value of {inanimateObject.Value} and ";
+
+                if (inanimateObject.CanInventory)
+                {
+                    messageBoxText += "may be added to your inventory.";
+                }
+                else
+                {
+                    messageBoxText += "may not be added to your inventory.";
+                }
+            }
+            else
+            {
+                messageBoxText += $"The {gameObject.Name} may not be added to your inventory.";
+            }
+
+            return messageBoxText;
+        }
+
+
+        public static string CurrentInventory (IEnumerable<InanimateObject> inventory)
+        {
+            string messageBoxText = "";
+
+            //
+            // display table header
+            //
+            messageBoxText =
+                "ID".PadRight(10) +
+                "Name".PadRight(60) +
+                "Type".PadRight(20) +
+                "\n" +
+                "---".PadRight(10) +
+                "-------------------------------------------------------".PadRight(60) +
+                "------".PadRight(20) +
+                "\n";
+            //
+            // display all inventory inanimate objects in rows
+            //
+            string inventoryObjectRows = null;
+
+            foreach(InanimateObject inventoryObject in inventory)
+            {
+                inventoryObjectRows +=
+                    $"{inventoryObject.ObjectID}".PadRight(10) +
+                    $"{inventoryObject.Name}".PadRight(60) +
+                    $"{inventoryObject.InanimateObjType}".PadRight(20) +
+                    Environment.NewLine;
+
+            }
+            messageBoxText += inventoryObjectRows;
+
+            return messageBoxText;
+        }
     }
 }

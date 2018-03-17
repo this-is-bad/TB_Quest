@@ -70,6 +70,7 @@ namespace TB_Quest
         public Player()
         {
             _locationsVisited = new List<int>();
+           // _inventory = new List<InanimateObject>();
         }
 
         public Player(string name, RaceType race, int locationID) : base(name, race, locationID)

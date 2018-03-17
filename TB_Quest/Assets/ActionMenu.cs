@@ -84,9 +84,13 @@ namespace TB_Quest
                 {
                     { '1', PlayerAction.PlayerInfo },
                     { '2', PlayerAction.LookAround },
-                    { '3', PlayerAction.Travel },
-                    { '4', PlayerAction.PlayerLocationsVisited },
-                    { '5', PlayerAction.AdminMenu },
+                    { '3', PlayerAction.LookAt },
+                    { '4', PlayerAction.PickUp },
+                    { '5', PlayerAction.PutDown },
+                    { '6', PlayerAction.Inventory },
+                    { '7', PlayerAction.Travel },
+                    { '8', PlayerAction.PlayerLocationsVisited },
+                    { '9', PlayerAction.AdminMenu },
                     { '0', PlayerAction.Exit }
                 }
         };
@@ -101,11 +105,11 @@ namespace TB_Quest
             MenuChoices = new Dictionary<char, PlayerAction>()
                 {
                     { '1', PlayerAction.LookAt },
-                    { '2', PlayerAction.PickUpItem },
-                    { '3', PlayerAction.PutDownItem },
-                    { '4', PlayerAction.PickUpTreasure },
-                    { '5', PlayerAction.PutDownTreasure },
-                    { '6', PlayerAction.PlayerInventory },
+                    { '2', PlayerAction.PickUp },
+                    { '3', PlayerAction.PutDown },
+                    //{ '4', PlayerAction.PickUpTreasure },
+                    //{ '5', PlayerAction.PutDownTreasure },
+                    { '6', PlayerAction.Inventory },
                     { '7', PlayerAction.PlayerTreasure },
                     { '0', PlayerAction.ReturnMainMenu }
                 }
