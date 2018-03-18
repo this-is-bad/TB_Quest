@@ -617,40 +617,40 @@ namespace TB_Quest
         /// </summary>
         /// <param name="gameObjects"></param>
         /// <returns>string</returns>
-        public static string GameObjectsChooseList(IEnumerable<GameObject> gameObjects)
-        {
-            //
-            // display table name and column headers
-            //
-            string messageBoxText = "Game Objects\n" +
-                " \n " +
+        //public static string GameObjectsChooseList(IEnumerable<GameObject> gameObjects)
+        //{
+        //    //
+        //    // display table name and column headers
+        //    //
+        //    string messageBoxText = "Game Objects\n" +
+        //        " \n " +
 
-                //
-                // display table header
-                //
-                "ID".PadRight(10) +
-                "Name".PadRight(30) +
-                "Location ID".PadRight(10) + " \n " +
-                "---".PadRight(10) +
-                "---------------------".PadRight(30) +
-                "---------------------".PadRight(10) + "\n";
-            //
-            // display all game objects in rows
-            //
-            string gameObjectRows = null;
-            foreach (GameObject gameObject in gameObjects)
-            {
-                gameObjectRows += " " +
-                    $"{gameObject.ObjectID}".PadRight(10) +
-                    $"{gameObject.Name}".PadRight(30) +
-                    $"{gameObject.LocationID}".PadRight(10) +
-                    Environment.NewLine;
-            }
+        //        //
+        //        // display table header
+        //        //
+        //        "ID".PadRight(10) +
+        //        "Name".PadRight(30) +
+        //        "Location ID".PadRight(10) + " \n " +
+        //        "---".PadRight(10) +
+        //        "---------------------".PadRight(30) +
+        //        "---------------------".PadRight(10) + "\n";
+        //    //
+        //    // display all game objects in rows
+        //    //
+        //    string gameObjectRows = null;
+        //    foreach (GameObject gameObject in gameObjects)
+        //    {
+        //        gameObjectRows += " " +
+        //            $"{gameObject.ObjectID}".PadRight(10) +
+        //            $"{gameObject.Name}".PadRight(30) +
+        //            $"{gameObject.LocationID}".PadRight(10) +
+        //            Environment.NewLine;
+        //    }
 
-            messageBoxText += gameObjectRows;
+        //    messageBoxText += gameObjectRows;
 
-            return messageBoxText;
-        }
+        //    return messageBoxText;
+        //}
 
         /// <summary>
         /// display information about an inanimate object
@@ -724,6 +724,44 @@ namespace TB_Quest
             messageBoxText += inventoryObjectRows;
 
             return messageBoxText;
+        }
+
+        /// <summary>
+        /// get a list of selectable game objects
+        /// </summary>
+        /// <param name="gameObjects"></param>
+        /// <returns>string</returns>
+        public static string GameObjectsChooseList (IEnumerable<GameObject> gameObjects)
+        {
+            //
+            // display table name and column headers
+            //
+            string messageBotText =
+                "Game Objects\n" +
+                " \n" +
+
+                //
+                // display table header
+                //
+                "ID".PadRight(10) +
+                "Name".PadRight(30) + "\n" +
+                "---".PadRight(10) +
+                "---------------------".PadRight(30) + "\n";
+            //
+            // display all inanimate objects in rows
+            //
+            string gameObjectRows = null;
+            foreach (GameObject gameObject in gameObjects)
+            {
+                gameObjectRows +=
+                    $"{gameObject.ObjectID}".PadRight(10) +
+                    $"{gameObject.Name}".PadRight(30) +
+                    Environment.NewLine;
+            }
+
+            messageBotText += gameObjectRows;
+
+            return messageBotText;
         }
     }
 }

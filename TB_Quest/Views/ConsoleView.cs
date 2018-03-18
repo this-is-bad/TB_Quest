@@ -889,6 +889,75 @@ namespace TB_Quest
             DisplayGamePlayScreen("Current Inventory", Text.CurrentInventory(_gamePlayer.Inventory), ActionMenu.CurrentActionMenu, "");
         }
 
+        public int DisplayGetInanimateObjectToPickUp()
+        {
+            int gameObjectId = 0;
+            bool validGamerObjectId = false;
+
+            //
+            // get a list of inanimate objects in the current location
+            //
+            List<InanimateObject> inanimateObjectsInLocation = _gameUniverse.GetInanimateObjectsByLocationId(_gamePlayer.LocationID);
+
+            if (inanimateObjectsInLocation.Count > 0)
+            {
+                ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
+                DisplayGamePlayScreen("Pick Up Game Object", Text.GameObjectsChooseList(inanimateObjectsInLocation), ActionMenu.CurrentActionMenu, "");
+
+                while (!validGamerObjectId)
+                {
+                    //
+                    // get an integer from the player
+                    //
+                    GetInteger($"Enter the ID number of the object you wish to add to your inventory): ", 0, 0, out gameObjectId);
+
+                    //
+                    // validate integer as a valid game object ID and in the current location
+                    //
+                    if (_gameUniverse.IsValidInanimateObjectByLocationId(gameObjectId, _gamePlayer.LocationID))
+                    {
+                        InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(gameObjectId) as InanimateObject;
+                        if (inanimateObject.CanInventory)
+                        {
+                            validGamerObjectId = true;
+                        }
+                        else
+                        {
+                            ClearInputBox();
+
+                            DisplayInputErrorMessage("It appears you may not inventory that object.  Please try again.");
+                        }
+                    }
+                    else
+                    {
+                        ClearInputBox();
+                    
+                        DisplayInputErrorMessage("It appears you entered an invalid game object ID.  Please try again.");
+                    }
+                }
+            }
+            else
+            {
+                ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
+                DisplayGamePlayScreen("Pick Up Game Object", "It appears there are no game objects here.", ActionMenu.CurrentActionMenu, "");
+            }
+
+            return gameObjectId;
+        }
+
+        /// <summary>
+        /// display a message confirming that an object was added to the player's inventory
+        /// </summary>
+        /// <param name="objectAddedToInventory"></param>
+        public void DisplayConfirmInanimateObjectAddedToInventory(InanimateObject objectAddedToInventory)
+        {
+            ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
+            DisplayGamePlayScreen("Pick Up Game Object", $"The {objectAddedToInventory.Name} has been added to your inventory.", ActionMenu.CurrentActionMenu, "");
+        }
+
         #endregion
 
         #endregion

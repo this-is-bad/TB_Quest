@@ -435,6 +435,29 @@ namespace TB_Quest
             }
             return gameObjects;
         }
+
+        /// <summary>
+        /// get a list of inanimate objects in the specified location
+        /// </summary>
+        /// <param name="locationId"></param>
+        /// <returns>List<InanimateObject></returns>
+        public List<InanimateObject> GetInanimateObjectsByLocationId(int locationId)
+        {
+            List<InanimateObject> inanimateObjects = new List<InanimateObject>();
+            
+            //
+            // run through the game object list and get all objects that are in the current location
+            //
+            foreach (GameObject gameObject in _gameObjects)
+            {
+                if  (gameObject.LocationID == locationId && gameObject is InanimateObject)
+                {
+                    inanimateObjects.Add(gameObject as InanimateObject);
+                }
+            }
+            return inanimateObjects;
+        }
+
         #endregion
     }
 }
