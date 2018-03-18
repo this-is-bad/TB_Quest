@@ -882,6 +882,9 @@ namespace TB_Quest
             DisplayGamePlayScreen("Current Location", messageBoxText, ActionMenu.CurrentActionMenu, "");
         }
 
+        /// <summary>
+        /// show the player's inventory
+        /// </summary>
         public void DisplayInventory()
         {
             ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
@@ -889,10 +892,14 @@ namespace TB_Quest
             DisplayGamePlayScreen("Current Inventory", Text.CurrentInventory(_gamePlayer.Inventory), ActionMenu.CurrentActionMenu, "");
         }
 
+        /// <summary>
+        /// show the inanimate objects in the current location and get a choice
+        /// </summary>
+        /// <returns>int</returns>
         public int DisplayGetInanimateObjectToPickUp()
         {
             int gameObjectId = 0;
-            bool validGamerObjectId = false;
+            bool validGameObjectId = false;
 
             //
             // get a list of inanimate objects in the current location
@@ -905,7 +912,7 @@ namespace TB_Quest
 
                 DisplayGamePlayScreen("Pick Up Game Object", Text.GameObjectsChooseList(inanimateObjectsInLocation), ActionMenu.CurrentActionMenu, "");
 
-                while (!validGamerObjectId)
+                while (!validGameObjectId)
                 {
                     //
                     // get an integer from the player
@@ -920,7 +927,7 @@ namespace TB_Quest
                         InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(gameObjectId) as InanimateObject;
                         if (inanimateObject.CanInventory)
                         {
-                            validGamerObjectId = true;
+                            validGameObjectId = true;
                         }
                         else
                         {
@@ -943,7 +950,7 @@ namespace TB_Quest
 
                 DisplayGamePlayScreen("Pick Up Game Object", "It appears there are no game objects here.", ActionMenu.CurrentActionMenu, "");
             }
-
+           
             return gameObjectId;
         }
 
@@ -956,6 +963,70 @@ namespace TB_Quest
             ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
 
             DisplayGamePlayScreen("Pick Up Game Object", $"The {objectAddedToInventory.Name} has been added to your inventory.", ActionMenu.CurrentActionMenu, "");
+        }
+
+        /// <summary>
+        /// show the inanimate objects in the player's inventory and get a choice
+        /// </summary>
+        /// <returns>int</returns>
+        public int DisplayGetInventoryObjectToPutDown()
+        {
+            int inanimateObjectId = 0;
+            bool validInventoryObjectId = false;
+
+            if (_gamePlayer.Inventory.Count > 0)
+            {
+                ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
+                DisplayGamePlayScreen("Put Down Game Object", Text.GameObjectsChooseList(_gamePlayer.Inventory), ActionMenu.CurrentActionMenu, "");
+
+                while (!validInventoryObjectId)
+                {
+                    //
+                    // get an integer from the player
+                    //
+                    GetInteger($"Enter the ID number of the object you wish to remove from your inventory): ", 0, 0, out inanimateObjectId);
+
+                    //
+                    // find object in inventory
+                    // note: LINQ used, but a foreach loop may also be used
+                    //
+                    InanimateObject objectToPutDown = _gamePlayer.Inventory.FirstOrDefault(o => o.ObjectID == inanimateObjectId);
+
+                    //
+                    // validate object in inventory
+                    //
+                    if (objectToPutDown != null)
+                    {
+                        validInventoryObjectId = true;
+                    }
+                    else
+                    {
+                        ClearInputBox();
+
+                        DisplayInputErrorMessage("It appears you entered the ID of an object that is not in inventory.  Please try again.");
+                    }
+                }
+            }
+            else
+            {
+                ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
+                DisplayGamePlayScreen("Put Down Game Object", "It appears there are no objects currently in inventory.", ActionMenu.CurrentActionMenu, "");
+            }
+
+            return inanimateObjectId;
+        }
+
+        /// <summary>
+        /// show a message confirming that an object has been removed from inventory
+        /// </summary>
+        /// <param name="objectRemovedFromInventory"></param>
+        public void DisplayConfirmInanimateObjectRemovedFromInventory(InanimateObject objectRemovedFromInventory)
+        {
+            ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
+            DisplayGamePlayScreen("Put Down Game Object", $"The {objectRemovedFromInventory.Name} has been removed from your inventory.", ActionMenu.CurrentActionMenu, "");
         }
 
         #endregion

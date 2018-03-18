@@ -177,10 +177,10 @@ namespace TB_Quest
                             LookAtAction();
                             break;
                         case PlayerAction.PickUp:
-                            _gameConsoleView.DisplayPickUpItem();
+                            PickUpAction();
                             break;
                         case PlayerAction.PutDown:
-                            _gameConsoleView.DisplayPutDownItem();
+                            PutDownAction();
                             break;
                         //case PlayerAction.PickUpTreasure:
                         //    _gameConsoleView.DisplayPickUpTreasure();
@@ -325,6 +325,66 @@ namespace TB_Quest
                 //
                 _gameConsoleView.DisplayGameObjectInfo(gameObject);
             }
+        }
+
+        /// <summary>
+        /// display a list of inanimate objects in the location and get a choice
+        /// </summary>
+        private void PickUpAction()
+        {
+            //
+            // display a list of inanimate objects in the location and get a choice
+            //
+            int inanimateObjectToPickUpId = _gameConsoleView.DisplayGetInanimateObjectToPickUp();
+
+            //
+            // add the inanimate object to player's inventory
+            //
+            if (inanimateObjectToPickUpId != 0)
+            {
+                //
+                // get the game object from the universe
+                //
+                InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(inanimateObjectToPickUpId) as InanimateObject;
+
+                //
+                // note: inanimate object is added to the list and the location is set to 0
+                //
+                _gamePlayer.Inventory.Add(inanimateObject);
+                inanimateObject.LocationID = 0;
+
+                //
+                // display confirmation message
+                //
+                _gameConsoleView.DisplayConfirmInanimateObjectAddedToInventory(inanimateObject);
+            }
+        }
+
+        /// <summary>
+        /// display a list of inanimate objects in inventory and get a player choice
+        /// </summary>
+        private void PutDownAction()
+        {
+            //
+            // display a list of inanimate objects in inventory and get a player choice
+            //
+            int inventoryObjectToPutDownId = _gameConsoleView.DisplayGetInventoryObjectToPutDown();
+
+            //
+            // get the game object from the universe
+            //
+            InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(inventoryObjectToPutDownId) as InanimateObject;
+
+            //
+            // remove the object from inventory and set the space-time location to the current value
+            //
+            _gamePlayer.Inventory.Remove(inanimateObject);
+            inanimateObject.LocationID = _gamePlayer.LocationID;
+
+            //
+            // display confirmation message
+            //
+            _gameConsoleView.DisplayConfirmInanimateObjectRemovedFromInventory(inanimateObject);
         }
 
         #endregion
