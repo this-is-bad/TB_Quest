@@ -132,7 +132,8 @@ namespace TB_Quest
                                   "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
                                   "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
                                   "foliage.",
-                IsAccessible = false, //true,
+                IsAccessible = 
+                true,
                 AccessTo =  new List<int>(){ 6, 8, 11 },
                 ExperiencePoints = 10
             },

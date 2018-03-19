@@ -190,9 +190,6 @@ namespace TB_Quest
                         case PlayerAction.Inventory:
                             _gameConsoleView.DisplayInventory();
                             break;
-                        case PlayerAction.PlayerTreasure:
-                            _gameConsoleView.DisplayPlayerTreasure();
-                            break;
                         case PlayerAction.Travel:
                             //
                             // get new location choice and update the current location property

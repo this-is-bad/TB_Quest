@@ -747,41 +747,6 @@ namespace TB_Quest
             DisplayGamePlayScreen("Current Location", Text.CurrentLocationInfo(currentLocation), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
         }
 
-        public void DisplayLookAt()
-        {
-
-        }
-
-
-        public void DisplayPickUpItem()
-        {
-
-        }
-
-
-        public void DisplayPickUpTreasure()
-        {
-
-        }
-
-
-        public void DisplayPutDownItem()
-        {
-
-        }
-
-
-        public void DisplayPutDownTreasure()
-        {
-
-        }
-
-
-        public void DisplayPlayerTreasure()
-        {
-
-        }
-
         /// <summary>
         /// display all inanimate objects in the game
         /// </summary>

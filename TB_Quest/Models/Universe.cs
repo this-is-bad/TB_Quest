@@ -426,11 +426,11 @@ namespace TB_Quest
             //
             // run through the game object list and grab all that are in the current location
             //
-            foreach (GameObject gameObject in _gameObjects.ToList())
+            foreach (GameObject gameObject in _gameObjects)
             {
                 if (gameObject.LocationID == locationId)
                 {
-                    GameObjects.Add(gameObject);
+                    gameObjects.Add(gameObject);
                 }
             }
             return gameObjects;
