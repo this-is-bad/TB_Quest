@@ -54,7 +54,20 @@ namespace TB_Quest
             _gamePlayer = new Player();
             _gameUniverse = new Universe();
             _gameConsoleView = new ConsoleView(_gamePlayer, _gameUniverse);
+            InanimateObject inanimateObject;
             _playingGame = true;
+
+            //
+            // add the event handler for adding/subtracting to/from inventory
+            //
+            foreach (GameObject gameObject in _gameUniverse.GameObjects)
+            {
+                if (gameObject is InanimateObject)
+                {
+                    inanimateObject = gameObject as InanimateObject;
+                    inanimateObject.ObjectAddedToInventory += HandleObjectAddedToInventory;
+                }
+            }
 
             //
             // add initial items to the player's inventory
@@ -132,7 +145,6 @@ namespace TB_Quest
                     {
                         case PlayerAction.None:
                             break;
-
                         case PlayerAction.PlayerNameChange:
                             _gameConsoleView.DisplayUpdatePlayerName();
                             break;
@@ -151,14 +163,8 @@ namespace TB_Quest
                         case PlayerAction.ListGameObjects:
                             _gameConsoleView.DisplayListOfAllGameObjects();
                             break;
-                        //case PlayerAction.ListItems:
-                        //    _gameConsoleView.DisplayListOfItems();
-                        //    break;
                         case PlayerAction.ListLocations:
                             _gameConsoleView.DisplayListOfLocations();
-                            break;
-                        case PlayerAction.ListTreasures:
-                            _gameConsoleView.DisplayListOfTreasures();
                             break;
                         case PlayerAction.ReturnMainMenu:
                             _gameConsoleView.DisplayMainMenu();
@@ -173,7 +179,6 @@ namespace TB_Quest
                             _gameConsoleView.DisplayLocationsVisited();
                             break;
                         case PlayerAction.LookAt:
-                            //_gameConsoleView.DisplayLookAt();
                             LookAtAction();
                             break;
                         case PlayerAction.PickUp:
@@ -182,12 +187,6 @@ namespace TB_Quest
                         case PlayerAction.PutDown:
                             PutDownAction();
                             break;
-                        //case PlayerAction.PickUpTreasure:
-                        //    _gameConsoleView.DisplayPickUpTreasure();
-                        //    break;
-                        //case PlayerAction.PutDownTreasure:
-                        //    _gameConsoleView.DisplayPutDownTreasure();
-                        //    break;
                         case PlayerAction.Inventory:
                             _gameConsoleView.DisplayInventory();
                             break;
@@ -385,6 +384,53 @@ namespace TB_Quest
             // display confirmation message
             //
             _gameConsoleView.DisplayConfirmInanimateObjectRemovedFromInventory(inanimateObject);
+        }
+
+        /// <summary>
+        /// method called by the ObjectAddedToInventory event 
+        /// </summary>
+        /// <param name="gameObject"></param>
+        /// <param name="e"></param>
+        private void HandleObjectAddedToInventory(object gameObject, EventArgs e)
+        {
+            if (gameObject.GetType() == typeof(InanimateObject))
+            {
+                InanimateObject inanimateObject = gameObject as InanimateObject;
+                switch (inanimateObject.InanimateObjType)
+                {
+                    case InanimateObjectType.Food:
+                        break;
+                    case InanimateObjectType.Medicine:
+                        _gamePlayer.Health += inanimateObject.Value;
+
+                        //
+                        // add life if health greater than 100
+                        //
+                        if (_gamePlayer.Health >= 100)
+                        {
+                            _gamePlayer.Health = 100;
+                            _gamePlayer.Lives += 1;
+                        }
+
+                        //
+                        // remove object from game
+                        //
+                        if (inanimateObject.IsConsumable)
+                        {
+                            inanimateObject.LocationID = -1;
+                        }
+                        break;
+                    case InanimateObjectType.Weapon:
+                        break;
+                    case InanimateObjectType.Treasure:
+                        break;
+                    case InanimateObjectType.Information:
+                        break;
+                    default:
+                        break;
+
+                }
+            }
         }
 
         #endregion

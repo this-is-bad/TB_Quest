@@ -11,23 +11,22 @@ namespace TB_Quest
 #region FIELDS
 
         private bool _canInventory;
-
         private InanimateObjectType _inanimateObjType;
-
         private bool _isConsumable;
-
         private bool _isVisible;
-
         private int _value;
-        
+        private string _pickUpMessage;
+        private string _putDownMessage;
+        private int _locationID;
+
         #endregion
 
         #region PROPERTIES
 
         public override string Description { get; set; }
-        public override int LocationID { get; set; }
         public override string Name { get; set; }
         public override int ObjectID { get; set; }
+        public override int ExperiencePoints { get; set; }
 
         /// <summary>
         /// can the InanimateObject be added to inventory?
@@ -74,6 +73,40 @@ namespace TB_Quest
             set { _value = value; }
         }
 
+        /// <summary>
+        /// message to display when an item is picked up
+        /// </summary>
+        public string PickUpMessage
+        {
+            get { return _pickUpMessage; }
+            set { _pickUpMessage = value; }
+        }
+
+        /// <summary>
+        /// message to display when an item is put down
+        /// </summary>
+        public string PutDownMessage
+        {
+            get { return _putDownMessage; }
+            set { _putDownMessage = value; }
+        }
+
+        /// <summary>
+        /// location ID of the object
+        /// </summary>
+        public override int LocationID
+        {
+            get { return _locationID; }
+            set
+            {
+                _locationID = value;
+                if (value == 0)
+                {
+                    OnObjectAddedToInventory();
+                }
+            }
+        }
+   
         #endregion
 
         #region CONSTRUCTORS
@@ -82,5 +115,13 @@ namespace TB_Quest
         }
         #endregion
 
+        #region EVENT HANDLERS
+        public event EventHandler ObjectAddedToInventory;
+
+        #endregion
+
+        #region METHODS
+        public void OnObjectAddedToInventory() => ObjectAddedToInventory?.Invoke(this, EventArgs.Empty);
+        #endregion
     }
 }

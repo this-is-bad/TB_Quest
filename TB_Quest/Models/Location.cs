@@ -20,7 +20,6 @@ namespace TB_Quest
         private List<int> _accessTo;
         private bool _isAccessible;
         private string _generalContents;
-        private int _experiencePoints;
 
 
         #endregion
@@ -31,6 +30,7 @@ namespace TB_Quest
         public override int LocationID { get; set; }
         public override string Name { get; set; }
         public override int ObjectID { get; set; }
+        public override int ExperiencePoints { get; set; }
 
         /// <summary>
         /// locations that the current location can be accessed from
@@ -57,15 +57,6 @@ namespace TB_Quest
         {
             get { return _generalContents; }
             set { _generalContents = value; }
-        }
-
-        /// <summary>
-        /// the number of experience points to be gained by visiting the location
-        /// </summary>
-        public int ExperiencePoints
-        {
-            get { return _experiencePoints; }
-            set { _experiencePoints = value; }
         }
         #endregion
 

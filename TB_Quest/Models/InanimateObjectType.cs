@@ -13,6 +13,7 @@ namespace TB_Quest
     public enum InanimateObjectType
     {
         None,
+        Food,
         Information,
         Item,
         Medicine,

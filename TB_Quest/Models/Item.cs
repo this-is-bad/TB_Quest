@@ -12,5 +12,6 @@ namespace TB_Quest
         public override int LocationID { get; set; }
         public override string Name { get; set; }
         public override int ObjectID { get; set; }
+        public override int ExperiencePoints { get; set; }
     }
 }

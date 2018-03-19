@@ -12,21 +12,6 @@ namespace TB_Quest
     public static partial class UniverseObjects
     {
 
-        #region ITEMS
-        private static List<Item> items = new List<Item>()
-        {
-            new Item
-            {
-                Name = "Portable Hole",
-                Description = "",
-                LocationID = 2,
-                ObjectID = 25
-            }
-        };
-
-        public static List<Item> Items { get => items; set => items = value; }
-        #endregion
-
         #region GAMEOBJECTS
 
 
@@ -51,6 +36,8 @@ namespace TB_Quest
                               "in which apprentices should panic, and an exhaustive list of methods for " +
                               "running away screaming and playing dead (sometimes both simultaneously)."
                 ,
+                CanInventory = true,
+                IsConsumable = false,
                 LocationID = 0,
                 ObjectID = 24
             },
@@ -60,6 +47,8 @@ namespace TB_Quest
                 InanimateObjType = InanimateObjectType.Item,
                 Description = "A literal hole in space that can be picked, carried, and placed.  " +
                               "The portable hole is about 20 inches in diameter and can be folded or rolled.",
+                CanInventory = true,
+                IsConsumable = false,
                 LocationID = 2,
                 ObjectID = 25
             },
@@ -69,9 +58,47 @@ namespace TB_Quest
                 Name = "Polymorph Potion",
                 InanimateObjType = InanimateObjectType.Item,
                 Description = "A mysterious potion with many swirling colors.",
+                CanInventory = true,
+                IsConsumable = false,
                 LocationID = 2,
                 ObjectID = 26
+            },
+
+            new InanimateObject
+            {
+                Name = "Teleportation Ring",
+                InanimateObjType = InanimateObjectType.Item,
+                Description = "A ring that allows you to instantly travel home and back.",
+                CanInventory = true,
+                IsConsumable = false,
+                LocationID = 2,
+                ObjectID = 27
+            },
+
+            new InanimateObject
+            {
+                Name = "Healing Potion",
+                InanimateObjType = InanimateObjectType.Medicine,
+                Description = "A potion that restores your health.",
+                CanInventory = true,
+                IsConsumable = true,
+                LocationID = 8,
+                ObjectID = 27
+            },
+
+             new InanimateObject
+            {
+                Name = "Gem-encrusted jewel",
+                InanimateObjType = InanimateObjectType.Treasure,
+                Description = "This appears to be a large ruby, studded with diamonds, sapphires, and more rubies.  " +
+                              "In actuality, it is a gaudy piece of cheap costume jewelry crafted (using the term loosely), " +
+                              "by someone with more free time than sense, and even less taste.",
+                CanInventory = true,
+                IsConsumable = false,
+                LocationID = 4,
+                ObjectID = 24
             }
+
         };
 
         public static List<GameObject> GameObjects { get => gameObjects; set => gameObjects = value; }
@@ -110,21 +137,8 @@ namespace TB_Quest
         public static List<Character> Characters { get => characters; set => characters = value; }
         #endregion
 
-        #region TREASURE
-        private static List<Treasure> treasures = new List<Treasure>()
-        {
-            new Treasure
-            {
-                Name = "Gem-encrusted jewel",
-                Description = "This appears to be a large ruby, studded with diamonds, sapphires, and more rubies.  " +
-                              "In actuality, it is a gaudy piece of cheap costume jewelry crafted (using the term loosely), " +
-                              "by someone with more free time than sense, and even less taste.",
-                LocationID = 4,
-                ObjectID = 24
-            }
-        };
-        public static List<Treasure> Treasures { get => treasures; set => treasures = value; }
-        #endregion
+        #region METHODS
 
+        #endregion
     }
 }

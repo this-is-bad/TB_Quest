@@ -19,7 +19,7 @@ namespace TB_Quest
 
         private List<Location> _locations;
 
-        private List<Treasure> _treasures;
+        private List<InanimateObject> _playerInventory;
 
         //
         // list of all characters
@@ -58,13 +58,14 @@ namespace TB_Quest
         }
 
         //
-        // list of all treasures
+        // list of objects in player inventory
         //
-        public List<Treasure> Treasures
-        {
-            get { return _treasures; }
-            set { _treasures = value; }
-        }
+        //public List<InanimateObject> PlayerInventory
+        //{
+        //    get { return _playerInventory; }
+        //    set { _playerInventory = value; }
+        //}
+
 
         #endregion
 
@@ -92,8 +93,7 @@ namespace TB_Quest
         {
             _locations = UniverseObjects.Locations;
             _gameObjects = UniverseObjects.GameObjects;
-            _items = UniverseObjects.Items;
-            _treasures = UniverseObjects.Treasures;
+           // _playerInventory = UniverseObjects.PlayerInventory;
             _characters = UniverseObjects.Characters;
         }
 
@@ -456,6 +456,21 @@ namespace TB_Quest
                 }
             }
             return inanimateObjects;
+        }
+
+        public List<InanimateObject> PlayerInventory()
+        {
+            List<InanimateObject> inventory = new List<InanimateObject>();
+
+            foreach (GameObject gameObject in _gameObjects)
+            {
+                if (gameObject.LocationID == 0)
+                {
+                    inventory.Add(gameObject as InanimateObject);
+                }
+            }
+
+            return inventory;
         }
 
         #endregion

@@ -33,7 +33,6 @@ namespace TB_Quest
         private int _health;
         private RaceType _race;
         private List<InanimateObject> _inventory;
-        private List<Treasure> _treasureHorde;
 
         #endregion
 
@@ -43,15 +42,7 @@ namespace TB_Quest
         public override int LocationID { get; set; }
         public override string Name { get; set; }
         public override int ObjectID { get; set; }
-
-        /// <summary>
-        /// the character's experience points
-        /// </summary>
-        public int ExperiencePoints
-        {
-            get { return _experiencePoints; }
-            set { _experiencePoints = value; }
-        }
+        public override int ExperiencePoints { get; set; }
 
         /// <summary>
         /// the character's age
@@ -89,15 +80,6 @@ namespace TB_Quest
             set { _inventory = value; }
         }
 
-        /// <summary>
-        /// the character's list of treasures
-        /// </summary>
-        public List<Treasure> TreasureHorde
-        {
-            get { return _treasureHorde; }
-            set { _treasureHorde = value; }
-        }
-
         #endregion
 
         #region CONSTRUCTORS
@@ -105,7 +87,6 @@ namespace TB_Quest
         public Character()
         {
             _inventory = new List<InanimateObject>();
-            _treasureHorde = new List<Treasure>();
         }
 
         public Character(string name, RaceType race, int locationID)
@@ -114,7 +95,6 @@ namespace TB_Quest
             _race = race;
             LocationID = locationID;
             _inventory = new List<InanimateObject>();
-            _treasureHorde = new List<Treasure>();
         }
 
         #endregion

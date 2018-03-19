@@ -568,17 +568,6 @@ namespace TB_Quest
         }
 
         /// <summary>
-        /// show all treasures in the game
-        /// </summary>
-        public void DisplayListOfTreasures()
-        {
-            ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
-
-            DisplayGamePlayScreen("List: Treasures", Text.ListTreasures
-                (_gameUniverse.Treasures), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
-        }
-
-        /// <summary>
         /// show the main menu
         /// </summary>
         public void DisplayMainMenu()
@@ -960,9 +949,11 @@ namespace TB_Quest
         /// <param name="objectAddedToInventory"></param>
         public void DisplayConfirmInanimateObjectAddedToInventory(InanimateObject objectAddedToInventory)
         {
+            string msg = (objectAddedToInventory.PickUpMessage ?? $"The {objectAddedToInventory.Name} has been added to your inventory."); 
+
             ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
 
-            DisplayGamePlayScreen("Pick Up Game Object", $"The {objectAddedToInventory.Name} has been added to your inventory.", ActionMenu.CurrentActionMenu, "");
+            DisplayGamePlayScreen("Pick Up Game Object", msg, ActionMenu.CurrentActionMenu, "");
         }
 
         /// <summary>

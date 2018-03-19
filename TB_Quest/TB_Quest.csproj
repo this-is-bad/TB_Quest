@@ -77,7 +77,6 @@
     <Compile Include="Models\NPC.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayerAction.cs" />
-    <Compile Include="Models\Treasure.cs" />
     <Compile Include="Models\Universe.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

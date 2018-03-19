@@ -160,9 +160,7 @@ namespace TB_Quest
                 $"\tPlayer Home Village: {gamePlayer.HomeVillage}\n" +
                 $"\tPlayer Greeting: {gamePlayer.Greeting()}\n" +
                 " \n " +
-                CurrentInventory(gamePlayer.Inventory) +
-                " \n " +
-                ListTreasures(gamePlayer.TreasureHorde);
+                CurrentInventory(gamePlayer.Inventory);
 
 
 
@@ -396,40 +394,6 @@ namespace TB_Quest
             }
 
             messageBoxText += CharacterList;
-
-            return messageBoxText;
-        }
-
-        /// <summary>
-        /// return all Treasures in the game
-        /// </summary>
-        /// <param name="Treasures"></param>
-        /// <returns>string</returns>
-        public static string ListTreasures(IEnumerable<Treasure> Treasures)
-        {
-            string messageBoxText =
-                "Treasures\n" +
-                " \n" +
-
-                ///
-                /// display table header 
-                /// 
-                "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
-                "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
-
-            ///
-            /// display all locations
-            /// 
-            string TreasureList = null;
-            foreach (Treasure treasure in Treasures)
-            {
-                TreasureList +=
-                    $"{treasure.LocationID}".PadRight(10) +
-                    $"{treasure.Name}".PadRight(50) +
-                    Environment.NewLine;
-            }
-
-            messageBoxText += TreasureList;
 
             return messageBoxText;
         }
