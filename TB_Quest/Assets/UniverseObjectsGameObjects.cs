@@ -83,7 +83,7 @@ namespace TB_Quest
                 CanInventory = true,
                 IsConsumable = true,
                 LocationID = 8,
-                ObjectID = 27
+                ObjectID = 28
             },
 
              new InanimateObject
@@ -96,7 +96,7 @@ namespace TB_Quest
                 CanInventory = true,
                 IsConsumable = false,
                 LocationID = 4,
-                ObjectID = 24
+                ObjectID = 29
             }
 
         };

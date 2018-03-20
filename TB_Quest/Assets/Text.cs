@@ -553,11 +553,11 @@ namespace TB_Quest
                 // display table header
                 //
                 "ID".PadRight(10) + 
-                "Name".PadRight(30) +
+                "Name".PadRight(60) +
                 "Location ID".PadRight(10) + " \n " +
                 "---".PadRight(10) +
-                "---------------------".PadRight(30) +
-                "---------------------".PadRight(10) + "\n";
+                "-------------------------------------------------------".PadRight(60) +
+                "-----------".PadRight(10) + "\n";
             //
             // display all game objects in rows
             //
@@ -566,7 +566,7 @@ namespace TB_Quest
             {
                 gameObjectRows += " " +
                     $"{gameObject.ObjectID}".PadRight(10) +
-                    $"{gameObject.Name}".PadRight(30) +
+                    $"{gameObject.Name}".PadRight(60) +
                     $"{gameObject.LocationID}".PadRight(10) +
                     Environment.NewLine;
             }
@@ -708,9 +708,9 @@ namespace TB_Quest
                 // display table header
                 //
                 "ID".PadRight(10) +
-                "Name".PadRight(30) + "\n" +
+                "Name".PadRight(60) + "\n" +
                 "---".PadRight(10) +
-                "---------------------".PadRight(30) + "\n";
+                "-------------------------------------------------------".PadRight(60) + "\n";
             //
             // display all inanimate objects in rows
             //
@@ -719,7 +719,7 @@ namespace TB_Quest
             {
                 gameObjectRows +=
                     $"{gameObject.ObjectID}".PadRight(10) +
-                    $"{gameObject.Name}".PadRight(30) +
+                    $"{gameObject.Name}".PadRight(60) +
                     Environment.NewLine;
             }
 
