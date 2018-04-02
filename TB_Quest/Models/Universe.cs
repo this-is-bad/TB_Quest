@@ -11,7 +11,7 @@ namespace TB_Quest
         #region ***** define all lists to be maintained by the Universe object *****
 
 
-        private List<Character> _characters;
+        private List<NPC> _npcs;
 
         private List<GameObject> _gameObjects;
 
@@ -22,12 +22,12 @@ namespace TB_Quest
         private List<InanimateObject> _playerInventory;
 
         //
-        // list of all characters
+        // list of all non-player characters
         //
-        public List<Character> Characters
+        public List<NPC> Npcs
         {
-            get { return _characters; }
-            set { _characters = value; }
+            get { return _npcs; }
+            set { _npcs = value; }
         }
 
         //

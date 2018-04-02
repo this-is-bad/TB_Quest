@@ -8,7 +8,7 @@ namespace TB_Quest
 {
     public class InanimateObject : GameObject
     {
-#region FIELDS
+        #region FIELDS
 
         private bool _canInventory;
         private InanimateObjectType _inanimateObjType;
@@ -17,6 +17,7 @@ namespace TB_Quest
         private int _value;
         private string _pickUpMessage;
         private string _putDownMessage;
+        private string _itemUseMessage;
         private int _locationID;
 
         #endregion
@@ -91,6 +92,14 @@ namespace TB_Quest
             set { _putDownMessage = value; }
         }
 
+        /// <summary>
+        /// message to display when an item is used
+        /// </summary>
+        public string ItemUseMessage
+        {
+            get { return _itemUseMessage; }
+            set { _itemUseMessage = value; }
+        }
         /// <summary>
         /// location ID of the object
         /// </summary>

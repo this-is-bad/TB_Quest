@@ -9,7 +9,7 @@ namespace TB_Quest
     /// <summary>
     /// the character class the player uses in the game
     /// </summary>
-    public class NPC : Character
+    public abstract class NPC : Character
     {
         #region ENUMERABLES
 
@@ -18,26 +18,18 @@ namespace TB_Quest
 
         #region FIELDS
 
+        public abstract int Id { get; set; }
+
         #endregion
 
 
-         #region PROPERTIES
+        #region PROPERTIES
 
 
         #endregion
 
 
         #region CONSTRUCTORS
-
-        public NPC()
-        {
-            
-        }
-
-        public NPC(string name, RaceType race, int locationID) : base(name, race, locationID)
-        {
-            
-        }
 
         #endregion
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TB_Quest
 {
     /// <summary>
-    /// static class to hold all objects in the game universe; locations, game objects, npc's
+    /// static class to hold objects in the game universe; locations, game objects
     /// </summary>
     public static partial class UniverseObjects
     {
@@ -103,38 +103,6 @@ namespace TB_Quest
 
         public static List<GameObject> GameObjects { get => gameObjects; set => gameObjects = value; }
 
-        #endregion
-
-
-        #region NPCs
-        private static List<Character> characters = new List<Character>()
-        {
-            new Character
-            {
-                Name = "Evil? Player",
-                Description = "",
-                LocationID = 4,
-                ObjectID = 1
-            },
-
-            new Character
-            {
-                Name = "Basset Hound",
-                Description = "",
-                LocationID = 14,
-                ObjectID = 2
-            },
-
-            new Character
-            {
-                Name = "Jeedub'ex",
-                Description = "",
-                LocationID = 18,
-                ObjectID = 3
-            }
-        };
-
-        public static List<Character> Characters { get => characters; set => characters = value; }
         #endregion
 
         #region METHODS

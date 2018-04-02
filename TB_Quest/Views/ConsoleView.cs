@@ -832,7 +832,7 @@ namespace TB_Quest
             string messageBoxText = Text.LookAround(currentLocation) + Environment.NewLine + Environment.NewLine;
             messageBoxText += Text.GameObjectsChooseList(gameObjectsInCurrentLocation);
 
-            ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+            ActionMenu.CurrentActionMenu = currentLocation.LocationID == 1 ? ActionMenu.PlayerSetup : ActionMenu.MainMenu;
             DisplayGamePlayScreen("Current Location", messageBoxText, ActionMenu.CurrentActionMenu, "");
         }
 
