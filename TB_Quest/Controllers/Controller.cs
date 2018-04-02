@@ -158,7 +158,7 @@ namespace TB_Quest
                             _gameConsoleView.DisplayPlayerInfo();
                             break;
                         case PlayerAction.ListCharacters:
-                            _gameConsoleView.DisplayListOfCharacters();
+                            _gameConsoleView.DisplayListOfNpcs();
                             break;
                         case PlayerAction.ListGameObjects:
                             _gameConsoleView.DisplayListOfAllGameObjects();
@@ -327,6 +327,38 @@ namespace TB_Quest
         /// display a list of inanimate objects in the location and get a choice
         /// </summary>
         private void PickUpAction()
+        {
+            //
+            // display a list of inanimate objects in the location and get a choice
+            //
+            int inanimateObjectToPickUpId = _gameConsoleView.DisplayGetInanimateObjectToPickUp();
+
+            //
+            // add the inanimate object to player's inventory
+            //
+            if (inanimateObjectToPickUpId != 0)
+            {
+                //
+                // get the game object from the universe
+                //
+                InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(inanimateObjectToPickUpId) as InanimateObject;
+
+                //
+                // note: inanimate object is added to the list and the location is set to 0
+                //
+                _gamePlayer.Inventory.Add(inanimateObject);
+                inanimateObject.LocationID = 0;
+
+                //
+                // display confirmation message
+                //
+                _gameConsoleView.DisplayConfirmInanimateObjectAddedToInventory(inanimateObject);
+            }
+        }
+        /// <summary>
+        /// display a list of inanimate objects in the location and get a choice
+        /// </summary>
+        private void UseItemAction()
         {
             //
             // display a list of inanimate objects in the location and get a choice

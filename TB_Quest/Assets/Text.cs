@@ -369,10 +369,44 @@ namespace TB_Quest
         /// </summary>
         /// <param name="Characters"></param>
         /// <returns>string</returns>
-        public static string ListCharacters(IEnumerable<Character> Characters)
+        //public static string ListCharacters(IEnumerable<Character> Characters)
+        //{
+        //    string messageBoxText =
+        //        "Items\n" +
+        //        " \n" +
+
+        //        ///
+        //        /// display table header 
+        //        /// 
+        //        "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
+        //        "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
+
+        //    ///
+        //    /// display all locations
+        //    /// 
+        //    string CharacterList = null;
+        //    foreach (Character character in Characters)
+        //    {
+        //        CharacterList +=
+        //            $"{character.LocationID}".PadRight(10) +
+        //            $"{character.Name}".PadRight(50) +
+        //            Environment.NewLine;
+        //    }
+
+        //    messageBoxText += CharacterList;
+
+        //    return messageBoxText;
+        //}
+
+        /// <summary>
+        /// return all NPCs in the game
+        /// </summary>
+        /// <param name="Npcs"></param>
+        /// <returns>string</returns>
+        public static string ListNpcs(IEnumerable<NPC> Npcs)
         {
             string messageBoxText =
-                "Items\n" +
+                "NPCs\n" +
                 " \n" +
 
                 ///
@@ -384,20 +418,19 @@ namespace TB_Quest
             ///
             /// display all locations
             /// 
-            string CharacterList = null;
-            foreach (Character character in Characters)
+            string NPCList = null;
+            foreach (NPC npc in Npcs)
             {
-                CharacterList +=
-                    $"{character.LocationID}".PadRight(10) +
-                    $"{character.Name}".PadRight(50) +
+                NPCList +=
+                    $"{npc.LocationID}".PadRight(10) +
+                    $"{npc.Name}".PadRight(50) +
                     Environment.NewLine;
             }
 
-            messageBoxText += CharacterList;
+            messageBoxText += NPCList;
 
             return messageBoxText;
         }
-
         /// <summary>
         /// parse the location name and description
         /// </summary>

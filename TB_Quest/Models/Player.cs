@@ -23,7 +23,6 @@ namespace TB_Quest
         private bool _verboseGreeting;
         #endregion
 
-
         #region PROPERTIES
 
         /// <summary>
@@ -64,7 +63,6 @@ namespace TB_Quest
 
         #endregion
 
-
         #region CONSTRUCTORS
 
         public Player()
@@ -79,7 +77,6 @@ namespace TB_Quest
         }
 
         #endregion
-
 
         #region METHODS
 

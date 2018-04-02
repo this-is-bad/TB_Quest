@@ -559,12 +559,23 @@ namespace TB_Quest
         /// <summary>
         /// show all characters in the game
         /// </summary>
-        public void DisplayListOfCharacters()
+        //public void DisplayListOfCharacters()
+        //{
+        //    ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
+
+        //    DisplayGamePlayScreen("List: Characters", Text.ListCharacters
+        //        (_gameUniverse.Characters), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
+        //}
+
+        /// <summary>
+        /// show all NPCs in the game
+        /// </summary>
+        public void DisplayListOfNpcs()
         {
             ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
 
-            DisplayGamePlayScreen("List: Characters", Text.ListCharacters
-                (_gameUniverse.Characters), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
+            DisplayGamePlayScreen("List: NPCs", Text.ListNpcs
+                (_gameUniverse.Npcs), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
         }
 
         /// <summary>
@@ -983,6 +994,70 @@ namespace TB_Quest
             ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
 
             DisplayGamePlayScreen("Put Down Game Object", $"The {objectRemovedFromInventory.Name} has been removed from your inventory.", ActionMenu.CurrentActionMenu, "");
+        }
+
+
+        /// <summary>
+        /// show the inanimate objects in the current location and get a choice
+        /// </summary>
+        /// <returns>int</returns>
+        public int DisplayGetInanimateObjectToUse()
+        {
+            int gameObjectId = 0;
+            bool validGameObjectId = false;
+
+            //
+            // get a list of inanimate objects in the current location
+            //
+            List<InanimateObject> inanimateObjectsInLocation = _gameUniverse.GetInanimateObjectsByLocationId(_gamePlayer.LocationID);
+            List<InanimateObject> inanimateObjectsInInventory = _gameUniverse.PlayerInventory();
+            inanimateObjectsInLocation.AddRange(inanimateObjectsInInventory);
+            if (inanimateObjectsInLocation.Count > 0)
+            {
+                ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
+                DisplayGamePlayScreen("Use Game Object", Text.GameObjectsChooseList(inanimateObjectsInLocation), ActionMenu.CurrentActionMenu, "");
+
+                while (!validGameObjectId)
+                {
+                    //
+                    // get an integer from the player
+                    //
+                    GetInteger($"Enter the ID number of the object you wish to use): ", 0, 0, out gameObjectId);
+need to change validation to work on player inventory
+                    //
+                    // validate integer as a valid game object ID and in the current location
+                    //
+                    if (_gameUniverse.IsValidInanimateObjectByLocationId(gameObjectId, _gamePlayer.LocationID))
+                    {
+                        InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(gameObjectId) as InanimateObject;
+                        if (inanimateObject.CanInventory)
+                        {
+                            validGameObjectId = true;
+                        }
+                        else
+                        {
+                            ClearInputBox();
+
+                            DisplayInputErrorMessage("It appears you may not inventory that object.  Please try again.");
+                        }
+                    }
+                    else
+                    {
+                        ClearInputBox();
+
+                        DisplayInputErrorMessage("It appears you entered an invalid game object ID.  Please try again.");
+                    }
+                }
+            }
+            else
+            {
+                ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
+
+                DisplayGamePlayScreen("Pick Up Game Object", "It appears there are no game objects here.", ActionMenu.CurrentActionMenu, "");
+            }
+
+            return gameObjectId;
         }
 
         #endregion

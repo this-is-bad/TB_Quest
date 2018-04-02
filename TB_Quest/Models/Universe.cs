@@ -94,7 +94,7 @@ namespace TB_Quest
             _locations = UniverseObjects.Locations;
             _gameObjects = UniverseObjects.GameObjects;
            // _playerInventory = UniverseObjects.PlayerInventory;
-            _characters = UniverseObjects.Characters;
+            _npcs = UniverseObjects.NPC;
         }
 
         #endregion

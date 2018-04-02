@@ -9,11 +9,11 @@ namespace TB_Quest
     /// <summary>
     /// static class to hold all NPCs in the game universe 
     /// </summary>
-    public static partial class UniverseNpcs
+    public static partial class UniverseObjects
     {
 
         #region NPCs
-        private static List<Character> characters = new List<Character>()
+        private static List<NPC> npcs = new List<NPC>()
         {
             new Opponent
             {
@@ -61,7 +61,7 @@ namespace TB_Quest
             }
         };
 
-        public static List<Character> Characters { get => characters; set => characters = value; }
+        public static List<NPC> NPC { get => npcs; set => npcs = value; }
         #endregion
 
         #region METHODS
