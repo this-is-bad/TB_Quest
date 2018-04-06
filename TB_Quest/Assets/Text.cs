@@ -687,7 +687,11 @@ namespace TB_Quest
             return messageBoxText;
         }
 
-
+        /// <summary>
+        /// return a list of objects in the player's inventory
+        /// </summary>
+        /// <param name="inventory"></param>
+        /// <returns>string</returns>
         public static string CurrentInventory (IEnumerable<InanimateObject> inventory)
         {
             string messageBoxText = "";
@@ -759,6 +763,89 @@ namespace TB_Quest
             messageBotText += gameObjectRows;
 
             return messageBotText;
+        }
+
+        /// <summary>
+        /// returns a list of NPCs
+        /// </summary>
+        /// <param name="npcObjects"></param>
+        /// <returns>string</returns>
+        public static string ListAllNpcObjects(IEnumerable<NPC> npcObjects)
+        {
+            //
+            // display table name and column headers
+            //
+            string messageBoxText =
+                "NPC Objects\n" +
+                " \n" +
+
+                //
+                // display table header
+                //
+                "ID".PadRight(10) +
+                "Name".PadRight(30) +
+                "Location ID".PadRight(10) + "\n" +
+                "---".PadRight(10) +
+                "----------------------".PadRight(30) +
+                "----------------------".PadRight(10) + "\n";
+
+            //
+            // display all npc objects in rows
+            //
+            string npcObjectRows = null;
+            foreach (NPC npcObject in npcObjects)
+            {
+                npcObjectRows +=
+                    $"{npcObject.Id}".PadRight(10) +
+                    $"{npcObject.Name}".PadRight(30) +
+                    $"{npcObject.LocationID}".PadRight(10) +
+                    Environment.NewLine;
+            }
+
+            messageBoxText += npcObjectRows;
+
+            return messageBoxText;
+                
+        }
+
+        /// <summary>
+        /// returns list of NPCs
+        /// </summary>
+        /// <param name="npcs"></param>
+        /// <returns>string</returns>
+        public static string NpcsChooseList(IEnumerable<NPC> npcs)
+        {
+            //
+            // display table name and column headers
+            //
+            string messageBoxText =
+                "NPCs\n" +
+                " \n" +
+
+                //
+                // display table header
+                //
+                "ID".PadRight(10) +
+                "Name".PadRight(30) +
+                "---".PadRight(10) +
+                "----------------------".PadRight(10) + "\n";
+
+            //
+            // display all NPCs in rows
+            //
+            string npcRows = null;
+            foreach (NPC npc in npcs)
+            {
+                npcRows +=
+                    $"{npc.Id}".PadRight(10) +
+                    $"{npc.Name}".PadRight(30) +
+                    Environment.NewLine;
+            }
+
+            messageBoxText += npcRows;
+
+            return messageBoxText;
+
         }
     }
 }

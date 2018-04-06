@@ -437,7 +437,7 @@ namespace TB_Quest
         }
 
         /// <summary>
-        /// get a list of inanimate objects in the specified location
+        /// returns a list of inanimate objects in the specified location
         /// </summary>
         /// <param name="locationId"></param>
         /// <returns>List<InanimateObject></returns>
@@ -458,6 +458,10 @@ namespace TB_Quest
             return inanimateObjects;
         }
 
+        /// <summary>
+        /// returns a list of objects in the player's inventory
+        /// </summary>
+        /// <returns>List<InanimateObject></returns>
         public List<InanimateObject> PlayerInventory()
         {
             List<InanimateObject> inventory = new List<InanimateObject>();
@@ -471,6 +475,90 @@ namespace TB_Quest
             }
 
             return inventory;
+        }
+
+        /// <summary>
+        /// determines whether the NPC ID is valid in the current location
+        /// </summary>
+        /// <param name="npcId"></param>
+        /// <param name="currentLocation"></param>
+        /// <returns>bool</returns>
+        public bool IsValidNpcByLocation(int npcId, int currentLocation)
+        {
+            List<int> npcIds = new List<int>();
+
+            //
+            // create a list of NPC IDs in the current location
+            //
+            foreach(NPC npc in _npcs)
+            {
+                if (npc.LocationID == currentLocation)
+                {
+                    npcIds.Add(npc.Id);
+                }
+            }
+
+            //
+            // determine if the game object ID is a valid ID and return the result
+            //
+            return (npcIds.Contains(npcId));
+            
+        }
+
+        /// <summary>
+        /// return the seleected NPC by ID, if it exists, or throw an exception 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns>NPC</returns>
+        public NPC GetNpcById(int Id)
+        {
+            NPC npcToReturn = null;
+
+            //
+            // run through the NPC object list and grab the correct one
+            //
+            foreach (NPC npc in _npcs)
+            {
+                if (npc.Id == Id)
+                {
+                    npcToReturn = npc;
+                }
+            }
+
+            //
+            // the specified ID was not found in the universe
+            // throw and exception
+            //
+            if (npcToReturn == null)
+            {
+                string feedbackMessage = $"The NPC ID {Id} does not exist in the current realm.";
+                throw new ArgumentException(feedbackMessage, Id.ToString());
+            }
+
+            return npcToReturn;
+        }
+
+        /// <summary>
+        /// return a list of NPCs in the current location
+        /// </summary>
+        /// <param name="locationId"></param>
+        /// <returns>List<NPC></returns>
+        public List<NPC> GetNpcsByLocationId(int locationId)
+        {
+            List<NPC> npcs = new List<NPC>();
+
+            //
+            // run through the NPC object list and grab all that are in the current location
+            //
+            foreach (NPC npc in _npcs)
+            {
+                if (npc.LocationID == locationId)
+                {
+                    npcs.Add(npc);
+                }
+            }
+
+            return npcs;
         }
 
         #endregion

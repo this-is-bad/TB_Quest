@@ -11,6 +11,17 @@ namespace TB_Quest
     /// </summary>
     public static class ActionMenu
     {
+        public enum CurrentMenu
+        {
+            QuestIntro,
+            InitializeQuest,
+            MainMenu,
+            ObjectMenu,
+            NpcMenu,
+            PlayerMenu,
+            AdminMenu        
+        }
+
         /// <summary>
         /// global variable used to change the menu to the setup menu when current LocationID is "1"
         /// </summary>
@@ -46,7 +57,7 @@ namespace TB_Quest
             MenuTitle = "Admin Menu",
             MenuChoices = new Dictionary<char, PlayerAction>()
                 {
-                    { '1', PlayerAction.ListCharacters },
+                    { '1', PlayerAction.ListNonPlayerCharacters },
                     { '2', PlayerAction.ListItems },
                     { '3', PlayerAction.ListTreasures },
                     { '4', PlayerAction.ListLocations },
@@ -82,16 +93,25 @@ namespace TB_Quest
             MenuTitle = "Main Menu",
             MenuChoices = new Dictionary<char, PlayerAction>()
                 {
-                    { '1', PlayerAction.PlayerInfo },
-                    { '2', PlayerAction.LookAround },
-                    { '3', PlayerAction.LookAt },
-                    { '4', PlayerAction.PickUp },
-                    { '5', PlayerAction.PutDown },
-                    { '6', PlayerAction.Inventory },
-                    { '7', PlayerAction.Travel },
-                    { '8', PlayerAction.PlayerLocationsVisited },
-                    { '9', PlayerAction.AdminMenu },
+
+                    { '1', PlayerAction.LookAround },
+                    { '2', PlayerAction.Travel },
+                    { '3', PlayerAction.ObjectMenu },
+                    { '4', PlayerAction.NonplayerCharacterMenu },
+                    { '5', PlayerAction.PlayerMenu },
+                    { '6', PlayerAction.AdminMenu },
                     { '0', PlayerAction.Exit }
+
+                    //{ '1', PlayerAction.PlayerInfo },
+                    //{ '2', PlayerAction.LookAround },
+                    //{ '3', PlayerAction.LookAt },
+                    //{ '4', PlayerAction.PickUp },
+                    //{ '5', PlayerAction.PutDown },
+                    //{ '6', PlayerAction.Inventory },
+                    //{ '7', PlayerAction.Travel },
+                    //{ '8', PlayerAction.PlayerLocationsVisited },
+                    //{ '9', PlayerAction.AdminMenu },
+                    //{ '0', PlayerAction.Exit }
                 }
         };
 

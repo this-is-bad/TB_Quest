@@ -157,8 +157,8 @@ namespace TB_Quest
                         case PlayerAction.PlayerInfo:
                             _gameConsoleView.DisplayPlayerInfo();
                             break;
-                        case PlayerAction.ListCharacters:
-                            _gameConsoleView.DisplayListOfNpcs();
+                        case PlayerAction.ListNonPlayerCharacters:
+                            _gameConsoleView.DisplayListOfAllNpcObjects();
                             break;
                         case PlayerAction.ListGameObjects:
                             _gameConsoleView.DisplayListOfAllGameObjects();

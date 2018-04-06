@@ -567,16 +567,17 @@ namespace TB_Quest
         //        (_gameUniverse.Characters), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
         //}
 
+
         /// <summary>
         /// show all NPCs in the game
         /// </summary>
-        public void DisplayListOfNpcs()
-        {
-            ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
+        //public void DisplayListOfNpcs()
+        //{
+        //    ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
 
-            DisplayGamePlayScreen("List: NPCs", Text.ListNpcs
-                (_gameUniverse.Npcs), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
-        }
+        //    DisplayGamePlayScreen("List: NPCs", Text.ListNpcs
+        //        (_gameUniverse.Npcs), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
+        //}
 
         /// <summary>
         /// show the main menu
@@ -840,8 +841,14 @@ namespace TB_Quest
             //
             List<GameObject> gameObjectsInCurrentLocation = _gameUniverse.GetGameObjectsByLocationId(_gamePlayer.LocationID);
 
+            //
+            // get list of NPCs in current location
+            //
+            List<NPC> npcsInCurrentLocation = _gameUniverse.GetNpcsByLocationId(_gamePlayer.LocationID);
+
             string messageBoxText = Text.LookAround(currentLocation) + Environment.NewLine + Environment.NewLine;
             messageBoxText += Text.GameObjectsChooseList(gameObjectsInCurrentLocation);
+            messageBoxText += Text.NpcsChooseList(npcsInCurrentLocation);
 
             ActionMenu.CurrentActionMenu = currentLocation.LocationID == 1 ? ActionMenu.PlayerSetup : ActionMenu.MainMenu;
             DisplayGamePlayScreen("Current Location", messageBoxText, ActionMenu.CurrentActionMenu, "");
@@ -1058,6 +1065,14 @@ need to change validation to work on player inventory
             }
 
             return gameObjectId;
+        }
+
+        /// <summary>
+        /// show all NPCs in the game
+        /// </summary>
+        public void DisplayListOfAllNpcObjects()
+        {
+            DisplayGamePlayScreen("List: NPC Objects", Text.ListAllNpcObjects(_gameUniverse.Npcs), ActionMenu.AdminMenu, "");
         }
 
         #endregion
