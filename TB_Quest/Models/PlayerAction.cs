@@ -13,14 +13,15 @@ namespace TB_Quest
     {
         None,
         PlayerSetup,
+        PlayerNameChange,
+        PlayerAgeChange,
+        PlayerRaceChange,
         LookAround,
         Travel,
 
         PlayerMenu,
-        PlayerInfo, 
-        PlayerNameChange,
-        PlayerAgeChange,
-        PlayerRaceChange,
+        PlayerInfo,
+        Inventory,
         PlayerLocationsVisited,
         
         ObjectMenu,
@@ -28,19 +29,15 @@ namespace TB_Quest
         UseObject,
         PickUp,
         PutDown,
-        Inventory,
-
-        //PlayerTreasure,
+       
         NonplayerCharacterMenu,
-        Talkto,
+        TalkTo,
 
         AdminMenu,
         ListLocations,
         ListGameObjects,
         ListNonPlayerCharacters,
 
-        //ListItems,
-        //ListTreasures,
         ReturnMainMenu,
         Exit
     }

@@ -847,5 +847,6 @@ namespace TB_Quest
             return messageBoxText;
 
         }
+
     }
 }

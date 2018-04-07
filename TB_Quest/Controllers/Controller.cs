@@ -136,7 +136,7 @@ namespace TB_Quest
                     //
                     // get next game action from player
                     //
-                    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu));
+                    playerActionChoice = GetNextPlayerAction(); //_gameConsoleView.GetActionMenuChoice(ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu));
             
                     //
                     // choose an action based on the player's menu choice
@@ -144,6 +144,11 @@ namespace TB_Quest
                     switch (playerActionChoice)
                     {
                         case PlayerAction.None:
+                            break;
+                        case PlayerAction.PlayerMenu:
+                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerMenu;
+                            _gameConsoleView.DisplayGamePlayScreen("Player Menu", "Select an action from the menu.",
+                                ActionMenu.PlayerMenu, "");
                             break;
                         case PlayerAction.PlayerNameChange:
                             _gameConsoleView.DisplayUpdatePlayerName();
@@ -167,10 +172,25 @@ namespace TB_Quest
                             _gameConsoleView.DisplayListOfLocations();
                             break;
                         case PlayerAction.ReturnMainMenu:
-                            _gameConsoleView.DisplayMainMenu();
+                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.MainMenu;
+                            //_gameConsoleView.DisplayMainMenu();
+                            _gameConsoleView.DisplayGamePlayScreen("Main Menu", Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
                             break;
                         case PlayerAction.AdminMenu:
-                            _gameConsoleView.DisplayAdminMenu();
+                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.AdminMenu;
+                            //_gameConsoleView.DisplayAdminMenu();
+                            _gameConsoleView.DisplayGamePlayScreen("Admin Menu", "Select an action from the menu.", ActionMenu.AdminMenu, "");
+                            break;
+                        case PlayerAction.ObjectMenu:
+                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.ObjectMenu;
+                            _gameConsoleView.DisplayGamePlayScreen("Object Menu", "Select an action from the menu", ActionMenu.ObjectMenu, "");
+                            break;
+                        case PlayerAction.NonplayerCharacterMenu:
+                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.NpcMenu;
+                            _gameConsoleView.DisplayGamePlayScreen("NPC Menu", "Select an action from the menu", ActionMenu.NpcMenu, "");
+                            break;
+                        case PlayerAction.TalkTo:
+                            TalkToAction();
                             break;
                         case PlayerAction.LookAround:
                             _gameConsoleView.DisplayLookAround();
@@ -459,6 +479,64 @@ namespace TB_Quest
                         break;
 
                 }
+            }
+        }
+
+        /// <summary>
+        /// returns a player action, based on the currentMenu variable
+        /// </summary>
+        /// <returns>PlayerAction</returns>
+        private PlayerAction GetNextPlayerAction()
+        {
+            PlayerAction playerActionChoice = PlayerAction.None;
+
+            switch (ActionMenu.currentMenu)
+            {
+                case ActionMenu.CurrentMenu.MainMenu:
+                    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.MainMenu);
+                    break;
+                case ActionMenu.CurrentMenu.ObjectMenu:
+                    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.ObjectMenu);
+                    break;
+                case ActionMenu.CurrentMenu.NpcMenu:
+                    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.NpcMenu);
+                    break;
+                case ActionMenu.CurrentMenu.PlayerMenu:
+                    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.PlayerMenu);
+                    break;
+                case ActionMenu.CurrentMenu.AdminMenu:
+                    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.AdminMenu);
+                    break;
+                default: break;
+            }
+
+            return playerActionChoice;
+        }
+
+        /// <summary>
+        /// display a list of NPCs in the location and get a player choice, then display the NPC dialog
+        /// </summary>
+        private void TalkToAction()
+        {
+            //
+            // display a list of NPCs in the location and get a player choice
+            //
+            int npcToTalkToId = _gameConsoleView.DisplayGetNpcToTalkTo();
+
+            //
+            // display NPC's message
+            //
+            if (npcToTalkToId != 0)
+            {
+                //
+                // get the NPC from the universe
+                //
+                NPC npc = _gameUniverse.GetNpcById(npcToTalkToId);
+
+                //
+                // display information for the object chosen
+                //
+                _gameConsoleView.DisplayTalkTo(npc);
             }
         }
 

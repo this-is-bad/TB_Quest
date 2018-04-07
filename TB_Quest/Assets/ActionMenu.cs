@@ -22,6 +22,8 @@ namespace TB_Quest
             AdminMenu        
         }
 
+        public static CurrentMenu currentMenu = CurrentMenu.MainMenu;
+
         /// <summary>
         /// global variable used to change the menu to the setup menu when current LocationID is "1"
         /// </summary>
@@ -58,10 +60,10 @@ namespace TB_Quest
             MenuChoices = new Dictionary<char, PlayerAction>()
                 {
                     { '1', PlayerAction.ListNonPlayerCharacters },
-                    { '2', PlayerAction.ListItems },
-                    { '3', PlayerAction.ListTreasures },
-                    { '4', PlayerAction.ListLocations },
-                    { '5', PlayerAction.ListGameObjects},
+                    //{ '2', PlayerAction.ListItems },
+                    //{ '3', PlayerAction.ListTreasures },
+                    { '2', PlayerAction.ListLocations },
+                    { '3', PlayerAction.ListGameObjects},
                     { '0', PlayerAction.ReturnMainMenu }
                 }
         };
@@ -130,12 +132,56 @@ namespace TB_Quest
                     //{ '4', PlayerAction.PickUpTreasure },
                     //{ '5', PlayerAction.PutDownTreasure },
                     { '6', PlayerAction.Inventory },
-                    { '7', PlayerAction.PlayerTreasure },
+                    //{ '7', PlayerAction.PlayerTreasure },
                     { '0', PlayerAction.ReturnMainMenu }
                 }
         };
-  
-        
+
+        public static Menu PlayerMenu = new Menu()
+        {
+            MenuName = "PlayerMenu",
+            MenuTitle = "Player Menu",
+            MenuChoices = new Dictionary<char, PlayerAction>
+            {
+                { '1', PlayerAction.PlayerInfo },
+                { '2', PlayerAction.Inventory },
+                { '3', PlayerAction.PlayerLocationsVisited },
+                { '0', PlayerAction.Exit }
+            }
+        };
+
+        /// <summary>
+        /// object interaction menu for the game
+        /// </summary>
+        public static Menu ObjectMenu = new Menu()
+        {
+            MenuName = "ObjectMenu",
+            MenuTitle = "Object Menu",
+            MenuChoices = new Dictionary<char, PlayerAction>()
+                {
+                    { '1', PlayerAction.LookAt },
+                    { '2', PlayerAction.PickUp },
+                    { '3', PlayerAction.PutDown },
+                    //{ '4', PlayerAction.UseObject },
+                    { '0', PlayerAction.ReturnMainMenu }
+                }
+        };
+
+        /// <summary>
+        ///  menu for the NPC interaction
+        /// </summary>
+        public static Menu NpcMenu = new Menu()
+        {
+            MenuName = "NpcMenu",
+            MenuTitle = "NPC Menu",
+            MenuChoices = new Dictionary<char, PlayerAction>()
+                {
+                    { '1', PlayerAction.TalkTo },
+                    { '0', PlayerAction.ReturnMainMenu }
+                }
+        };
+
+
         #region METHODS
 
         public static Menu ReturnMenu(Menu menu)

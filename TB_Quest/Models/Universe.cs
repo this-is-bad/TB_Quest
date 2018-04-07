@@ -483,7 +483,7 @@ namespace TB_Quest
         /// <param name="npcId"></param>
         /// <param name="currentLocation"></param>
         /// <returns>bool</returns>
-        public bool IsValidNpcByLocation(int npcId, int currentLocation)
+        public bool IsValidNpcByLocationId(int npcId, int currentLocation)
         {
             List<int> npcIds = new List<int>();
 

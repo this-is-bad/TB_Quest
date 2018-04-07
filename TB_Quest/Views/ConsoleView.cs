@@ -705,7 +705,8 @@ namespace TB_Quest
             ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
 
             DisplayGamePlayScreen("Locations Visited", Text.VisitedLocations
-                (visitedLocations), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
+                (visitedLocations), ActionMenu.PlayerMenu, "");
+                //ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
         }
 
         /// <summary>
@@ -1031,7 +1032,7 @@ namespace TB_Quest
                     // get an integer from the player
                     //
                     GetInteger($"Enter the ID number of the object you wish to use): ", 0, 0, out gameObjectId);
-need to change validation to work on player inventory
+//need to change validation to work on player inventory
                     //
                     // validate integer as a valid game object ID and in the current location
                     //
@@ -1073,6 +1074,80 @@ need to change validation to work on player inventory
         public void DisplayListOfAllNpcObjects()
         {
             DisplayGamePlayScreen("List: NPC Objects", Text.ListAllNpcObjects(_gameUniverse.Npcs), ActionMenu.AdminMenu, "");
+        }
+
+        /// <summary>
+        /// get the player's choice of NPC to talk to 
+        /// </summary>
+        /// <returns>int</returns>
+        public int DisplayGetNpcToTalkTo()
+        {
+            int npcId = 0;
+            bool validNpcId = false;
+
+            //
+            // get a list of NPCs in the current location
+            //
+            List<NPC> npcsInLocation = _gameUniverse.GetNpcsByLocationId(_gamePlayer.LocationID);
+
+            if (npcsInLocation.Count > 0)
+            {
+                DisplayGamePlayScreen("Choose Character to Speak With", Text.NpcsChooseList(npcsInLocation), ActionMenu.NpcMenu, "");
+
+                while (!validNpcId)
+                {
+                    //
+                    // get an integer from the player
+                    //
+                    GetInteger($"Enter the ID number of the character you wish to speak with: ", 0, 0, out npcId);
+
+                    //
+                    // validate integer as a valid NPC ID and in the current location
+                    //
+                    if (_gameUniverse.IsValidNpcByLocationId(npcId, _gamePlayer.LocationID))
+                    {
+                        NPC npc = _gameUniverse.GetNpcById(npcId);
+                        if (npc is ISpeak)
+                        {
+                            validNpcId = true;
+                        }
+                        else
+                        {
+                            ClearInputBox();
+                            DisplayInputErrorMessage("It appears you entered an invalid NPC id.  Please try again.");
+                        }
+                    }
+                    else
+                    {
+                        ClearInputBox();
+                        DisplayInputErrorMessage("It appears you entered an invalid NPC id.  Please try again.");
+                    }
+                }
+            }
+            else
+            {
+                DisplayGamePlayScreen("Choose Character to Speak With", "It appears there are no NPCs here.", ActionMenu.NpcMenu, "");
+            }
+
+            return npcId;
+        }
+
+        /// <summary>
+        /// display NPC dialog
+        /// </summary>
+        /// <param name="npc"></param>
+        public void DisplayTalkTo(NPC npc)
+        {
+            ISpeak speakingNpc = npc as ISpeak;
+
+            string message = speakingNpc.Speak();
+
+            if (message == "")
+            {
+                message = "It appears this character has nothing to say.  Please try agian.";
+            }
+
+            DisplayGamePlayScreen("Speak to Character", message, ActionMenu.NpcMenu, "");
         }
 
         #endregion
