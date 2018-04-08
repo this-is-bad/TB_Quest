@@ -19,6 +19,7 @@ namespace TB_Quest
             ObjectMenu,
             NpcMenu,
             PlayerMenu,
+            PlayerSetup,
             AdminMenu        
         }
 
@@ -27,7 +28,7 @@ namespace TB_Quest
         /// <summary>
         /// global variable used to change the menu to the setup menu when current LocationID is "1"
         /// </summary>
-        public static Menu CurrentActionMenu { get; set; }
+        //public static Menu CurrentActionMenu { get; set; }
 
         public static Menu QuestIntro = new Menu()
         {
@@ -46,7 +47,7 @@ namespace TB_Quest
             MenuChoices = new Dictionary<char, PlayerAction>()
                 {
                     { '1', PlayerAction.PlayerSetup },
-                    { '2', PlayerAction.Exit }
+                    { '0', PlayerAction.Exit }
                 }
         };
 
@@ -60,8 +61,6 @@ namespace TB_Quest
             MenuChoices = new Dictionary<char, PlayerAction>()
                 {
                     { '1', PlayerAction.ListNonPlayerCharacters },
-                    //{ '2', PlayerAction.ListItems },
-                    //{ '3', PlayerAction.ListTreasures },
                     { '2', PlayerAction.ListLocations },
                     { '3', PlayerAction.ListGameObjects},
                     { '0', PlayerAction.ReturnMainMenu }
@@ -129,10 +128,7 @@ namespace TB_Quest
                     { '1', PlayerAction.LookAt },
                     { '2', PlayerAction.PickUp },
                     { '3', PlayerAction.PutDown },
-                    //{ '4', PlayerAction.PickUpTreasure },
-                    //{ '5', PlayerAction.PutDownTreasure },
                     { '6', PlayerAction.Inventory },
-                    //{ '7', PlayerAction.PlayerTreasure },
                     { '0', PlayerAction.ReturnMainMenu }
                 }
         };
@@ -146,7 +142,7 @@ namespace TB_Quest
                 { '1', PlayerAction.PlayerInfo },
                 { '2', PlayerAction.Inventory },
                 { '3', PlayerAction.PlayerLocationsVisited },
-                { '0', PlayerAction.Exit }
+                { '0', PlayerAction.ReturnMainMenu }
             }
         };
 
@@ -195,7 +191,7 @@ namespace TB_Quest
             {
                 newMenu = (menu ?? MainMenu);
             }
-
+            
             return newMenu;
         }
 

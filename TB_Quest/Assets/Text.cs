@@ -826,7 +826,7 @@ namespace TB_Quest
                 // display table header
                 //
                 "ID".PadRight(10) +
-                "Name".PadRight(30) +
+                "Name".PadRight(30) + "\n" +
                 "---".PadRight(10) +
                 "----------------------".PadRight(10) + "\n";
 

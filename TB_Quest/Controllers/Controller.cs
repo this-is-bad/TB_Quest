@@ -118,10 +118,14 @@ namespace TB_Quest
                 //
                 _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
 
-                ActionMenu.CurrentActionMenu = ActionMenu.PlayerSetup;
+              //  ActionMenu.CurrentActionMenu = ActionMenu.PlayerSetup;
+                ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerSetup;
+
+                //_gameConsoleView.DisplayGamePlayScreen("Current Location",
+                //        Text.CurrentLocationInfo(_currentLocation), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
 
                 _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                        Text.CurrentLocationInfo(_currentLocation), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
+                    Text.CurrentLocationInfo(_currentLocation), ActionMenu.PlayerSetup, "");
 
                 //
                 // game loop
@@ -144,6 +148,11 @@ namespace TB_Quest
                     switch (playerActionChoice)
                     {
                         case PlayerAction.None:
+                            break;
+                        case PlayerAction.PlayerSetup:
+                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerSetup;
+                            _gameConsoleView.DisplayGamePlayScreen("Player Menu", "Select an action from the menu.",
+                                ActionMenu.PlayerSetup, "");
                             break;
                         case PlayerAction.PlayerMenu:
                             ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerMenu;
@@ -204,6 +213,9 @@ namespace TB_Quest
                         case PlayerAction.PickUp:
                             PickUpAction();
                             break;
+                        case PlayerAction.UseObject:
+                            UseObjectAction();
+                            break;
                         case PlayerAction.PutDown:
                             PutDownAction();
                             break;
@@ -216,21 +228,14 @@ namespace TB_Quest
                             //
                             _gamePlayer.LocationID = _gameConsoleView.DisplayGetNextLocation();
 
-                            if (_gamePlayer.LocationID == 1)
-                            {
-                                Program.Setup = true;
-                            }
-                            else
-                            {
-                                Program.Setup = false;
-                            }
                             _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
                             //
                             // set the game play screen to the current location info format
                             //
+                            ActionMenu.currentMenu = (_gamePlayer.LocationID == 1 ? ActionMenu.CurrentMenu.PlayerSetup : ActionMenu.CurrentMenu.MainMenu);
 
                             _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                                Text.CurrentLocationInfo(_currentLocation), ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
+                                Text.CurrentLocationInfo(_currentLocation), (_gamePlayer.LocationID == 1 ? ActionMenu.PlayerSetup : ActionMenu.MainMenu), "");
                               break;
 
                         case PlayerAction.Exit:
@@ -378,7 +383,7 @@ namespace TB_Quest
         /// <summary>
         /// display a list of inanimate objects in the location and get a choice
         /// </summary>
-        private void UseItemAction()
+        private void UseObjectAction()
         {
             //
             // display a list of inanimate objects in the location and get a choice
@@ -490,6 +495,13 @@ namespace TB_Quest
         {
             PlayerAction playerActionChoice = PlayerAction.None;
 
+            if (_gamePlayer.LocationID == 1)
+            {
+                ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerSetup;
+            }
+
+          //  ActionMenu.currentMenu = (_gamePlayer.LocationID == 1 ? ActionMenu.CurrentMenu.PlayerSetup : ActionMenu.currentMenu);
+
             switch (ActionMenu.currentMenu)
             {
                 case ActionMenu.CurrentMenu.MainMenu:
@@ -503,6 +515,9 @@ namespace TB_Quest
                     break;
                 case ActionMenu.CurrentMenu.PlayerMenu:
                     playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.PlayerMenu);
+                    break;
+                case ActionMenu.CurrentMenu.PlayerSetup:
+                    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.PlayerSetup);
                     break;
                 case ActionMenu.CurrentMenu.AdminMenu:
                     playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.AdminMenu);

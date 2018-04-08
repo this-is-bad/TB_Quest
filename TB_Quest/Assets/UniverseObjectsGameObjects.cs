@@ -21,9 +21,11 @@ namespace TB_Quest
             {
                 Name = "Magic Wand",
                 InanimateObjType = InanimateObjectType.Weapon,
-                Description = "The \"Magic Wand\" (TM) is possibly the most useless weapon ever." +
+                Description = "The \"Magic Wand\" (TM) is possibly the most useless weapon ever.  " +
                               "It doesn't actually do anything.  It is just a bit of deception " +
                               "that wizards use to impress/intimidate the ignorant.",
+                CanInventory = true,
+                IsConsumable = false,
                 LocationID = 0,
                 ObjectID = 23
             },
