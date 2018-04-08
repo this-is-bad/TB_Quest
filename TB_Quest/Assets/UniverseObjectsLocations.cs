@@ -17,7 +17,7 @@ namespace TB_Quest
 
             new Location
             {
-               Name = "Player's Tower - Your Room",
+               Name = "Wizard's Tower - Your Room",
                 ObjectID = 5,
                 LocationID = 1,
                 Description = "You are currently in your room in your master's tower.\n"  +
@@ -31,7 +31,7 @@ namespace TB_Quest
 
             new Location
             {
-               Name = "Player's Tower - Master's Magical Menagerie",
+               Name = "Wizard's Tower - Master's Magical Menagerie",
                 LocationID = 2,
                  ObjectID = 6,
                 Description = "You stand in your master's magical menagerie: a collection of magical artifacts, materials, books, contraptions, and even automata.  " +
@@ -46,7 +46,7 @@ namespace TB_Quest
 
             new Location
             {
-               Name = "Player's Tower - Entry Hall",
+               Name = "Wizard's Tower - Entry Hall",
                 LocationID = 3,
                  ObjectID = 7,
                 Description = "You stand in the entry hall of your master's tower -- a modest room that portends nothing of the wondrous quest ahead of you.  " +

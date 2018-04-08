@@ -10,12 +10,9 @@ namespace TB_Quest
     {
         #region ***** define all lists to be maintained by the Universe object *****
 
-
         private List<NPC> _npcs;
 
         private List<GameObject> _gameObjects;
-
-        private List<Item> _items;
 
         private List<Location> _locations;
 
@@ -40,15 +37,6 @@ namespace TB_Quest
         }
 
         //
-        // list of all items
-        //
-        public List<Item> Items
-        {
-            get { return _items; }
-            set { _items = value; }
-        }
-
-        //
         // list of all locations
         //
         public List<Location> Locations
@@ -56,15 +44,6 @@ namespace TB_Quest
             get { return _locations; }
             set { _locations = value; }
         }
-
-        //
-        // list of objects in player inventory
-        //
-        //public List<InanimateObject> PlayerInventory
-        //{
-        //    get { return _playerInventory; }
-        //    set { _playerInventory = value; }
-        //}
 
 
         #endregion
@@ -93,7 +72,6 @@ namespace TB_Quest
         {
             _locations = UniverseObjects.Locations;
             _gameObjects = UniverseObjects.GameObjects;
-           // _playerInventory = UniverseObjects.PlayerInventory;
             _npcs = UniverseObjects.NPC;
         }
 

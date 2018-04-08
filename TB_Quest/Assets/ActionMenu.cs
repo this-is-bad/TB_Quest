@@ -76,11 +76,11 @@ namespace TB_Quest
             MenuTitle = "Player Setup",
             MenuChoices = new Dictionary<char, PlayerAction>()
                 {
-                    { '1', PlayerAction.PlayerNameChange },
-                    { '2', PlayerAction.PlayerAgeChange },
-                    { '3', PlayerAction.PlayerRaceChange },
-                    { '4', PlayerAction.LookAround },
-                    { '5', PlayerAction.Travel },
+                    { '1', PlayerAction.LookAround },
+                    { '2', PlayerAction.Travel },
+                    { '3', PlayerAction.PlayerNameChange },
+                    { '4', PlayerAction.PlayerAgeChange },
+                    { '5', PlayerAction.PlayerRaceChange },
                     { '0', PlayerAction.Exit }
                 }
         };

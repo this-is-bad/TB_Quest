@@ -24,28 +24,28 @@ namespace TB_Quest
                 Description = "A mysterious cloaked figure.",
                 Messages = new List<string>
                 {
-                    "You can only enter the maze if you have a park pass.",
-                    "",
-                    ""
+                    "You can only enter the maze if you have a park pass.  Or if you can defeat me."
                 }
             },
 
             new Opponent
             {
+                Id = 2,
                 Name = "Basset Hound",
                 LocationID = 14,
                 ObjectID = 2,
                 Description = "A totally average basset hound.",
                 Messages = new List<string>
                 {
-                    "",
-                    "",
-                    ""
+                    "Like I said, you can't pass until you find the exit.",
+                    "You've gotten all the hints you're going to get from me.",
+                    "Woof."
                 }
             },
 
             new Opponent
             {
+                Id = 3,
                 Name = "Jeedub'ex",
                 LocationID = 18,
                 ObjectID = 3,

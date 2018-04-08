@@ -5,8 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TB_Quest
-{
+namespace TB_Quest{
     /// <summary>
     /// class to store static and to generate dynamic text for the message and input boxes
     /// </summary>
@@ -186,52 +185,6 @@ namespace TB_Quest
         }
 
         /// <summary>
-        /// take a generic list of objects and return a list of those objects
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="PolyList"></param>
-        /// <returns>string</returns>
-        //public static string ListObjects<T>(List<T> PolyList)
-        //{
-        //    Type typ = PolyList.GetType();
-        //    string s = typ.ToString();
-        //    string messageBoxText =
-        //        $"{s} \n" +
-        //        " \n" +
-
-        //        ///
-        //        /// display table header 
-        //        /// 
-        //        "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
-        //        "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
-
-        //    IList<PropertyInfo> props = new List<PropertyInfo>(typ.GetProperties());
-
-        //    foreach (PropertyInfo prop in props)
-        //    {
-        //        object propValue = prop.GetValue(PolyList, null);
-
-        //        // Do something with propValue
-        //    }
-        //    ///
-        //    /// display all locations
-        //    /// 
-        //    string ObjectList = null;
-        //    foreach (Object obj in PolyList)
-
-        //    {
-        //        ObjectList +=
-        //            $"{obj.ObjectID}".PadRight(10) +
-        //            $"{obj.Name}".PadRight(50) +
-        //            Environment.NewLine;
-        //    }
-
-        //    messageBoxText += ObjectList;
-
-        //    return messageBoxText;
-        //}
-
-        /// <summary>
         /// return all Locations in the game
         /// </summary>
         /// <param name="Locations"></param>
@@ -265,39 +218,39 @@ namespace TB_Quest
             return messageBoxText;
         }
 
-        /// <summary>
-        /// return all Items in the game
-        /// </summary>
-        /// <param name="Items"></param>
-        /// <returns>string</returns>
-        public static string ListItems(IEnumerable<Item> Items)
-        {
-            string messageBoxText =
-                "Items\n" +
-                " \n" +
+        ///// <summary>
+        ///// return all Items in the game
+        ///// </summary>
+        ///// <param name="Items"></param>
+        ///// <returns>string</returns>
+        //public static string ListItems(IEnumerable<Item> Items)
+        //{
+        //    string messageBoxText =
+        //        "Items\n" +
+        //        " \n" +
 
-                ///
-                /// display table header 
-                /// 
-                "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
-                "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
+        //        ///
+        //        /// display table header 
+        //        /// 
+        //        "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
+        //        "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
 
-            ///
-            /// display all items
-            /// 
-            string ItemList = null;
-            foreach (Item item in Items)
-            {
-                ItemList +=
-                    $"{item.LocationID}".PadRight(10) +
-                    $"{item.Name}".PadRight(50) +
-                    Environment.NewLine;
-            }
+        //    ///
+        //    /// display all items
+        //    /// 
+        //    string ItemList = null;
+        //    foreach (Item item in Items)
+        //    {
+        //        ItemList +=
+        //            $"{item.LocationID}".PadRight(10) +
+        //            $"{item.Name}".PadRight(50) +
+        //            Environment.NewLine;
+        //    }
 
-            messageBoxText += ItemList;
+        //    messageBoxText += ItemList;
 
-            return messageBoxText;
-        }
+        //    return messageBoxText;
+        //}
 
         public static string ListInventory(IEnumerable<InanimateObject> inanimateObjects)
         {
@@ -363,40 +316,6 @@ namespace TB_Quest
 
             return messageBoxText;
         }
-
-        /// <summary>
-        /// return all Characters in the game
-        /// </summary>
-        /// <param name="Characters"></param>
-        /// <returns>string</returns>
-        //public static string ListCharacters(IEnumerable<Character> Characters)
-        //{
-        //    string messageBoxText =
-        //        "Items\n" +
-        //        " \n" +
-
-        //        ///
-        //        /// display table header 
-        //        /// 
-        //        "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
-        //        "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
-
-        //    ///
-        //    /// display all locations
-        //    /// 
-        //    string CharacterList = null;
-        //    foreach (Character character in Characters)
-        //    {
-        //        CharacterList +=
-        //            $"{character.LocationID}".PadRight(10) +
-        //            $"{character.Name}".PadRight(50) +
-        //            Environment.NewLine;
-        //    }
-
-        //    messageBoxText += CharacterList;
-
-        //    return messageBoxText;
-        //}
 
         /// <summary>
         /// return all NPCs in the game
@@ -608,46 +527,6 @@ namespace TB_Quest
 
             return messageBoxText;
         }
-
-        /// <summary>
-        /// display game objects
-        /// </summary>
-        /// <param name="gameObjects"></param>
-        /// <returns>string</returns>
-        //public static string GameObjectsChooseList(IEnumerable<GameObject> gameObjects)
-        //{
-        //    //
-        //    // display table name and column headers
-        //    //
-        //    string messageBoxText = "Game Objects\n" +
-        //        " \n " +
-
-        //        //
-        //        // display table header
-        //        //
-        //        "ID".PadRight(10) +
-        //        "Name".PadRight(30) +
-        //        "Location ID".PadRight(10) + " \n " +
-        //        "---".PadRight(10) +
-        //        "---------------------".PadRight(30) +
-        //        "---------------------".PadRight(10) + "\n";
-        //    //
-        //    // display all game objects in rows
-        //    //
-        //    string gameObjectRows = null;
-        //    foreach (GameObject gameObject in gameObjects)
-        //    {
-        //        gameObjectRows += " " +
-        //            $"{gameObject.ObjectID}".PadRight(10) +
-        //            $"{gameObject.Name}".PadRight(30) +
-        //            $"{gameObject.LocationID}".PadRight(10) +
-        //            Environment.NewLine;
-        //    }
-
-        //    messageBoxText += gameObjectRows;
-
-        //    return messageBoxText;
-        //}
 
         /// <summary>
         /// display information about an inanimate object

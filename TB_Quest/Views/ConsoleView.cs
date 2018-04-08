@@ -539,45 +539,9 @@ namespace TB_Quest
         /// </summary>
         public void DisplayListOfLocations()
         {
-           // ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
-
             DisplayGamePlayScreen("List: Locations", Text.ListLocations
                 (_gameUniverse.Locations), ActionMenu.AdminMenu, "Enter your menu choice: ");
         }
-
-        /// <summary>
-        /// show all items in the game
-        /// </summary>
-        //public void DisplayListOfInanimateObjects()
-        //{
-        //   // ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
-
-        //    DisplayGamePlayScreen("List: Items", Text.ListItems
-        //        (_gameUniverse.Items), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
-        //}
-
-        /// <summary>
-        /// show all characters in the game
-        /// </summary>
-        //public void DisplayListOfCharacters()
-        //{
-        //   // ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
-
-        //    DisplayGamePlayScreen("List: Characters", Text.ListCharacters
-        //        (_gameUniverse.Characters), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
-        //}
-
-
-        /// <summary>
-        /// show all NPCs in the game
-        /// </summary>
-        //public void DisplayListOfNpcs()
-        //{
-        //   // ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
-
-        //    DisplayGamePlayScreen("List: NPCs", Text.ListNpcs
-        //        (_gameUniverse.Npcs), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "Enter your menu choice: ");
-        //}
 
         /// <summary>
         /// show the main menu
@@ -595,27 +559,14 @@ namespace TB_Quest
         /// </summary>
         public void DisplayAdminMenu()
         {
-           // ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
-
             DisplayGamePlayScreen("Admin Menu", "View the objects in the game.", ActionMenu.AdminMenu, "Enter your menu choice: ");
         }
-
-        /// <summary>
-        /// show all objects of the specified type in the game
-        /// </summary>
-        //public void DisplayListOfObjects()
-        //{
-        //    DisplayGamePlayScreen("List: Locations", Text.ListObjects //Text.ListLocations
-        //        (_gameUniverse.Locations), ActionMenu.ReturnMenu(ActionMenu.AdminMenu), "");
-        //}
 
         /// <summary>
         /// display information about the player
         /// </summary>
         public void DisplayPlayerInfo()
         {
-           // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
-
             DisplayGamePlayScreen("Player Information", Text.PlayerInfo(_gamePlayer), ActionMenu.PlayerMenu, "");
         }
 
@@ -627,16 +578,9 @@ namespace TB_Quest
         {
             int locationId = 0;
             bool validLocationId = false;
-            // original Text.Travel signature
-            //DisplayGamePlayScreen("Travel to a new location", Text.Travel(_gamePlayer, _gameUniverse.Locations),
-            //    ActionMenu.MainMenu, "");
 
-           // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
-
-            // new Text.Travel signature
             DisplayGamePlayScreen("Travel to a new location", Text.Travel(_gamePlayer, _gameUniverse.GetLocationsFromCurrentLocationID(_gamePlayer.LocationID)),
                 ActionMenu.MainMenu, "");
-                //ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
 
             int currentLocationID = _gamePlayer.LocationID;
             List<int> availableLocations = _gameUniverse.GetLocationIDsFromCurrentLocationID(currentLocationID);
@@ -702,11 +646,8 @@ namespace TB_Quest
                 visitedLocations.Add(_gameUniverse.GetLocationById(locationId));
             }
 
-           // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
-
             DisplayGamePlayScreen("Locations Visited", Text.VisitedLocations
                 (visitedLocations), ActionMenu.PlayerMenu, "");
-                //ActionMenu.ReturnMenu(ActionMenu.CurrentActionMenu), "");
         }
 
         /// <summary>
@@ -715,8 +656,6 @@ namespace TB_Quest
         public void DisplayUpdatePlayerName()
         {
             Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
-
-           // ActionMenu.CurrentActionMenu = ActionMenu.PlayerSetup;
 
             DisplayGamePlayScreen("Quest Preparation - Name", Text.InitializeQuestGetPlayerName(), ActionMenu.PlayerSetup, "");
             DisplayInputBoxPrompt("Enter your name: ");
@@ -734,9 +673,6 @@ namespace TB_Quest
         {
             Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
 
-           // ActionMenu.CurrentActionMenu = ActionMenu.PlayerSetup;
-
-
             DisplayGamePlayScreen("Quest Preparation - Age", Text.InitializeQuestGetPlayerAge(_gamePlayer.Name), ActionMenu.PlayerSetup, "");
             int gamePlayerAge;
 
@@ -751,8 +687,6 @@ namespace TB_Quest
         {
             Location currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
 
-           // ActionMenu.CurrentActionMenu = ActionMenu.PlayerSetup;
-
             DisplayGamePlayScreen("Quest Preparation - Race", Text.InitializeQuestGetPlayerRace(_gamePlayer), ActionMenu.PlayerSetup, "");
             DisplayInputBoxPrompt($"Enter your race {_gamePlayer.Name}: ");
             Character.RaceType raceType = GetRace();
@@ -765,7 +699,6 @@ namespace TB_Quest
         /// </summary>
         public void DisplayListOfAllGameObjects ()
         {
-           // ActionMenu.CurrentActionMenu = ActionMenu.AdminMenu;
             DisplayGamePlayScreen("List: Game Objects", Text.ListAllGameObjects(_gameUniverse.GameObjects), ActionMenu.AdminMenu, "");
         }
 
@@ -784,7 +717,6 @@ namespace TB_Quest
 
             if (gameObjectsInLocation.Count > 0)
             {
-               // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
                 DisplayGamePlayScreen("Look at an object", Text.GameObjectsChooseList(gameObjectsInLocation), ActionMenu.ObjectMenu, "");
 
                 while (!validGameObjectId)
@@ -810,7 +742,6 @@ namespace TB_Quest
             }
             else
             {
-               // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
                 DisplayGamePlayScreen("Look at an object", Text.GameObjectsChooseList(gameObjectsInLocation), ActionMenu.ObjectMenu, "");
             }
 
@@ -823,7 +754,6 @@ namespace TB_Quest
         /// <param name="gameObject"></param>
         public void DisplayGameObjectInfo (GameObject gameObject)
         {
-           // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
             DisplayGamePlayScreen("Current Location", Text.LookAt(gameObject), ActionMenu.ObjectMenu, "");
         }
 
@@ -852,7 +782,6 @@ namespace TB_Quest
             messageBoxText += " \n";
             messageBoxText += Text.NpcsChooseList(npcsInCurrentLocation);
 
-            //ActionMenu.CurrentActionMenu = ;
             DisplayGamePlayScreen("Current Location", messageBoxText, (currentLocation.LocationID == 1 ? ActionMenu.PlayerSetup : ActionMenu.MainMenu), "");
         }
 
@@ -861,8 +790,6 @@ namespace TB_Quest
         /// </summary>
         public void DisplayInventory()
         {
-           // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
-
             DisplayGamePlayScreen("Current Inventory", Text.CurrentInventory(_gamePlayer.Inventory), ActionMenu.PlayerMenu, "");
         }
 
@@ -882,8 +809,6 @@ namespace TB_Quest
 
             if (inanimateObjectsInLocation.Count > 0)
             {
-               // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
-
                 DisplayGamePlayScreen("Pick Up Game Object", Text.GameObjectsChooseList(inanimateObjectsInLocation), ActionMenu.ObjectMenu, "");
 
                 while (!validGameObjectId)
@@ -920,8 +845,6 @@ namespace TB_Quest
             }
             else
             {
-               // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
-
                 DisplayGamePlayScreen("Pick Up Game Object", "It appears there are no game objects here.", ActionMenu.ObjectMenu, "");
             }
            
@@ -935,9 +858,7 @@ namespace TB_Quest
         public void DisplayConfirmInanimateObjectAddedToInventory(InanimateObject objectAddedToInventory)
         {
             string msg = (objectAddedToInventory.PickUpMessage ?? $"The {objectAddedToInventory.Name} has been added to your inventory."); 
-
-           // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
-
+            
             DisplayGamePlayScreen("Pick Up Game Object", msg, ActionMenu.ObjectMenu, "");
         }
 
@@ -952,8 +873,6 @@ namespace TB_Quest
 
             if (_gamePlayer.Inventory.Count > 0)
             {
-               // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
-
                 DisplayGamePlayScreen("Put Down Game Object", Text.GameObjectsChooseList(_gamePlayer.Inventory), ActionMenu.ObjectMenu, "");
 
                 while (!validInventoryObjectId)
@@ -986,8 +905,6 @@ namespace TB_Quest
             }
             else
             {
-               // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
-
                 DisplayGamePlayScreen("Put Down Game Object", "It appears there are no objects currently in inventory.", ActionMenu.ObjectMenu, "");
             }
 
@@ -1000,8 +917,6 @@ namespace TB_Quest
         /// <param name="objectRemovedFromInventory"></param>
         public void DisplayConfirmInanimateObjectRemovedFromInventory(InanimateObject objectRemovedFromInventory)
         {
-           // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
-
             DisplayGamePlayScreen("Put Down Game Object", $"The {objectRemovedFromInventory.Name} has been removed from your inventory.", ActionMenu.ObjectMenu, "");
         }
 
@@ -1023,8 +938,6 @@ namespace TB_Quest
             inanimateObjectsInLocation.AddRange(inanimateObjectsInInventory);
             if (inanimateObjectsInLocation.Count > 0)
             {
-               // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
-
                 DisplayGamePlayScreen("Use Game Object", Text.GameObjectsChooseList(inanimateObjectsInLocation), ActionMenu.ObjectMenu, "");
 
                 while (!validGameObjectId)
@@ -1061,8 +974,6 @@ namespace TB_Quest
             }
             else
             {
-               // ActionMenu.CurrentActionMenu = ActionMenu.MainMenu;
-
                 DisplayGamePlayScreen("Pick Up Game Object", "It appears there are no game objects here.", ActionMenu.ObjectMenu, "");
             }
 

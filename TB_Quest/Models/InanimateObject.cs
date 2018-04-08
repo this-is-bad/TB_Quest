@@ -127,10 +127,14 @@ namespace TB_Quest
         #region EVENT HANDLERS
         public event EventHandler ObjectAddedToInventory;
 
+        public event EventHandler ObjectUsed;
         #endregion
 
         #region METHODS
         public void OnObjectAddedToInventory() => ObjectAddedToInventory?.Invoke(this, EventArgs.Empty);
+
+        public void OnObjectUsed() => ObjectUsed?.Invoke(this, EventArgs.Empty);
+
         #endregion
     }
 }
