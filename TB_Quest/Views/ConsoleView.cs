@@ -857,6 +857,7 @@ namespace TB_Quest
         /// <param name="objectAddedToInventory"></param>
         public void DisplayConfirmInanimateObjectAddedToInventory(InanimateObject objectAddedToInventory)
         {
+
             string msg = (objectAddedToInventory.PickUpMessage ?? $"The {objectAddedToInventory.Name} has been added to your inventory."); 
             
             DisplayGamePlayScreen("Pick Up Game Object", msg, ActionMenu.ObjectMenu, "");

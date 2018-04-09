@@ -82,6 +82,7 @@ namespace TB_Quest
                 Name = "Healing Potion",
                 InanimateObjType = InanimateObjectType.Medicine,
                 Description = "A potion that restores your health.",
+                PickUpMessage = "The healing potion has been consumed.",
                 CanInventory = true,
                 IsConsumable = true,
                 LocationID = 8,

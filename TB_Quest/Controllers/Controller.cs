@@ -365,6 +365,7 @@ namespace TB_Quest
                 // note: inanimate object is added to the list and the location is set to 0
                 //
                 _gamePlayer.Inventory.Add(inanimateObject);
+
                 inanimateObject.LocationID = 0;
 
                 //
@@ -465,6 +466,8 @@ namespace TB_Quest
                         if (inanimateObject.IsConsumable)
                         {
                             inanimateObject.LocationID = -1;
+
+                            _gamePlayer.Inventory.Remove(inanimateObject);
                         }
                         break;
                     case InanimateObjectType.Weapon:
