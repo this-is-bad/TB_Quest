@@ -150,7 +150,7 @@ namespace TB_Quest{
 
         #region MAIN MENU ACTION SCREENS
 
-        public static string PlayerInfo(Player gamePlayer)
+        public static string PlayerInfo(Player gamePlayer, List<InanimateObject> inventory)
         {
                         string messageBoxText =
                 $"\tPlayer Name: {gamePlayer.Name}\n" +
@@ -159,7 +159,7 @@ namespace TB_Quest{
                 $"\tPlayer Home Village: {gamePlayer.HomeVillage}\n" +
                 $"\tPlayer Greeting: {gamePlayer.Greeting()}\n" +
                 " \n " +
-                CurrentInventory(gamePlayer.Inventory);
+                CurrentInventory(inventory);
 
 
 
@@ -612,6 +612,44 @@ namespace TB_Quest{
         /// <param name="gameObjects"></param>
         /// <returns>string</returns>
         public static string GameObjectsChooseList (IEnumerable<GameObject> gameObjects)
+        {
+            //
+            // display table name and column headers
+            //
+            string messageBotText =
+                "Game Objects\n" +
+                " \n" +
+
+                //
+                // display table header
+                //
+                "ID".PadRight(10) +
+                "Name".PadRight(60) + "\n" +
+                "---".PadRight(10) +
+                "-------------------------------------------------------".PadRight(60) + "\n";
+            //
+            // display all inanimate objects in rows
+            //
+            string gameObjectRows = null;
+            foreach (GameObject gameObject in gameObjects)
+            {
+                gameObjectRows +=
+                    $"{gameObject.ObjectID}".PadRight(10) +
+                    $"{gameObject.Name}".PadRight(60) +
+                    Environment.NewLine;
+            }
+
+            messageBotText += gameObjectRows;
+
+            return messageBotText;
+        }
+
+        /// <summary>
+        /// get a list of selectable game objects to use
+        /// </summary>
+        /// <param name="gameObjects"></param>
+        /// <returns>string</returns>
+        public static string GameObjectsUseList(IEnumerable<GameObject> gameObjects)
         {
             //
             // display table name and column headers

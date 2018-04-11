@@ -66,15 +66,9 @@ namespace TB_Quest
                 {
                     inanimateObject = gameObject as InanimateObject;
                     inanimateObject.ObjectAddedToInventory += HandleObjectAddedToInventory;
-                    //inanimateObject.ObjectUsed += HandleObjectUsed;
+                    inanimateObject.ObjectUsed += HandleObjectUsed;
                 }
             }
-
-            //
-            // add initial items to the player's inventory
-            //
-            _gamePlayer.Inventory.Add(_gameUniverse.GetGameObjectById(23) as InanimateObject);
-            _gamePlayer.Inventory.Add(_gameUniverse.GetGameObjectById(24) as InanimateObject);
 
             Program.Setup = true; 
 
@@ -364,8 +358,6 @@ namespace TB_Quest
                 //
                 // note: inanimate object is added to the list and the location is set to 0
                 //
-                _gamePlayer.Inventory.Add(inanimateObject);
-
                 inanimateObject.LocationID = 0;
 
                 //
@@ -380,12 +372,12 @@ namespace TB_Quest
         private void UseObjectAction()
         {
             //
-            // display a list of inanimate objects in the location and get a choice
+            // display a list of inanimate objects in the location and the player's inventory and get a choice
             //
-            int inanimateObjectToPickUpId = _gameConsoleView.DisplayGetInanimateObjectToPickUp();
+            int inanimateObjectToPickUpId = _gameConsoleView.DisplayGetInanimateObjectToUse();
 
             //
-            // add the inanimate object to player's inventory
+            // use the inanimate object
             //
             if (inanimateObjectToPickUpId != 0)
             {
@@ -396,14 +388,13 @@ namespace TB_Quest
 
                 //
                 // note: inanimate object is added to the list and the location is set to 0
-                //
-                _gamePlayer.Inventory.Add(inanimateObject);
+                //               
                 inanimateObject.LocationID = 0;
 
                 //
                 // display confirmation message
                 //
-                _gameConsoleView.DisplayConfirmInanimateObjectAddedToInventory(inanimateObject);
+                _gameConsoleView.DisplayConfirmInanimateObjectUsed(inanimateObject);
             }
         }
 
@@ -425,7 +416,6 @@ namespace TB_Quest
             //
             // remove the object from inventory and set the space-time location to the current value
             //
-            _gamePlayer.Inventory.Remove(inanimateObject);
             inanimateObject.LocationID = _gamePlayer.LocationID;
 
             //
@@ -440,6 +430,35 @@ namespace TB_Quest
         /// <param name="gameObject"></param>
         /// <param name="e"></param>
         private void HandleObjectAddedToInventory(object gameObject, EventArgs e)
+        {
+            if (gameObject.GetType() == typeof(InanimateObject))
+            {
+                InanimateObject inanimateObject = gameObject as InanimateObject;
+                switch (inanimateObject.InanimateObjType)
+                {
+                    case InanimateObjectType.Food:
+                        break;
+                    case InanimateObjectType.Medicine:
+                        break;
+                    case InanimateObjectType.Weapon:
+                        break;
+                    case InanimateObjectType.Treasure:
+                        break;
+                    case InanimateObjectType.Information:
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// method called by the ObjectUsed event 
+        /// </summary>
+        /// <param name="gameObject"></param>
+        /// <param name="e"></param>
+        private void HandleObjectUsed(object gameObject, EventArgs e)
         {
             if (gameObject.GetType() == typeof(InanimateObject))
             {
@@ -466,8 +485,6 @@ namespace TB_Quest
                         if (inanimateObject.IsConsumable)
                         {
                             inanimateObject.LocationID = -1;
-
-                            _gamePlayer.Inventory.Remove(inanimateObject);
                         }
                         break;
                     case InanimateObjectType.Weapon:

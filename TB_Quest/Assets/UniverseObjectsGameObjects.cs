@@ -26,6 +26,8 @@ namespace TB_Quest
                               "that wizards use to impress/intimidate the ignorant.",
                 CanInventory = true,
                 IsConsumable = false,
+                IsUsable = true,
+                UseCount = 0,
                 LocationID = 0,
                 ObjectID = 23
             },
@@ -40,6 +42,8 @@ namespace TB_Quest
                 ,
                 CanInventory = true,
                 IsConsumable = false,
+                IsUsable = true,
+                UseCount = 0,
                 LocationID = 0,
                 ObjectID = 24
             },
@@ -51,6 +55,8 @@ namespace TB_Quest
                               "The portable hole is about 20 inches in diameter and can be folded or rolled.",
                 CanInventory = true,
                 IsConsumable = false,
+                IsUsable = true,
+                UseCount = 0,
                 LocationID = 2,
                 ObjectID = 25
             },
@@ -62,6 +68,8 @@ namespace TB_Quest
                 Description = "A mysterious potion with many swirling colors.",
                 CanInventory = true,
                 IsConsumable = false,
+                IsUsable = true,
+                UseCount = 1,
                 LocationID = 2,
                 ObjectID = 26
             },
@@ -73,6 +81,8 @@ namespace TB_Quest
                 Description = "A ring that allows you to instantly travel home and back.",
                 CanInventory = true,
                 IsConsumable = false,
+                IsUsable = true,
+                UseCount = 0,
                 LocationID = 2,
                 ObjectID = 27
             },
@@ -85,6 +95,8 @@ namespace TB_Quest
                 PickUpMessage = "The healing potion has been consumed.",
                 CanInventory = true,
                 IsConsumable = true,
+                IsUsable = true,
+                UseCount = 1,
                 LocationID = 8,
                 ObjectID = 28
             },
@@ -98,7 +110,9 @@ namespace TB_Quest
                               "by someone with more free time than sense, and even less taste.",
                 CanInventory = true,
                 IsConsumable = false,
-                LocationID = 4,
+                IsUsable = false,
+                UseCount = -1,
+                LocationID = 5,
                 ObjectID = 29
             }
 

@@ -567,7 +567,8 @@ namespace TB_Quest
         /// </summary>
         public void DisplayPlayerInfo()
         {
-            DisplayGamePlayScreen("Player Information", Text.PlayerInfo(_gamePlayer), ActionMenu.PlayerMenu, "");
+            List<InanimateObject> inventory = _gameUniverse.GetInanimateObjectsByLocationId(_gamePlayer.LocationID);
+            DisplayGamePlayScreen("Player Information", Text.PlayerInfo(_gamePlayer, inventory), ActionMenu.PlayerMenu, "");
         }
 
         /// <summary>
@@ -790,7 +791,8 @@ namespace TB_Quest
         /// </summary>
         public void DisplayInventory()
         {
-            DisplayGamePlayScreen("Current Inventory", Text.CurrentInventory(_gamePlayer.Inventory), ActionMenu.PlayerMenu, "");
+            List<InanimateObject> inventory = _gameUniverse.GetInanimateObjectsByLocationId(_gamePlayer.LocationID);
+            DisplayGamePlayScreen("Current Inventory", Text.CurrentInventory(inventory), ActionMenu.PlayerMenu, "");
         }
 
         /// <summary>
@@ -864,6 +866,18 @@ namespace TB_Quest
         }
 
         /// <summary>
+        /// display a message confirming that an object was added to the player's inventory
+        /// </summary>
+        /// <param name="objectAddedToInventory"></param>
+        public void DisplayConfirmInanimateObjectUsed(InanimateObject objectAddedToInventory)
+        {
+
+            string msg = (objectAddedToInventory.PickUpMessage ?? $"The {objectAddedToInventory.Name} has been used.");
+
+            DisplayGamePlayScreen("Use Game Object", msg, ActionMenu.ObjectMenu, "");
+        }
+
+        /// <summary>
         /// show the inanimate objects in the player's inventory and get a choice
         /// </summary>
         /// <returns>int</returns>
@@ -871,10 +885,11 @@ namespace TB_Quest
         {
             int inanimateObjectId = 0;
             bool validInventoryObjectId = false;
+            List<InanimateObject> inventory = _gameUniverse.GetInanimateObjectsByLocationId(_gamePlayer.LocationID); 
 
-            if (_gamePlayer.Inventory.Count > 0)
+            if (inventory.Count > 0)
             {
-                DisplayGamePlayScreen("Put Down Game Object", Text.GameObjectsChooseList(_gamePlayer.Inventory), ActionMenu.ObjectMenu, "");
+                DisplayGamePlayScreen("Put Down Game Object", Text.GameObjectsChooseList(inventory), ActionMenu.ObjectMenu, "");
 
                 while (!validInventoryObjectId)
                 {
@@ -887,7 +902,7 @@ namespace TB_Quest
                     // find object in inventory
                     // note: LINQ used, but a foreach loop may also be used
                     //
-                    InanimateObject objectToPutDown = _gamePlayer.Inventory.FirstOrDefault(o => o.ObjectID == inanimateObjectId);
+                    InanimateObject objectToPutDown = inventory.FirstOrDefault(o => o.ObjectID == inanimateObjectId);
 
                     //
                     // validate object in inventory
@@ -934,12 +949,12 @@ namespace TB_Quest
             //
             // get a list of inanimate objects in the current location
             //
-            List<InanimateObject> inanimateObjectsInLocation = _gameUniverse.GetInanimateObjectsByLocationId(_gamePlayer.LocationID);
+            List<InanimateObject> currentInanimateObjects = _gameUniverse.GetInanimateObjectsByLocationId(_gamePlayer.LocationID);
             List<InanimateObject> inanimateObjectsInInventory = _gameUniverse.PlayerInventory();
-            inanimateObjectsInLocation.AddRange(inanimateObjectsInInventory);
-            if (inanimateObjectsInLocation.Count > 0)
+            currentInanimateObjects.AddRange(inanimateObjectsInInventory);
+            if (currentInanimateObjects.Count > 0)
             {
-                DisplayGamePlayScreen("Use Game Object", Text.GameObjectsChooseList(inanimateObjectsInLocation), ActionMenu.ObjectMenu, "");
+                DisplayGamePlayScreen("Use Game Object", Text.GameObjectsUseList(currentInanimateObjects), ActionMenu.ObjectMenu, "");
 
                 while (!validGameObjectId)
                 {
@@ -975,7 +990,7 @@ namespace TB_Quest
             }
             else
             {
-                DisplayGamePlayScreen("Pick Up Game Object", "It appears there are no game objects here.", ActionMenu.ObjectMenu, "");
+                DisplayGamePlayScreen("Use Game Object", "It appears there are no objects to use here.", ActionMenu.ObjectMenu, "");
             }
 
             return gameObjectId;

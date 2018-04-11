@@ -38,7 +38,9 @@ namespace TB_Quest
                     "While not a true menagerie, containing no living things or even preserved specimens, the master's magical menagerie is a good bit of alliteration.  " +
                     "So, you can take your semantics and shove them.  " +
                     "In front of you is the section of the menagerie that contains the things you are allowed to touch.",
-                GeneralContents = "Player swag coming in a future update",
+                GeneralContents = "You stand in front of a large table that contains the portion of your master's collection " +
+                    "that you are allowed to handle. You suspect that most of it is useless baubles and gadgets that the master only keeps to keep you " +
+                    "occupied and distract you from the urge to handle the good items.  There are a few potentially useful items on this table, though.",
                 IsAccessible = true,
                 AccessTo =  new List<int>(){ 1, 3 },
                 ExperiencePoints = 5

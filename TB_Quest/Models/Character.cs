@@ -71,15 +71,6 @@ namespace TB_Quest
             set { _race = value; }
         }
 
-        /// <summary>
-        /// the character's inventory
-        /// </summary>
-        public List<InanimateObject> Inventory
-        {
-            get { return _inventory; }
-            set { _inventory = value; }
-        }
-
         #endregion
 
         #region CONSTRUCTORS

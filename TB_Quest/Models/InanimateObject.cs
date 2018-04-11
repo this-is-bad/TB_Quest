@@ -19,7 +19,8 @@ namespace TB_Quest
         private string _putDownMessage;
         private string _itemUseMessage;
         private int _locationID;
-
+        private bool _isUsable;
+        private int _useCount;
         #endregion
 
         #region PROPERTIES
@@ -48,12 +49,30 @@ namespace TB_Quest
         }
 
         /// <summary>
-        /// is the InanimateObject consumable?
+        /// is the InanimateObject consumed when used
         /// </summary>
         public bool IsConsumable
         {
             get { return _isConsumable; }
             set { _isConsumable = value; }
+        }
+
+        /// <summary>
+        /// can the InanimateObject be used?
+        /// </summary>
+        public bool IsUsable
+        {
+            get { return _isUsable; }
+            set { _isUsable = value; }
+        }
+
+        /// <summary>
+        /// the number of times the InanimateObject can be used
+        /// </summary>
+        public int UseCount
+        {
+            get { return _value; }
+            set { _value = value; }
         }
 
         /// <summary>

@@ -158,7 +158,7 @@ namespace TB_Quest
                     { '1', PlayerAction.LookAt },
                     { '2', PlayerAction.PickUp },
                     { '3', PlayerAction.PutDown },
-                    //{ '4', PlayerAction.UseObject },
+                    { '4', PlayerAction.UseObject },
                     { '0', PlayerAction.ReturnMainMenu }
                 }
         };
