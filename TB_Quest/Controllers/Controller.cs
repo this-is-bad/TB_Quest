@@ -70,7 +70,7 @@ namespace TB_Quest
                 }
             }
 
-            Program.Setup = true; 
+            Program.Setup = true;
 
             Console.CursorVisible = false;
         }
@@ -131,7 +131,7 @@ namespace TB_Quest
                     // get next game action from player
                     //
                     playerActionChoice = GetNextPlayerAction();
-            
+
                     //
                     // choose an action based on the player's menu choice
                     //
@@ -224,7 +224,7 @@ namespace TB_Quest
 
                             _gameConsoleView.DisplayGamePlayScreen("Current Location",
                                 Text.CurrentLocationInfo(_currentLocation), (_gamePlayer.LocationID == 1 ? ActionMenu.PlayerSetup : ActionMenu.MainMenu), "");
-                              break;
+                            break;
 
                         case PlayerAction.Exit:
                             _playingGame = false;
@@ -265,7 +265,7 @@ namespace TB_Quest
             _gamePlayer.Age = 33;
             _gamePlayer.Race = Character.RaceType.Human;
             _gamePlayer.HomeVillage = "hoth";
-            _gamePlayer.LocationID = 1;           
+            _gamePlayer.LocationID = 1;
         }
 
         /// <summary>
@@ -463,39 +463,64 @@ namespace TB_Quest
             if (gameObject.GetType() == typeof(InanimateObject))
             {
                 InanimateObject inanimateObject = gameObject as InanimateObject;
-                switch (inanimateObject.InanimateObjType)
+
+                if (inanimateObject.IsUsable)
                 {
-                    case InanimateObjectType.Food:
-                        break;
-                    case InanimateObjectType.Medicine:
-                        _gamePlayer.Health += inanimateObject.Value;
+                    switch (inanimateObject.InanimateObjType)
+                    {
+                        case InanimateObjectType.Food:
+                            break;
+                        case InanimateObjectType.Medicine:
 
-                        //
-                        // add life if health greater than 100
-                        //
-                        if (_gamePlayer.Health >= 100)
-                        {
-                            _gamePlayer.Health = 100;
-                            _gamePlayer.Lives += 1;
-                        }
+                            _gamePlayer.Health += inanimateObject.Value;
 
-                        //
-                        // remove object from game
-                        //
-                        if (inanimateObject.IsConsumable)
-                        {
-                            inanimateObject.LocationID = -1;
-                        }
-                        break;
-                    case InanimateObjectType.Weapon:
-                        break;
-                    case InanimateObjectType.Treasure:
-                        break;
-                    case InanimateObjectType.Information:
-                        break;
-                    default:
-                        break;
+                            //
+                            // add life if health greater than 100
+                            //
+                            if (_gamePlayer.Health >= 100)
+                            {
+                                _gamePlayer.Health = 100;
+                                _gamePlayer.Lives += 1;
+                            }
 
+                            ////
+                            //// remove object from game
+                            ////
+
+                            //if (inanimateObject.IsConsumable)
+                            //{
+                            //    inanimateObject.LocationID = -1;
+                            //}
+
+                            break;
+                        case InanimateObjectType.Weapon:
+                            break;
+                        case InanimateObjectType.Treasure:
+                            break;
+                        case InanimateObjectType.Information:
+                            break;
+                        default:
+                            break;
+                    }
+
+                    SpecialUseCases(inanimateObject);
+
+                    //
+                    // recalculate number of uses
+                    // 
+                    inanimateObject.UseCount += (inanimateObject.IsUsable && inanimateObject.UseCount > 0 ? -1 : 0);
+
+                    //
+                    // remove object from the game if it is consumable and has 0 uses remaining
+                    //
+                    inanimateObject.LocationID = (inanimateObject.IsConsumable && inanimateObject.UseCount == 0 ? -1 : inanimateObject.LocationID);
+
+
+
+                    if (inanimateObject.LocationID == -1)
+                    {
+                        _gameConsoleView.DisplayConfirmInanimateObjectRemovedFromInventory(inanimateObject);
+                    }
                 }
             }
         }
@@ -563,6 +588,49 @@ namespace TB_Quest
                 // display information for the object chosen
                 //
                 _gameConsoleView.DisplayTalkTo(npc);
+            }
+        }
+
+        /// <summary>
+        /// decrement an InanimateObject's number of uses if it is usable and has multiple uses
+        /// </summary>
+        /// <param name="inanimateObject"></param>
+        /// <returns>int</returns>
+        private int CalculateNumberOfUses(InanimateObject inanimateObject)
+        {
+            int numberOfUses = (inanimateObject.IsUsable && inanimateObject.UseCount > 0 ? inanimateObject.UseCount - 1 : inanimateObject.UseCount);
+
+            return numberOfUses;
+        }
+
+        /// <summary>
+        /// a bad pun and a necessary evil to manage the usage of specific items in specific situations
+        /// </summary>
+        /// <param name="inanimateObject"></param>
+        private void SpecialUseCases(InanimateObject inanimateObject)
+        {
+            switch (inanimateObject.ObjectID)
+            {   
+                // magic wand
+                case 23:
+                    break;
+                // Professor Pluperfect's Primer Promoting Practical Panic
+                case 24:
+                    break;
+                // Portable Hole
+                case 25:
+                    break;
+                // Polymorph Potion
+                case 26:
+                    break;
+                // Teleportation Ring
+                case 27:
+                    break;
+                //Marble Statue
+                case 30:
+                    break;
+                default:
+                    break;
             }
         }
 

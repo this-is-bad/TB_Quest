@@ -38,8 +38,7 @@ namespace TB_Quest
                 Description = "This text can be found in the collection of any apprentice wizard.  " +
                               "It is a guide for how to survive, detailing the multitudinous situations " +
                               "in which apprentices should panic, and an exhaustive list of methods for " +
-                              "running away screaming and playing dead (sometimes both simultaneously)."
-                ,
+                              "running away screaming and playing dead (sometimes both simultaneously).",
                 CanInventory = true,
                 IsConsumable = false,
                 IsUsable = true,
@@ -101,7 +100,7 @@ namespace TB_Quest
                 ObjectID = 28
             },
 
-             new InanimateObject
+            new InanimateObject
             {
                 Name = "Gem-encrusted jewel",
                 InanimateObjType = InanimateObjectType.Treasure,
@@ -114,6 +113,21 @@ namespace TB_Quest
                 UseCount = -1,
                 LocationID = 5,
                 ObjectID = 29
+            },
+
+            new InanimateObject
+            {
+                Name = "Marble Statue",
+                InanimateObjType = InanimateObjectType.Other,
+                Description = "This is a 3-foot tall marble statue of a woman standing atop a weathered bronze disk.  " +
+                              "The statue's left arm extends, finger pointing, in same the direction the statue is facing.  " +
+                              "An inscription on the base of the statue reads \"This way to the exit\".",
+                CanInventory = false,
+                IsConsumable = false,
+                IsUsable = true,
+                UseCount = 1,
+                LocationID = 14,
+                ObjectID = 30
             }
 
         };
