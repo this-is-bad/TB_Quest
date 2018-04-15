@@ -25,7 +25,7 @@ namespace TB_Quest{
             "Your master is away and you have no way to contact him, so you " +
             "decide to face the dragon yourself.\n" +
             " \n" +
-            "Press the Esc key to exit the game at any point.\n" +
+            "Press the Esc key to exit the game.\n" +
             " \n" +
             "Your quest begins now.\n" +
             " \n" +

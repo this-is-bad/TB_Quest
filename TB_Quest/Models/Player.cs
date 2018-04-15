@@ -21,6 +21,7 @@ namespace TB_Quest
         private int _lives;
         private List<int> _locationsVisited;
         private bool _verboseGreeting;
+        private int _previousLocationId;
         #endregion
 
         #region PROPERTIES
@@ -61,6 +62,14 @@ namespace TB_Quest
             set { _verboseGreeting = value; }
         }
 
+        /// <summary>
+        /// the ID of the location the player visited prior to the current location
+        /// </summary>
+        public int PreviousLocationID
+        {
+            get { return _previousLocationId; }
+            set { _previousLocationId = value; }
+        }
         #endregion
 
         #region CONSTRUCTORS

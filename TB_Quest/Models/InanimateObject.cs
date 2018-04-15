@@ -21,6 +21,7 @@ namespace TB_Quest
         private int _locationID;
         private bool _isUsable;
         private int _useCount;
+        private int _availableUses;
         #endregion
 
         #region PROPERTIES
@@ -71,8 +72,17 @@ namespace TB_Quest
         /// </summary>
         public int UseCount
         {
-            get { return _value; }
-            set { _value = value; }
+            get { return _useCount; }
+            set {
+                    int i = _useCount;
+
+                    _useCount = value;
+
+                    if (value < i)
+                    {
+                        OnObjectUsed();
+                    }
+            }
         }
 
         /// <summary>

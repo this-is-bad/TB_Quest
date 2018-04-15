@@ -318,6 +318,40 @@ namespace TB_Quest
         }
 
         /// <summary>
+        /// determine if the inanimate object ID is a valid ID for the current location or the player's inventoryand return the result
+        /// </summary>
+        /// <param name="inanimateObjectId"></param>
+        /// <param name="currentLocationId"></param>
+        /// <returns>bool</returns>
+        public bool IsValidInanimateObjectByPlayerLocationId(int inanimateObjectId, int currentLocationId)
+        {
+            List<int> inanimateObjectIds = new List<int>();
+
+            //
+            // create a list of inanimate object IDs in the current location
+            //
+            foreach (GameObject gameObject in _gameObjects)
+            {
+                if ((gameObject.LocationID == currentLocationId | gameObject.LocationID == 0) && gameObject is InanimateObject)
+                {
+                    inanimateObjectIds.Add(gameObject.ObjectID);
+                }
+            }
+
+            //
+            // determine if the game object ID is a valid ID and return the result
+            //
+            if (inanimateObjectIds.Contains(inanimateObjectId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// get a GameObject that matches the ID passed to it
         /// </summary>
         /// <param name="iD"></param>

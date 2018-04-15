@@ -791,7 +791,7 @@ namespace TB_Quest
         /// </summary>
         public void DisplayInventory()
         {
-            List<InanimateObject> inventory = _gameUniverse.GetInanimateObjectsByLocationId(_gamePlayer.LocationID);
+            List<InanimateObject> inventory = _gameUniverse.GetInanimateObjectsByLocationId(0);
             DisplayGamePlayScreen("Current Inventory", Text.CurrentInventory(inventory), ActionMenu.PlayerMenu, "");
         }
 
@@ -818,7 +818,7 @@ namespace TB_Quest
                     //
                     // get an integer from the player
                     //
-                    GetInteger($"Enter the ID number of the object you wish to add to your inventory): ", 0, 0, out gameObjectId);
+                    GetInteger($"Enter the ID number of the object you wish to add to your inventory: ", 0, 0, out gameObjectId);
 
                     //
                     // validate integer as a valid game object ID and in the current location
@@ -885,7 +885,7 @@ namespace TB_Quest
         {
             int inanimateObjectId = 0;
             bool validInventoryObjectId = false;
-            List<InanimateObject> inventory = _gameUniverse.GetInanimateObjectsByLocationId(_gamePlayer.LocationID); 
+            List<InanimateObject> inventory = _gameUniverse.GetInanimateObjectsByLocationId(0); 
 
             if (inventory.Count > 0)
             {
@@ -896,7 +896,7 @@ namespace TB_Quest
                     //
                     // get an integer from the player
                     //
-                    GetInteger($"Enter the ID number of the object you wish to remove from your inventory): ", 0, 0, out inanimateObjectId);
+                    GetInteger($"Enter the ID number of the object you wish to remove from your inventory: ", 0, 0, out inanimateObjectId);
 
                     //
                     // find object in inventory
@@ -961,15 +961,15 @@ namespace TB_Quest
                     //
                     // get an integer from the player
                     //
-                    GetInteger($"Enter the ID number of the object you wish to use): ", 0, 0, out gameObjectId);
+                    GetInteger($"Enter the ID number of the object you wish to use: ", 0, 0, out gameObjectId);
 //need to change validation to work on player inventory
                     //
                     // validate integer as a valid game object ID and in the current location
                     //
-                    if (_gameUniverse.IsValidInanimateObjectByLocationId(gameObjectId, _gamePlayer.LocationID))
+                    if (_gameUniverse.IsValidInanimateObjectByPlayerLocationId(gameObjectId, _gamePlayer.LocationID))
                     {
                         InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(gameObjectId) as InanimateObject;
-                        if (inanimateObject.CanInventory)
+                        if (inanimateObject.IsUsable)
                         {
                             validGameObjectId = true;
                         }
@@ -977,7 +977,7 @@ namespace TB_Quest
                         {
                             ClearInputBox();
 
-                            DisplayInputErrorMessage("It appears you may not inventory that object.  Please try again.");
+                            DisplayInputErrorMessage("It appears you may not use that object.  Please try again.");
                         }
                     }
                     else
@@ -1076,6 +1076,14 @@ namespace TB_Quest
             }
 
             DisplayGamePlayScreen("Speak to Character", message, ActionMenu.NpcMenu, "");
+        }
+
+        public void DisplayInvalidTeleport()
+        {
+            DisplayInputErrorMessage("You may not teleport to another location inside the wizard's tower.");
+
+            //DisplayGamePlayScreen("Current Location",
+            //    Text.CurrentLocationInfo(_currentLocation), (_gamePlayer.LocationID == 1 ? ActionMenu.PlayerSetup : ActionMenu.MainMenu), "");
         }
 
         #endregion

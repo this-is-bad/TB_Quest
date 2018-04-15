@@ -220,10 +220,7 @@ namespace TB_Quest
                             //
                             // set the game play screen to the current location info format
                             //
-                            ActionMenu.currentMenu = (_gamePlayer.LocationID == 1 ? ActionMenu.CurrentMenu.PlayerSetup : ActionMenu.CurrentMenu.MainMenu);
-
-                            _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                                Text.CurrentLocationInfo(_currentLocation), (_gamePlayer.LocationID == 1 ? ActionMenu.PlayerSetup : ActionMenu.MainMenu), "");
+                            UpdateLocation();
                             break;
 
                         case PlayerAction.Exit:
@@ -252,6 +249,7 @@ namespace TB_Quest
             //_gamePlayer.Race = player.Race;
             //_gamePlayer.HomeVillage = player.HomeVillage;
             //_gamePlayer.LocationID = 1;
+            //_gamePlayer.PreviousLocationID = 1;
             //Player player = new Player();
 
 
@@ -387,14 +385,9 @@ namespace TB_Quest
                 InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(inanimateObjectToPickUpId) as InanimateObject;
 
                 //
-                // note: inanimate object is added to the list and the location is set to 0
+                // note: inanimate object usage count is decremented
                 //               
-                inanimateObject.LocationID = 0;
-
-                //
-                // display confirmation message
-                //
-                _gameConsoleView.DisplayConfirmInanimateObjectUsed(inanimateObject);
+                inanimateObject.UseCount--;
             }
         }
 
@@ -482,16 +475,6 @@ namespace TB_Quest
                                 _gamePlayer.Health = 100;
                                 _gamePlayer.Lives += 1;
                             }
-
-                            ////
-                            //// remove object from game
-                            ////
-
-                            //if (inanimateObject.IsConsumable)
-                            //{
-                            //    inanimateObject.LocationID = -1;
-                            //}
-
                             break;
                         case InanimateObjectType.Weapon:
                             break;
@@ -503,8 +486,6 @@ namespace TB_Quest
                             break;
                     }
 
-                    SpecialUseCases(inanimateObject);
-
                     //
                     // recalculate number of uses
                     // 
@@ -515,12 +496,17 @@ namespace TB_Quest
                     //
                     inanimateObject.LocationID = (inanimateObject.IsConsumable && inanimateObject.UseCount == 0 ? -1 : inanimateObject.LocationID);
 
-
-
                     if (inanimateObject.LocationID == -1)
                     {
                         _gameConsoleView.DisplayConfirmInanimateObjectRemovedFromInventory(inanimateObject);
                     }
+
+                    //
+                    // display confirmation message
+                    //
+                    _gameConsoleView.DisplayConfirmInanimateObjectUsed(inanimateObject);
+
+                    SpecialUseCases(inanimateObject);
                 }
             }
         }
@@ -625,6 +611,7 @@ namespace TB_Quest
                     break;
                 // Teleportation Ring
                 case 27:
+                    TeleportPlayer();
                     break;
                 //Marble Statue
                 case 30:
@@ -632,6 +619,41 @@ namespace TB_Quest
                 default:
                     break;
             }
+        }
+
+        /// <summary>
+        /// move the player between the wizard's tower and an outside location
+        /// </summary>
+        private void TeleportPlayer()
+        {
+            if (_currentLocation.LocationID > 3)
+            {
+                _gamePlayer.PreviousLocationID = _currentLocation.LocationID;
+                _gamePlayer.LocationID = 3;
+                _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+            }
+            else if (_currentLocation.LocationID < 4 && _gamePlayer.PreviousLocationID > 3)
+            {
+                _gamePlayer.LocationID = _gamePlayer.PreviousLocationID;
+                _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+            }
+            else
+            {
+                _gameConsoleView.DisplayInvalidTeleport();
+            }
+
+            UpdateLocation();
+        }
+        
+        /// <summary>
+        /// update the player's location
+        /// </summary>
+        private void UpdateLocation()
+        {
+            ActionMenu.currentMenu = (_gamePlayer.LocationID == 1 ? ActionMenu.CurrentMenu.PlayerSetup : ActionMenu.CurrentMenu.MainMenu);
+
+            _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                Text.CurrentLocationInfo(_currentLocation), (_gamePlayer.LocationID == 1 ? ActionMenu.PlayerSetup : ActionMenu.MainMenu), "");
         }
 
         #endregion

@@ -50,7 +50,7 @@ namespace TB_Quest
             {
                 Name = "Portable Hole",
                 InanimateObjType = InanimateObjectType.Item,
-                Description = "A literal hole in space that can be picked, carried, and placed.  " +
+                Description = "A literal hole in space that can be picked up, carried, and placed.  " +
                               "The portable hole is about 20 inches in diameter and can be folded or rolled.",
                 CanInventory = true,
                 IsConsumable = false,
@@ -82,7 +82,7 @@ namespace TB_Quest
                 IsConsumable = false,
                 IsUsable = true,
                 UseCount = 0,
-                LocationID = 2,
+                LocationID = 0, //2,
                 ObjectID = 27
             },
 
@@ -91,12 +91,12 @@ namespace TB_Quest
                 Name = "Healing Potion",
                 InanimateObjType = InanimateObjectType.Medicine,
                 Description = "A potion that restores your health.",
-                PickUpMessage = "The healing potion has been consumed.",
+                Value = 40,
                 CanInventory = true,
                 IsConsumable = true,
                 IsUsable = true,
                 UseCount = 1,
-                LocationID = 8,
+                LocationID = 0, //8,
                 ObjectID = 28
             },
 
@@ -110,7 +110,7 @@ namespace TB_Quest
                 CanInventory = true,
                 IsConsumable = false,
                 IsUsable = false,
-                UseCount = -1,
+                UseCount = 0,
                 LocationID = 5,
                 ObjectID = 29
             },
