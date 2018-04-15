@@ -82,7 +82,7 @@ namespace TB_Quest
                 IsConsumable = false,
                 IsUsable = true,
                 UseCount = 0,
-                LocationID = 0, //2,
+                LocationID = 2,
                 ObjectID = 27
             },
 
@@ -96,7 +96,7 @@ namespace TB_Quest
                 IsConsumable = true,
                 IsUsable = true,
                 UseCount = 1,
-                LocationID = 0, //8,
+                LocationID = 8,
                 ObjectID = 28
             },
 

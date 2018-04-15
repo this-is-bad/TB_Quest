@@ -595,6 +595,8 @@ namespace TB_Quest
         /// <param name="inanimateObject"></param>
         private void SpecialUseCases(InanimateObject inanimateObject)
         {
+            NPC npc;
+
             switch (inanimateObject.ObjectID)
             {   
                 // magic wand
@@ -605,16 +607,90 @@ namespace TB_Quest
                     break;
                 // Portable Hole
                 case 25:
+
+                    switch (_currentLocation.LocationID)
+                    {
+                        case 4:
+                            npc = _gameUniverse.GetNpcById(1);
+
+                            _currentLocation.Description = $"Pulling the portable hole out of your pocket, you throw it at the {npc.Name}.  " + 
+                                $"But, the {npc.Name} casually steps to the side, dodging the portable hole which falls to the ground.  " +
+                                $"You will have to find some other way to defeat the {npc.Name}";
+
+                            UpdateLocation();
+
+
+
+                            break;
+                        case 18:
+
+                            break;
+                        default:
+                            break;
+                    }
                     break;
                 // Polymorph Potion
                 case 26:
+                    switch (_currentLocation.LocationID)
+                    {
+                        case 4:
+                            npc = _gameUniverse.GetNpcById(1);
+
+                            _currentLocation.Description = $"With a clever bit of misdirection, you furtively draw out the polymorph potion " + 
+                                $"and cast it at the {npc.Name}.  The potion bottle strikes the {npc.Name} and shatters.  The {npc.Name} " +
+                                "is transformed into a menu.";
+
+                            _currentLocation.GeneralContents = "In front of you stands the Long Wall, measuring 15 feet high and hundreds of miles long.  But, your path does not end here.  " +
+                                "It continues through an opening in the wall, beyond which lies the Magic Hedge Maze.  In front of the opening, a menu blocks " +
+                                "your path.  The menu looks determined to stay there.  You could use magic to scale the Wall but the need to enforce a narrative prevents " +
+                                "you from doing so.  You will have to find a way through the opening.";
+
+                            UpdateLocation();
+
+                            _currentLocation.Description = "You have traveled many weeks and faced many trials to get here.  You crossed the Pits of Evil Fire.  " +
+                                 "Then, you crossed the Evil Pits of Fire.  You out-styled Cliff the Conjurer in a bare-knuckled contest of coiffure-mancy.  " +
+                                 "You scaled the Cliffs (no relation) of Modest Scalability.  You perservered through Hodeg's " +
+                                 "Valley of Cute Puppies and Cuddly Kittens.  You survived the interminable boredom " +
+                                 "of the Featureless Plains.  You waded through the Swamp of the Indifferent Gators.  " +
+                                 "You cavorted across the sea on a pirate party cruise.  You braved the many perils of the Perilous Path.  " +
+                                 "You bested Cludar the Fleet-Footed in an Indecision Dance-off.  You did some other stuff too.  And, finally, you " +
+                                 "have reached a wall.";
+                            break;
+                default:
                     break;
+            }
+            break;
                 // Teleportation Ring
                 case 27:
                     TeleportPlayer();
                     break;
                 //Marble Statue
                 case 30:
+                    _currentLocation.Description = "On a hunch, you try to move the statue and discover that it rotates on the " +
+                        "pedestal.  You turn the statue so that it points to the opening where the basset hound is sitting.  With " +
+                        "a wink, the basset hound says \"You found the exit\".  Exuding an aura of arcane energy more powerful than " +
+                        "anything you have ever witnessed, the basset hound vanishes as purple lightning arcs out from the place he " +
+                        "stood.  The way is now open to you.";
+
+                    inanimateObject.IsUsable = false;
+
+                    UpdateLocation();
+
+                    _currentLocation.Description = "In the middle of this room, a marble statue stands on a pedestal.  " +
+                        "There is an opening in the south wall of the room, beyond which lies a dull, red lake.";
+
+                    _currentLocation.GeneralContents = "The statue, a life-size figure of a robed woman, points to the " +
+                        "opening in the south wall of the room.  A plaque at the base of the statue that reads \"This way to " +
+                                  "the exit\".";
+
+                    npc = _gameUniverse.GetNpcById(2);
+
+                    npc.LocationID = -1;
+
+                    Location location = _gameUniverse.GetLocationById(17);
+
+                    location.IsAccessible = true;
+
                     break;
                 default:
                     break;

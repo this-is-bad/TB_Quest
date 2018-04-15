@@ -809,6 +809,16 @@ namespace TB_Quest
             //
             List<InanimateObject> inanimateObjectsInLocation = _gameUniverse.GetInanimateObjectsByLocationId(_gamePlayer.LocationID);
 
+            foreach (InanimateObject inanimateObject in inanimateObjectsInLocation.ToList())
+            {
+                if (!inanimateObject.CanInventory)
+                {
+                    inanimateObjectsInLocation.Remove(inanimateObject);
+                }
+            }
+
+            //inanimateObjectsInLocation.ForEach(x => { if (!x.CanInventory) inanimateObjectsInLocation.Remove(x); });
+
             if (inanimateObjectsInLocation.Count > 0)
             {
                 DisplayGamePlayScreen("Pick Up Game Object", Text.GameObjectsChooseList(inanimateObjectsInLocation), ActionMenu.ObjectMenu, "");
@@ -847,7 +857,7 @@ namespace TB_Quest
             }
             else
             {
-                DisplayGamePlayScreen("Pick Up Game Object", "It appears there are no game objects here.", ActionMenu.ObjectMenu, "");
+                DisplayGamePlayScreen("Pick Up Game Object", "It appears there are no game objects that can be picked up here.", ActionMenu.ObjectMenu, "");
             }
            
             return gameObjectId;
@@ -872,9 +882,12 @@ namespace TB_Quest
         public void DisplayConfirmInanimateObjectUsed(InanimateObject objectAddedToInventory)
         {
 
-            string msg = (objectAddedToInventory.PickUpMessage ?? $"The {objectAddedToInventory.Name} has been used.");
+            string msg = (objectAddedToInventory.PickUpMessage ?? $"The {objectAddedToInventory.Name} has been used.  " +
+                "Press any key to continue.");
 
             DisplayGamePlayScreen("Use Game Object", msg, ActionMenu.ObjectMenu, "");
+
+            Console.ReadKey();
         }
 
         /// <summary>
@@ -952,9 +965,17 @@ namespace TB_Quest
             List<InanimateObject> currentInanimateObjects = _gameUniverse.GetInanimateObjectsByLocationId(_gamePlayer.LocationID);
             List<InanimateObject> inanimateObjectsInInventory = _gameUniverse.PlayerInventory();
             currentInanimateObjects.AddRange(inanimateObjectsInInventory);
+            
+            //
+            // remove inanimate objects that cannot be used
+            //
+            currentInanimateObjects.RemoveAll(inanimateObject => !inanimateObject.IsUsable);
+
             if (currentInanimateObjects.Count > 0)
             {
-                DisplayGamePlayScreen("Use Game Object", Text.GameObjectsUseList(currentInanimateObjects), ActionMenu.ObjectMenu, "");
+                List<InanimateObject> sortedInanimateObjectList = currentInanimateObjects.OrderBy(x => x.Name).ToList();
+
+                DisplayGamePlayScreen("Use Game Object", Text.GameObjectsUseList(sortedInanimateObjectList), ActionMenu.ObjectMenu, "");
 
                 while (!validGameObjectId)
                 {
@@ -962,7 +983,7 @@ namespace TB_Quest
                     // get an integer from the player
                     //
                     GetInteger($"Enter the ID number of the object you wish to use: ", 0, 0, out gameObjectId);
-//need to change validation to work on player inventory
+
                     //
                     // validate integer as a valid game object ID and in the current location
                     //
@@ -1080,10 +1101,10 @@ namespace TB_Quest
 
         public void DisplayInvalidTeleport()
         {
-            DisplayInputErrorMessage("You may not teleport to another location inside the wizard's tower.");
+            DisplayInputErrorMessage("You may not teleport to another location inside the wizard's tower." + 
+                "Press any key to continue.");
 
-            //DisplayGamePlayScreen("Current Location",
-            //    Text.CurrentLocationInfo(_currentLocation), (_gamePlayer.LocationID == 1 ? ActionMenu.PlayerSetup : ActionMenu.MainMenu), "");
+            Console.ReadKey();
         }
 
         #endregion

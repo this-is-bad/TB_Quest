@@ -117,7 +117,7 @@ namespace TB_Quest
                                   "The ground is covered in soft, spongy moss.  The air is thick with the smell of plant life.  " +
                                   "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
                                   "foliage.",
-                IsAccessible = true, // false,
+                IsAccessible = false,
                 AccessTo =  new List<int>(){ 4, 5, 7 },
                 ExperiencePoints = 10
             },
@@ -258,7 +258,9 @@ namespace TB_Quest
                 GeneralContents = "As you approach the basset hound, it speaks to you.  Standing in front of the opening, " +
                                   "he says \"You can't pass until you find the exit.\" \n" +
                                   " \n " +
-                                  "Looking around you notice a plaque at the base of the statue that reads \"This way to " +
+                                  "Obviously, the exit appears to be behind the basset hound, but he's not going to let " +
+                                  "you pass until you solve his riddle.  " +
+                                  "Looking around, you notice a plaque at the base of the statue that reads \"This way to " +
                                   "the exit\".  The statue, a life-size figure of a robed woman, points to the west wall of " +
                                   "the room where there appears to be no exit.",
                 IsAccessible = true,
@@ -318,7 +320,7 @@ namespace TB_Quest
                               "In the middle of the lake, lies your next destination: a small island.  In the middle " +
                               "this island, a stairway descends into the ground.",
                 GeneralContents = "You see no way to get across the lake of acid.  Perhaps something in your inventory might be of use.",
-                IsAccessible = true, // false,
+                IsAccessible = false,
                 AccessTo =  new List<int>(){ 14, 18 },
                 ExperiencePoints = 20
             },

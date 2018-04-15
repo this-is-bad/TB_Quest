@@ -15,9 +15,7 @@ namespace TB_Quest
         private List<GameObject> _gameObjects;
 
         private List<Location> _locations;
-
-        private List<InanimateObject> _playerInventory;
-
+        
         //
         // list of all non-player characters
         //
@@ -469,6 +467,31 @@ namespace TB_Quest
             }
             return inanimateObjects;
         }
+
+        /// <summary>
+        /// returns a list of inanimate objects that can be added to inventory in the specified location
+        /// </summary>
+        /// <param name="locationId"></param>
+        /// <returns>List<InanimateObject></returns>
+        //public List<InanimateObject> GetInventoriableInanimateObjectsByLocationId(int locationId)
+        //{
+        //    List<InanimateObject> inanimateObjects = new List<InanimateObject>();
+
+        //    //
+        //    // run through the game object list and get all objects that are in the current location
+        //    //
+        //    foreach (GameObject gameObject in _gameObjects)
+        //    {
+        //        if (gameObject.LocationID == locationId && gameObject is InanimateObject)
+        //        {
+        //            if (gameObject as InanimateObject)
+        //            {
+        //                inanimateObjects.Add(gameObject as InanimateObject);
+        //            }
+        //        }
+        //    }
+        //    return inanimateObjects;
+        //}
 
         /// <summary>
         /// returns a list of objects in the player's inventory

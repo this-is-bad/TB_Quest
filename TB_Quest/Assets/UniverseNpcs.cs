@@ -18,7 +18,7 @@ namespace TB_Quest
             new Opponent
             {
                 Id = 1,
-                Name = "Evil? Player",
+                Name = "Evil? Wizard",
                 LocationID = 4,
                 ObjectID = 1,
                 Description = "A mysterious cloaked figure.",
