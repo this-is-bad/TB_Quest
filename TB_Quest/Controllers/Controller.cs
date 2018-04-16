@@ -397,17 +397,18 @@ namespace TB_Quest
             //
             // display a list of inanimate objects in the location and the player's inventory and get a choice
             //
-            int inanimateObjectToPickUpId = _gameConsoleView.DisplayGetInanimateObjectToUse();
+            int inanimateObjectToUseId = _gameConsoleView.DisplayGetInanimateObjectToUse();
 
             //
             // use the inanimate object
             //
-            if (inanimateObjectToPickUpId != 0)
+
+            if (inanimateObjectToUseId != 0)
             {
                 //
                 // get the game object from the universe
                 //
-                InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(inanimateObjectToPickUpId) as InanimateObject;
+                InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(inanimateObjectToUseId) as InanimateObject;
 
                 //
                 // note: inanimate object usage count is decremented
@@ -641,6 +642,8 @@ namespace TB_Quest
                         case 4:
                             npc = _gameUniverse.GetNpcById(1);
 
+                            inanimateObject.LocationID = _currentLocation.LocationID;
+
                             _currentLocation.Description = $"Pulling the portable hole out of your pocket, you throw it at the {npc.Name}.  " + 
                                 $"But, the {npc.Name} casually steps to the side, dodging the portable hole which falls to the ground.  " +
                                 $"You will have to find some other way to defeat the {npc.Name}";
@@ -664,7 +667,7 @@ namespace TB_Quest
                         case 4:
                             npc = _gameUniverse.GetNpcById(1);
 
-                            inanimateObject.LocationID = _currentLocation.LocationID;
+                            inanimateObject.LocationID = -1;
 
                             _currentLocation.Description = $"With a clever bit of misdirection, you furtively draw out the polymorph potion " + 
                                 $"and cast it at the {npc.Name}.  The potion bottle strikes the {npc.Name} and shatters.  The {npc.Name} " +
