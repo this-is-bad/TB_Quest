@@ -74,7 +74,7 @@ namespace TB_Quest
                               "of the Featureless Plains.  You waded through the Swamp of the Indifferent Gators.  " +
                               "You cavorted across the sea on a pirate party cruise.  You braved the many perils of the Perilous Path.  " +
                               "You bested Cludar the Fleet-Footed in an Indecision Dance-off.  You did some other stuff too.  And, finally, you " +
-                              "have reached a wall.",
+                              "have reached... a wall.",
                 GeneralContents = "In front of you stands the Long Wall, measuring 15 feet high and hundreds of miles long.  But, your path does not end here.  " +
                                   "It continues through an opening in the wall, beyond which lies the Magic Hedge Maze.  In front of the opening, a wizard blocks " +
                                   "your path.  He looks determined to stay there.  You could use magic to scale the Wall but the need to enforce a narrative prevents " +

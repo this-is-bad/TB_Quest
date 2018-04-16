@@ -14,6 +14,7 @@ namespace TB_Quest
         public enum CurrentMenu
         {
             QuestIntro,
+            WizardMenu,
             InitializeQuest,
             MainMenu,
             ObjectMenu,
@@ -166,6 +167,19 @@ namespace TB_Quest
                 }
         };
 
+        /// <summary>
+        ///  menu for the Evil? Wizard
+        /// </summary>
+        public static Menu WizardMenu = new Menu()
+        {
+            MenuName = "WizardMenu",
+            MenuTitle = "Evil? Wizard",
+            MenuChoices = new Dictionary<char, PlayerAction>()
+                {
+                    { '1', PlayerAction.TalkTo },
+                    { '0', PlayerAction.WizardExit }
+                }
+        };
 
         #region METHODS
 

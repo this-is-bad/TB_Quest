@@ -222,7 +222,32 @@ namespace TB_Quest
                             //
                             UpdateLocation();
                             break;
+                        case PlayerAction.WizardExit:
 
+                            NPC npc = _gameUniverse.GetNpcById(1);
+                            npc.LocationID = -1;
+
+                            Location location = _gameUniverse.GetLocationByLocationID(6);
+                            location.IsAccessible = true;
+
+                            if (_currentLocation.LocationID == 4)
+                            {
+                                _currentLocation.Description = $"The {npc.Name} Menu exits the game.  The entrance into the Magical " +
+                                    "Hedge Maze is now accessible.";
+
+                                UpdateLocation();
+
+                                _currentLocation.Description = "Here you are, at the entrance to the Magical Hedge Maze.  Look, " +
+                                    "I know you did a lot of things to get here but I've got better ways to spend my time than " +
+                                    "narrating the litany of your mediocre achievements.  Just take satisfaction in knowing you " +
+                                    "got here.";
+
+                                _currentLocation.GeneralContents = "In front of you stands the Long Wall, measuring 15 feet high and hundreds of miles long.  But, your path does not end here.  " +
+                                  "It continues through an opening in the wall, beyond which lies the Magic Hedge Maze.";
+                            }
+                            
+
+                            break;
                         case PlayerAction.Exit:
                             _playingGame = false;
                             break;
@@ -544,6 +569,9 @@ namespace TB_Quest
                 case ActionMenu.CurrentMenu.AdminMenu:
                     playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.AdminMenu);
                     break;
+                case ActionMenu.CurrentMenu.WizardMenu:
+                    playerActionChoice = _gameConsoleView.GetActionMenuChoice(ActionMenu.WizardMenu);
+                    break;
                 default: break;
             }
 
@@ -636,6 +664,8 @@ namespace TB_Quest
                         case 4:
                             npc = _gameUniverse.GetNpcById(1);
 
+                            inanimateObject.LocationID = _currentLocation.LocationID;
+
                             _currentLocation.Description = $"With a clever bit of misdirection, you furtively draw out the polymorph potion " + 
                                 $"and cast it at the {npc.Name}.  The potion bottle strikes the {npc.Name} and shatters.  The {npc.Name} " +
                                 "is transformed into a menu.";
@@ -655,6 +685,9 @@ namespace TB_Quest
                                  "You cavorted across the sea on a pirate party cruise.  You braved the many perils of the Perilous Path.  " +
                                  "You bested Cludar the Fleet-Footed in an Indecision Dance-off.  You did some other stuff too.  And, finally, you " +
                                  "have reached a wall.";
+
+                            inanimateObject.ItemUseMessage = "This appears to have no use here.";
+
                             break;
                 default:
                     break;
@@ -726,10 +759,43 @@ namespace TB_Quest
         /// </summary>
         private void UpdateLocation()
         {
-            ActionMenu.currentMenu = (_gamePlayer.LocationID == 1 ? ActionMenu.CurrentMenu.PlayerSetup : ActionMenu.CurrentMenu.MainMenu);
+            switch (_currentLocation.LocationID)
+            {
+                case 1:
+                    ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerSetup;
 
-            _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                Text.CurrentLocationInfo(_currentLocation), (_gamePlayer.LocationID == 1 ? ActionMenu.PlayerSetup : ActionMenu.MainMenu), "");
+                    _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                        Text.CurrentLocationInfo(_currentLocation), ActionMenu.PlayerSetup, "");
+                    break;
+
+                case 4:
+                    GameObject gameObject = _gameUniverse.GetGameObjectById(26);
+
+
+                    NPC npc = _gameUniverse.GetNpcById(1);
+
+                    if (gameObject.LocationID == -1 && npc.LocationID != -1)
+                    {
+                        ActionMenu.currentMenu = ActionMenu.CurrentMenu.WizardMenu;
+
+                        _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                            Text.CurrentLocationInfo(_currentLocation), ActionMenu.WizardMenu, "");
+                    }
+                    else
+                    {
+                        ActionMenu.currentMenu = ActionMenu.CurrentMenu.MainMenu;
+
+                        _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                            Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
+                    }
+                    break;
+                default:
+                    ActionMenu.currentMenu = ActionMenu.CurrentMenu.MainMenu;
+
+                    _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                        Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
+                    break;
+            }
         }
 
         #endregion

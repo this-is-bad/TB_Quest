@@ -39,6 +39,8 @@ namespace TB_Quest
         ListNonPlayerCharacters,
 
         ReturnMainMenu,
-        Exit
+        Exit,
+
+        WizardExit
     }
 }

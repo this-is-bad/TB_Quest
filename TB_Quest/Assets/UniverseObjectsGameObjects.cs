@@ -66,7 +66,7 @@ namespace TB_Quest
                 InanimateObjType = InanimateObjectType.Item,
                 Description = "A mysterious potion with many swirling colors.",
                 CanInventory = true,
-                IsConsumable = false,
+                IsConsumable = true,
                 IsUsable = true,
                 UseCount = 1,
                 LocationID = 2,

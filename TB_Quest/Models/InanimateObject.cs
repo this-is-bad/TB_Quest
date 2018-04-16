@@ -21,7 +21,6 @@ namespace TB_Quest
         private int _locationID;
         private bool _isUsable;
         private int _useCount;
-        private int _availableUses;
         #endregion
 
         #region PROPERTIES
