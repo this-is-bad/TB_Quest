@@ -888,6 +888,8 @@ namespace TB_Quest
             DisplayGamePlayScreen("Use Game Object", msg, ActionMenu.ObjectMenu, "");
 
             Console.ReadKey();
+
+            DisplayGamePlayScreen("Object Menu", "Select an action from the menu", ActionMenu.ObjectMenu, "");
         }
 
         /// <summary>
@@ -992,7 +994,16 @@ namespace TB_Quest
                         InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(gameObjectId) as InanimateObject;
                         if (inanimateObject.IsUsable)
                         {
-                            validGameObjectId = true;
+                            if (inanimateObject.EffectiveLocations.Contains(0) || inanimateObject.EffectiveLocations.Contains(_gamePlayer.LocationID))
+                            {
+                                validGameObjectId = true;
+                            }
+                            else
+                            {
+                                ClearInputBox();
+
+                                DisplayInputErrorMessage("This item is not effective here.  Try using it somewhere else.");
+                            }
                         }
                         else
                         {

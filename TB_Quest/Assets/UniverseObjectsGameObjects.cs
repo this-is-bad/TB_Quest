@@ -29,7 +29,8 @@ namespace TB_Quest
                 IsUsable = true,
                 UseCount = 0,
                 LocationID = 0,
-                ObjectID = 23
+                ObjectID = 23,
+                EffectiveLocations = new List<int>() { 0 }
             },
             new InanimateObject
             {
@@ -44,7 +45,8 @@ namespace TB_Quest
                 IsUsable = true,
                 UseCount = 0,
                 LocationID = 0,
-                ObjectID = 24
+                ObjectID = 24,
+                EffectiveLocations = new List<int>() { 0 }
             },
             new InanimateObject
             {
@@ -57,7 +59,8 @@ namespace TB_Quest
                 IsUsable = true,
                 UseCount = 0,
                 LocationID = 2,
-                ObjectID = 25
+                ObjectID = 25,
+                EffectiveLocations = new List<int>() { 4, 17, 18 }
             },
 
             new InanimateObject
@@ -70,7 +73,9 @@ namespace TB_Quest
                 IsUsable = true,
                 UseCount = 1,
                 LocationID = 2,
-                ObjectID = 26
+                ObjectID = 26,
+                EffectiveLocations = new List<int>() { 4 }
+                
             },
 
             new InanimateObject
@@ -83,7 +88,8 @@ namespace TB_Quest
                 IsUsable = true,
                 UseCount = 0,
                 LocationID = 2,
-                ObjectID = 27
+                ObjectID = 27,
+                EffectiveLocations = new List<int>() { 0 }
             },
 
             new InanimateObject
@@ -97,7 +103,8 @@ namespace TB_Quest
                 IsUsable = true,
                 UseCount = 1,
                 LocationID = 8,
-                ObjectID = 28
+                ObjectID = 28,
+                EffectiveLocations = new List<int>() { 0 }
             },
 
             new InanimateObject
@@ -112,7 +119,8 @@ namespace TB_Quest
                 IsUsable = false,
                 UseCount = 0,
                 LocationID = 5,
-                ObjectID = 29
+                ObjectID = 29,
+                EffectiveLocations = new List<int>() { 0 }
             },
 
             new InanimateObject
@@ -127,7 +135,8 @@ namespace TB_Quest
                 IsUsable = true,
                 UseCount = 1,
                 LocationID = 14,
-                ObjectID = 30
+                ObjectID = 30,
+                EffectiveLocations = new List<int>() { 0 }
             }
 
         };

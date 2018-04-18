@@ -21,6 +21,9 @@ namespace TB_Quest
         private int _locationID;
         private bool _isUsable;
         private int _useCount;
+        private List<int> _effectiveLocations;
+        private bool _transferOnUse;
+
         #endregion
 
         #region PROPERTIES
@@ -143,7 +146,25 @@ namespace TB_Quest
                 }
             }
         }
-   
+
+        /// <summary>
+        /// locations that the item is effective in
+        /// </summary>
+        public List<int> EffectiveLocations
+        {
+            get { return _effectiveLocations; }
+            set { _effectiveLocations = value; }
+        }
+
+        /// <summary>
+        /// does the item leave the player's inventory on use
+        /// </summary>
+        public bool TransferOnUse
+        {
+            get { return _transferOnUse; }
+            set { _transferOnUse = value; }
+        }
+
         #endregion
 
         #region CONSTRUCTORS

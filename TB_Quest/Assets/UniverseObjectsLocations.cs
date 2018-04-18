@@ -25,7 +25,7 @@ namespace TB_Quest
                 "and a small wardrobe -- an appropriate room for an apprentice.\n",
                 GeneralContents = "There's nothing of interest in this room, you included.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 2 },
+                AccessTo = new List<int>(){ 2 },
                 ExperiencePoints = 10
             },
 
@@ -42,7 +42,7 @@ namespace TB_Quest
                     "that you are allowed to handle. You suspect that most of it is useless baubles and gadgets that the master only keeps to keep you " +
                     "occupied and distract you from the urge to handle the good items.  There are a few potentially useful items on this table, though.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 1, 3 },
+                AccessTo = new List<int>(){ 1, 3 },
                 ExperiencePoints = 5
             },
 
@@ -58,7 +58,7 @@ namespace TB_Quest
                 GeneralContents = "Taking a look around before you set out on your adventure, you notice that this hallway is significantly safer than what waits " +
                                   "for you on the other side of the door.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 2, 4 },
+                AccessTo = new List<int>(){ 2, 4 },
                 ExperiencePoints = 5
             },
 
@@ -80,7 +80,7 @@ namespace TB_Quest
                                   "your path.  He looks determined to stay there.  You could use magic to scale the Wall but the need to enforce a narrative prevents " +
                                   "you from doing so.  You will have to find a way through the opening.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 3, 6 },
+                AccessTo = new List<int>(){ 3, 6 },
                 ExperiencePoints = 10
             },
 
@@ -101,7 +101,7 @@ namespace TB_Quest
                                   "foliage.",
                 IsAccessible = true,
 
-                AccessTo =  new List<int>(){ 6, 9 },
+                AccessTo = new List<int>(){ 6, 9 },
                 ExperiencePoints = 10
             },
 
@@ -118,7 +118,7 @@ namespace TB_Quest
                                   "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
                                   "foliage.",
                 IsAccessible = false,
-                AccessTo =  new List<int>(){ 4, 5, 7 },
+                AccessTo = new List<int>(){ 4, 5, 7 },
                 ExperiencePoints = 10
             },
 
@@ -136,7 +136,7 @@ namespace TB_Quest
                                   "foliage.",
                 IsAccessible = 
                 true,
-                AccessTo =  new List<int>(){ 6, 8, 11 },
+                AccessTo = new List<int>(){ 6, 8, 11 },
                 ExperiencePoints = 10
             },
 
@@ -153,7 +153,7 @@ namespace TB_Quest
                                   "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
                                   "foliage.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 7 },
+                AccessTo = new List<int>(){ 7 },
                 ExperiencePoints = -10
             },
 
@@ -170,7 +170,7 @@ namespace TB_Quest
                                   "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
                                   "foliage.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 5, 10, 13 },
+                AccessTo = new List<int>(){ 5, 10, 13 },
                 ExperiencePoints = 10
             },
 
@@ -187,7 +187,7 @@ namespace TB_Quest
                                   "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
                                   "foliage.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 9, 14 },
+                AccessTo = new List<int>(){ 9, 14 },
                 ExperiencePoints = 10
             },
 
@@ -204,7 +204,7 @@ namespace TB_Quest
                                   "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
                                   "foliage.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 7, 12, 15 },
+                AccessTo = new List<int>(){ 7, 12, 15 },
                 ExperiencePoints = 10
             },
 
@@ -221,7 +221,7 @@ namespace TB_Quest
                                   "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
                                   "foliage.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 11, 16 },
+                AccessTo = new List<int>(){ 11, 16 },
                 ExperiencePoints = 10
             },
 
@@ -238,7 +238,7 @@ namespace TB_Quest
                                   "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
                                   "foliage.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 9 },
+                AccessTo = new List<int>(){ 9 },
                 ExperiencePoints = -10
             },
 
@@ -264,7 +264,7 @@ namespace TB_Quest
                                   "the exit\".  The statue, a life-size figure of a robed woman, points to the west wall of " +
                                   "the room where there appears to be no exit.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 10, 15, 17 },
+                AccessTo = new List<int>(){ 10, 15, 17 },
                 ExperiencePoints = 10
             },
 
@@ -281,7 +281,7 @@ namespace TB_Quest
                                   "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
                                   "foliage.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 11, 14},
+                AccessTo = new List<int>(){ 11, 14},
                 ExperiencePoints = 10
             },
 
@@ -298,7 +298,7 @@ namespace TB_Quest
                                   "The sounds of birds and insects pleasantly punctuate the sound of a gentle breeze rustling the " +
                                   "foliage.",
                 IsAccessible = true,
-                AccessTo =  new List<int>(){ 12 },
+                AccessTo = new List<int>(){ 12 },
                 ExperiencePoints = -10
             },
 
@@ -344,7 +344,7 @@ namespace TB_Quest
                                   "into its gaping maw.  Not a drop of blood reaches the ground.  Truly, Jeedub-ex is an accomplished " +
                                   "two-fisted drinker.  For a moment, you stand transfixed in awe before realizing you are going to die.",
                 IsAccessible = true, // false,
-                AccessTo =  new List<int>(){ },
+                AccessTo = new List<int>(){ },
                 ExperiencePoints = 20
             }
         };

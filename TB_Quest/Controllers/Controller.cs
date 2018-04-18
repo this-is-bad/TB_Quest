@@ -402,7 +402,6 @@ namespace TB_Quest
             //
             // use the inanimate object
             //
-
             if (inanimateObjectToUseId != 0)
             {
                 //
@@ -410,10 +409,14 @@ namespace TB_Quest
                 //
                 InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(inanimateObjectToUseId) as InanimateObject;
 
-                //
-                // note: inanimate object usage count is decremented
-                //               
-                inanimateObject.UseCount--;
+                if (inanimateObject.EffectiveLocations.Contains(0) || inanimateObject.EffectiveLocations.Contains(_currentLocation.LocationID))
+                {
+
+                    //
+                    // note: inanimate object usage count is decremented
+                    //               
+                    inanimateObject.UseCount--;
+                }
             }
         }
 
