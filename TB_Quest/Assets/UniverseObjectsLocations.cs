@@ -307,7 +307,7 @@ namespace TB_Quest
                Name = "Lake of Acid",
                 LocationID = 17,
                 ObjectID = 21,
-                Description = "You stand at the edge of a large, dull red lake.  No breeze disturbs the stilless of " +
+                Description = "You stand at the edge of a large, dull red lake.  No breeze disturbs the stillness of " +
                               "the lake.  The air is dry, and smells faintly unpleasant.  There is no sign of life.  " +
                               "No bird song, not even the sound of an insect breaks the heavy silence.  Only the " +
                               "skeletons of various things, sparsely distributed around the lake's edge reveal the " +
@@ -317,7 +317,7 @@ namespace TB_Quest
                               "That, and the brightly colored sign that reads: " +
                               "\"Caution: Lake of Acid!  Swim at your own risk!\" \n" +
                               " \n " +
-                              "In the middle of the lake, lies your next destination: a small island.  In the middle " +
+                              "In the middle of the lake, lies your next destination: a small island.  In the middle of" +
                               "this island, a stairway descends into the ground.",
                 GeneralContents = "You see no way to get across the lake of acid.  Perhaps something in your inventory might be of use.",
                 IsAccessible = false,

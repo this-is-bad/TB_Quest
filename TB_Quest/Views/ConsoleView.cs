@@ -817,8 +817,6 @@ namespace TB_Quest
                 }
             }
 
-            //inanimateObjectsInLocation.ForEach(x => { if (!x.CanInventory) inanimateObjectsInLocation.Remove(x); });
-
             if (inanimateObjectsInLocation.Count > 0)
             {
                 DisplayGamePlayScreen("Pick Up Game Object", Text.GameObjectsChooseList(inanimateObjectsInLocation), ActionMenu.ObjectMenu, "");
@@ -993,16 +991,24 @@ namespace TB_Quest
                         InanimateObject inanimateObject = _gameUniverse.GetGameObjectById(gameObjectId) as InanimateObject;
                         if (inanimateObject.IsUsable)
                         {
-                            if (inanimateObject.EffectiveLocations.Contains(0) || inanimateObject.EffectiveLocations.Contains(_gamePlayer.LocationID))
+                            if (!inanimateObject.EffectiveLocations.Contains(0) & !inanimateObject.EffectiveLocations.Contains(_gamePlayer.LocationID))
                             {
-                                validGameObjectId = true;
-                            }
-                            else
-                            {
+                               
                                 ClearInputBox();
-
-                                DisplayInputErrorMessage("This item is not effective here.  Try using it somewhere else.");
+                                DisplayGamePlayScreen("Use Game Object", "This item is not effective here.  Try using it somewhere else.", ActionMenu.ObjectMenu, "");
+                               // DisplayInputErrorMessage("This item is not effective here.  Try using it somewhere else.");
                             }
+                            validGameObjectId = true;
+                            //if (inanimateObject.EffectiveLocations.Contains(0) || inanimateObject.EffectiveLocations.Contains(_gamePlayer.LocationID))
+                            //{
+                            //    validGameObjectId = true;
+                            //}
+                            //else
+                            //{
+                            //    ClearInputBox();
+
+                            //    DisplayInputErrorMessage("This item is not effective here.  Try using it somewhere else.");
+                            //}
                         }
                         else
                         {

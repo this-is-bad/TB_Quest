@@ -656,12 +656,29 @@ namespace TB_Quest
 
                             UpdateLocation();
                             }
-                            //else
-                            //{
+                            break;
+                        case 17:
+                            
+                            Location specailLocation = _gameUniverse.GetLocationByLocationID(18);
+                            specailLocation.IsAccessible = true;
 
-                            //}
+                            _currentLocation.Description = $"You toss the portable hole into the lake of acid.  It appears that the acid " +
+                                "is dissolving the hole as the hole sinks.  Then you notice that the acid appears to be pouring into the hole.  " +
+                                "After an hour, a vortex appears in the lake where the portable hole is resting.  After a few more hours, the " + 
+                                "last of the lake of acid disappears into the portable hole.  Only a few shallow puddles remain.  The path to " +
+                                "the island and what lies beyond is no open to you.  You carefully retrieve the portable hole.";
 
+                            UpdateLocation();
 
+                            _currentLocation.Description = "You stand in the large clearing where the lake of acid used to be.  " + 
+                                  "A stillness still permeates this place but it is no longer ominous.  With the lake gone, a large ring of " +
+                                  "white sand, which takes on a slight pink hue in certain angles of view, surrounds a small grass mound.  " +
+                                  "In the middle of this mound, a stairway descends into the ground.";
+
+                            _currentLocation.GeneralContents = "With the lake of acid gone, this area is rather pleasant.  " +
+                                "You briefly consider the possibility of building a home here, then you notice that " +
+                                "red acid is slowly seeping up from the ground.  You don't have time to determine whether it's " + 
+                                "the result of a natural spring or magic.";
                             break;
                         case 18:
 
