@@ -645,14 +645,21 @@ namespace TB_Quest
                         case 4:
                             npc = _gameUniverse.GetNpcById(1);
 
+                            if (npc.LocationID == _currentLocation.LocationID)
+                            { 
+
                             inanimateObject.LocationID = _currentLocation.LocationID;
 
-                            _currentLocation.Description = $"Pulling the portable hole out of your pocket, you throw it at the {npc.Name}.  " + 
+                            _currentLocation.Description = $"Pulling the portable hole out of your pocket, you throw it at the {npc.Name}.  " +
                                 $"But, the {npc.Name} casually steps to the side, dodging the portable hole which falls to the ground.  " +
                                 $"You will have to find some other way to defeat the {npc.Name}";
 
                             UpdateLocation();
+                            }
+                            //else
+                            //{
 
+                            //}
 
 
                             break;

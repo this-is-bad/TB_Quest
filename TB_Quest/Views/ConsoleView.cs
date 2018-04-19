@@ -915,7 +915,6 @@ namespace TB_Quest
 
                     //
                     // find object in inventory
-                    // note: LINQ used, but a foreach loop may also be used
                     //
                     InanimateObject objectToPutDown = inventory.FirstOrDefault(o => o.ObjectID == inanimateObjectId);
 
