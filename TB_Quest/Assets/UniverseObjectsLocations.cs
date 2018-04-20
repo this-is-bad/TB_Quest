@@ -316,8 +316,8 @@ namespace TB_Quest
                               " \n " +
                               "That, and the brightly colored sign that reads: " +
                               "\"Caution: Lake of Acid!  Swim at your own risk!\" \n" +
-                              " \n " +
-                              "In the middle of the lake, lies your next destination: a small island.  In the middle of" +
+                              "\n " +
+                              "In the middle of the lake, lies your next destination: a small island.  In the middle of " +
                               "this island, a stairway descends into the ground.",
                 GeneralContents = "You see no way to get across the lake of acid.  Perhaps something in your inventory might be of use.",
                 IsAccessible = false,
@@ -338,13 +338,13 @@ namespace TB_Quest
                               "",
                 GeneralContents = "In the distance, you see what must be the enemy you came to confront.  Thirty feet tall " +
                                   "when sitting on its rear haunches, with iridescent black and green scales, a ridge of short, " +
-                                  "deep red spines running along its back, and large horns like a springbok's, Jeedub-ex " +
+                                  "deep red spines running along its back, and large horns curved like a springbok's, Jeedub-ex " +
                                   "is at once the most beautiful and fearsome creature you have ever seen.  Presently, it holds " +
                                   "a decapitated ox in both of its nimble front claws, pouring the contents of their vascular systems " +
                                   "into its gaping maw.  Not a drop of blood reaches the ground.  Truly, Jeedub-ex is an accomplished " +
                                   "two-fisted drinker.  For a moment, you stand transfixed in awe before realizing you are going to die.",
-                IsAccessible = true, // false,
-                AccessTo = new List<int>(){ },
+                IsAccessible = false,
+                AccessTo = new List<int>(){ 17 },
                 ExperiencePoints = 20
             }
         };
