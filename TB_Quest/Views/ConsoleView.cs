@@ -237,6 +237,8 @@ namespace TB_Quest
             if (!start)
             {
                 Console.Write("Thank you for playing.");
+
+                playing = false;
             }
 
 
@@ -1109,6 +1111,34 @@ namespace TB_Quest
         {
             DisplayInputErrorMessage("You may not teleport to another location inside the wizard's tower." + 
                 "Press any key to continue.");
+
+            Console.ReadKey();
+        }
+
+        public void EndGame()
+        {
+            string message = "Moments away from death, you prepare to meet your fate.  Perhaps facing death " +
+                "has heightened your sense of awareness.  You notice wisps of smoke wafting from the portable " +
+                "hole on the dragon's head.  The wisps quickly turn into billows and the dragon emits a confused " + 
+                "and pained roar.  The dragon begins thrashing around as liquid pours out of the portable hole " +
+                "and engulfs the dragon.  It is the acid from the lake (of acid).  The acid quickly dissolves the dragon's " +
+                "head and continues to pool on the ground dissolving the rest of the dragon's body.  You quickly run " +
+                "away to a safe distance and watch as the dragon disappears into the spreading lake of acid." + 
+                "\n"  +
+                "\n" +
+                "Miraculously, you have prevailed.  Congratulations!";
+
+            DisplayGamePlayScreen("Huzzah!", message, ActionMenu.QuestIntro, "Press any key to continue.");
+
+            Console.ReadKey();
+
+            message = "Your victory appears to be short-lived.  Even as the last of Jeedub'ex's body dissolves away, " + 
+                "the ground in all directions appears to boil.  Thousands of juvenile Jeedub'ex dragons erupt from " + 
+                "the ground.  The evil wizard Mikrozoff has permeated the land with copies of his dragon.  Soon, they " +
+                "invade every corner of the realm.  No place is safe from their ravenous appetites.  You wail in " +
+                "despair as a mass of dragons quickly devours you.";
+
+            DisplayGamePlayScreen("Oh $#!%!", message, ActionMenu.QuestIntro, "Press any key to continue.");
 
             Console.ReadKey();
         }

@@ -42,7 +42,7 @@ namespace TB_Quest
                     "that you are allowed to handle. You suspect that most of it is useless baubles and gadgets that the master only keeps to keep you " +
                     "occupied and distract you from the urge to handle the good items.  There are a few potentially useful items on this table, though.",
                 IsAccessible = true,
-                AccessTo = new List<int>(){ 1, 3 },
+                AccessTo = new List<int>(){ 1, 3, 18 },
                 ExperiencePoints = 5
             },
 
@@ -343,7 +343,7 @@ namespace TB_Quest
                                   "a decapitated ox in both of its nimble front claws, pouring the contents of their vascular systems " +
                                   "into its gaping maw.  Not a drop of blood reaches the ground.  Truly, Jeedub-ex is an accomplished " +
                                   "two-fisted drinker.  For a moment, you stand transfixed in awe before realizing you are going to die.",
-                IsAccessible = false,
+                IsAccessible = true, //false,
                 AccessTo = new List<int>(){ 18 },
                 ExperiencePoints = 20
             }

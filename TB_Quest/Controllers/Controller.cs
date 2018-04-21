@@ -19,6 +19,7 @@ namespace TB_Quest
         private Universe _gameUniverse;
         private bool _playingGame;
         private Location _currentLocation;
+        private int _itsTheFinalCountdown;
 
         #endregion
 
@@ -132,137 +133,149 @@ namespace TB_Quest
                     //
                     playerActionChoice = GetNextPlayerAction();
 
-                    //
-                    // choose an action based on the player's menu choice
-                    //
-                    switch (playerActionChoice)
+                    if (_currentLocation.LocationID == 18 && _itsTheFinalCountdown > 0)
                     {
-                        case PlayerAction.None:
-                            break;
-                        case PlayerAction.PlayerSetup:
-                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerSetup;
-                            _gameConsoleView.DisplayGamePlayScreen("Player Menu", "Select an action from the menu.",
-                                ActionMenu.PlayerSetup, "");
-                            break;
-                        case PlayerAction.PlayerMenu:
-                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerMenu;
-                            _gameConsoleView.DisplayGamePlayScreen("Player Menu", "Select an action from the menu.",
-                                ActionMenu.PlayerMenu, "");
-                            break;
-                        case PlayerAction.PlayerNameChange:
-                            _gameConsoleView.DisplayUpdatePlayerName();
-                            break;
-                        case PlayerAction.PlayerAgeChange:
-                            _gameConsoleView.DisplayUpdatePlayerAge();
-                            break;
-                        case PlayerAction.PlayerRaceChange:
-                            _gameConsoleView.DisplayUpdatePlayerRace();
-                            break;
-                        case PlayerAction.PlayerInfo:
-                            _gameConsoleView.DisplayPlayerInfo();
-                            break;
-                        case PlayerAction.ListNonPlayerCharacters:
-                            _gameConsoleView.DisplayListOfAllNpcObjects();
-                            break;
-                        case PlayerAction.ListGameObjects:
-                            _gameConsoleView.DisplayListOfAllGameObjects();
-                            break;
-                        case PlayerAction.ListLocations:
-                            _gameConsoleView.DisplayListOfLocations();
-                            break;
-                        case PlayerAction.ReturnMainMenu:
-                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.MainMenu;
-                            _gameConsoleView.DisplayGamePlayScreen("Main Menu", Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
-                            break;
-                        case PlayerAction.AdminMenu:
-                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.AdminMenu;
-                            _gameConsoleView.DisplayGamePlayScreen("Admin Menu", "Select an action from the menu.", ActionMenu.AdminMenu, "");
-                            break;
-                        case PlayerAction.ObjectMenu:
-                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.ObjectMenu;
-                            _gameConsoleView.DisplayGamePlayScreen("Object Menu", "Select an action from the menu", ActionMenu.ObjectMenu, "");
-                            break;
-                        case PlayerAction.NonplayerCharacterMenu:
-                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.NpcMenu;
-                            _gameConsoleView.DisplayGamePlayScreen("NPC Menu", "Select an action from the menu", ActionMenu.NpcMenu, "");
-                            break;
-                        case PlayerAction.TalkTo:
-                            TalkToAction();
-                            break;
-                        case PlayerAction.LookAround:
-                            _gameConsoleView.DisplayLookAround();
-                            break;
-                        case PlayerAction.PlayerLocationsVisited:
-                            _gameConsoleView.DisplayLocationsVisited();
-                            break;
-                        case PlayerAction.LookAt:
-                            LookAtAction();
-                            break;
-                        case PlayerAction.PickUp:
-                            PickUpAction();
-                            break;
-                        case PlayerAction.UseObject:
-                            UseObjectAction();
-                            break;
-                        case PlayerAction.PutDown:
-                            PutDownAction();
-                            break;
-                        case PlayerAction.Inventory:
-                            _gameConsoleView.DisplayInventory();
-                            break;
-                        case PlayerAction.Travel:
+                        if (--_itsTheFinalCountdown == 0)
+                        {
+                            _gameConsoleView.EndGame();
 
-                            if (_currentLocation.LocationID == 18)
-                            {
-                                _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                                    "Oh no you don't.  You have to stay and defeat this dragon.", ActionMenu.MainMenu, "");
-                            }
-                            else
-                            {
-                                //
-                                // get new location choice and update the current location property
-                                //
-                                _gamePlayer.LocationID = _gameConsoleView.DisplayGetNextLocation();
+                            QuitQuest();
+                        }
+                    }
+                    else
+                    {
+                        //
+                        // choose an action based on the player's menu choice
+                        //
+                        switch (playerActionChoice)
+                        {
+                            case PlayerAction.None:
+                                break;
+                            case PlayerAction.PlayerSetup:
+                                ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerSetup;
+                                _gameConsoleView.DisplayGamePlayScreen("Player Menu", "Select an action from the menu.",
+                                    ActionMenu.PlayerSetup, "");
+                                break;
+                            case PlayerAction.PlayerMenu:
+                                ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerMenu;
+                                _gameConsoleView.DisplayGamePlayScreen("Player Menu", "Select an action from the menu.",
+                                    ActionMenu.PlayerMenu, "");
+                                break;
+                            case PlayerAction.PlayerNameChange:
+                                _gameConsoleView.DisplayUpdatePlayerName();
+                                break;
+                            case PlayerAction.PlayerAgeChange:
+                                _gameConsoleView.DisplayUpdatePlayerAge();
+                                break;
+                            case PlayerAction.PlayerRaceChange:
+                                _gameConsoleView.DisplayUpdatePlayerRace();
+                                break;
+                            case PlayerAction.PlayerInfo:
+                                _gameConsoleView.DisplayPlayerInfo();
+                                break;
+                            case PlayerAction.ListNonPlayerCharacters:
+                                _gameConsoleView.DisplayListOfAllNpcObjects();
+                                break;
+                            case PlayerAction.ListGameObjects:
+                                _gameConsoleView.DisplayListOfAllGameObjects();
+                                break;
+                            case PlayerAction.ListLocations:
+                                _gameConsoleView.DisplayListOfLocations();
+                                break;
+                            case PlayerAction.ReturnMainMenu:
+                                ActionMenu.currentMenu = ActionMenu.CurrentMenu.MainMenu;
+                                _gameConsoleView.DisplayGamePlayScreen("Main Menu", Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
+                                break;
+                            case PlayerAction.AdminMenu:
+                                ActionMenu.currentMenu = ActionMenu.CurrentMenu.AdminMenu;
+                                _gameConsoleView.DisplayGamePlayScreen("Admin Menu", "Select an action from the menu.", ActionMenu.AdminMenu, "");
+                                break;
+                            case PlayerAction.ObjectMenu:
+                                ActionMenu.currentMenu = ActionMenu.CurrentMenu.ObjectMenu;
+                                _gameConsoleView.DisplayGamePlayScreen("Object Menu", "Select an action from the menu", ActionMenu.ObjectMenu, "");
+                                break;
+                            case PlayerAction.NonplayerCharacterMenu:
+                                ActionMenu.currentMenu = ActionMenu.CurrentMenu.NpcMenu;
+                                _gameConsoleView.DisplayGamePlayScreen("NPC Menu", "Select an action from the menu", ActionMenu.NpcMenu, "");
+                                break;
+                            case PlayerAction.TalkTo:
+                                TalkToAction();
+                                break;
+                            case PlayerAction.LookAround:
+                                _gameConsoleView.DisplayLookAround();
+                                break;
+                            case PlayerAction.PlayerLocationsVisited:
+                                _gameConsoleView.DisplayLocationsVisited();
+                                break;
+                            case PlayerAction.LookAt:
+                                LookAtAction();
+                                break;
+                            case PlayerAction.PickUp:
+                                PickUpAction();
+                                break;
+                            case PlayerAction.UseObject:
+                                UseObjectAction();
+                                break;
+                            case PlayerAction.PutDown:
+                                PutDownAction();
+                                break;
+                            case PlayerAction.Inventory:
+                                _gameConsoleView.DisplayInventory();
+                                break;
+                            case PlayerAction.Travel:
 
-                                _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
-                                //
-                                // set the game play screen to the current location info format
-                                //
-                                UpdateLocation();
-                            }
-                            break;
-                        case PlayerAction.WizardExit:
+                                if (_currentLocation.LocationID == 18)
+                                {
+                                    _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                                        "Oh no you don't.  You have to stay and defeat this dragon.", ActionMenu.MainMenu, "");
+                                }
+                                else
+                                {
+                                    //
+                                    // get new location choice and update the current location property
+                                    //
+                                    _gamePlayer.LocationID = _gameConsoleView.DisplayGetNextLocation();
 
-                            NPC npc = _gameUniverse.GetNpcById(1);
-                            npc.LocationID = -1;
+                                    _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+                                    //
+                                    // set the game play screen to the current location info format
+                                    //
+                                    UpdateLocation();
+                                }
+                                break;
+                            case PlayerAction.WizardExit:
 
-                            Location location = _gameUniverse.GetLocationByLocationID(6);
-                            location.IsAccessible = true;
+                                NPC npc = _gameUniverse.GetNpcById(1);
+                                npc.LocationID = -1;
 
-                            if (_currentLocation.LocationID == 4)
-                            {
-                                _currentLocation.Description = $"The {npc.Name} Menu exits the game.  The entrance into the Magical " +
-                                    "Hedge Maze is now accessible.";
+                                Location location = _gameUniverse.GetLocationByLocationID(6);
+                                location.IsAccessible = true;
 
-                                UpdateLocation();
+                                if (_currentLocation.LocationID == 4)
+                                {
+                                    _currentLocation.Description = $"The {npc.Name} Menu exits the game.  The entrance into the Magical " +
+                                        "Hedge Maze is now accessible.";
 
-                                _currentLocation.Description = "Here you are, at the entrance to the Magical Hedge Maze.  Look, " +
-                                    "I know you did a lot of things to get here but I've got better ways to spend my time than " +
-                                    "narrating the litany of your mediocre achievements.  Just take satisfaction in knowing you " +
-                                    "got here.";
+                                    UpdateLocation();
 
-                                _currentLocation.GeneralContents = "In front of you stands the Long Wall, measuring 15 feet high and hundreds of miles long.  But, your path does not end here.  " +
-                                  "It continues through an opening in the wall, beyond which lies the Magic Hedge Maze.";
-                            }
-                            
+                                    _currentLocation.Description = "Here you are, at the entrance to the Magical Hedge Maze.  Look, " +
+                                        "I know you did a lot of things to get here but I've got better ways to spend my time than " +
+                                        "narrating the litany of your mediocre achievements.  Just take satisfaction in knowing you " +
+                                        "got here.";
 
-                            break;
-                        case PlayerAction.Exit:
-                            _playingGame = false;
-                            break;
+                                    _currentLocation.GeneralContents = "In front of you stands the Long Wall, measuring 15 feet high and hundreds of miles long.  But, your path does not end here.  " +
+                                      "It continues through an opening in the wall, beyond which lies the Magic Hedge Maze.";
+                                }
 
-                        default:
-                            break;
+
+                                break;
+                            case PlayerAction.Exit:
+                                _playingGame = false;
+                                break;
+
+                            default:
+                                break;
+                        }
                     }
                 }
 
@@ -690,6 +703,22 @@ namespace TB_Quest
                                 "the result of a natural spring or magic.";
                             break;
                         case 18:
+
+                            inanimateObject.LocationID = -1;
+
+                            _currentLocation.Description = $"You throw the portable hole at the dragon.  A gust of wind catches it " +
+                                "and lifts it up into the air, before gently depositing it on the dragon's left horn.  I'm not sure " +
+                                "what you thought that would accomplish.  The portable hole is small and there's not even a chance " +
+                                "that the dragon could put a foot in the hole and sprain its ankle.  Even so, you managed to " +
+                                "momentarily distract the dragon, prolonging countless lives by an extra 5 seconds, you hero.  " +
+                                "Got any other ideas?";
+
+                            _currentLocation.GeneralContents = "Having one horn hidden by the portable hole doesn't diminish the " +
+                                "dragon's fearsomeness or the sense of your impending doom.";
+                            
+                            UpdateLocation();
+
+                            _itsTheFinalCountdown = 3;
 
                             break;
                         default:
