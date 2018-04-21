@@ -344,7 +344,7 @@ namespace TB_Quest
                                   "into its gaping maw.  Not a drop of blood reaches the ground.  Truly, Jeedub-ex is an accomplished " +
                                   "two-fisted drinker.  For a moment, you stand transfixed in awe before realizing you are going to die.",
                 IsAccessible = false,
-                AccessTo = new List<int>(){ 17 },
+                AccessTo = new List<int>(){ 18 },
                 ExperiencePoints = 20
             }
         };

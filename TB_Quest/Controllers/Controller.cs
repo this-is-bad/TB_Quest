@@ -211,16 +211,25 @@ namespace TB_Quest
                             _gameConsoleView.DisplayInventory();
                             break;
                         case PlayerAction.Travel:
-                            //
-                            // get new location choice and update the current location property
-                            //
-                            _gamePlayer.LocationID = _gameConsoleView.DisplayGetNextLocation();
 
-                            _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
-                            //
-                            // set the game play screen to the current location info format
-                            //
-                            UpdateLocation();
+                            if (_currentLocation.LocationID == 18)
+                            {
+                                _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                                    "Oh no you don't.  You have to stay and defeat this dragon.", ActionMenu.MainMenu, "");
+                            }
+                            else
+                            {
+                                //
+                                // get new location choice and update the current location property
+                                //
+                                _gamePlayer.LocationID = _gameConsoleView.DisplayGetNextLocation();
+
+                                _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+                                //
+                                // set the game play screen to the current location info format
+                                //
+                                UpdateLocation();
+                            }
                             break;
                         case PlayerAction.WizardExit:
 
@@ -765,23 +774,31 @@ namespace TB_Quest
         /// </summary>
         private void TeleportPlayer()
         {
-            if (_currentLocation.LocationID > 3)
+            if (_currentLocation.LocationID == 18)
             {
-                _gamePlayer.PreviousLocationID = _currentLocation.LocationID;
-                _gamePlayer.LocationID = 3;
-                _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
-            }
-            else if (_currentLocation.LocationID < 4 && _gamePlayer.PreviousLocationID > 3)
-            {
-                _gamePlayer.LocationID = _gamePlayer.PreviousLocationID;
-                _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+                _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                    "You must be too far away from home to use the Teleportation Ring cuz you ain't goin' nowhere.", ActionMenu.MainMenu, "");
             }
             else
             {
-                _gameConsoleView.DisplayInvalidTeleport();
-            }
+                if (_currentLocation.LocationID > 3 && _currentLocation.LocationID != 18)
+                {
+                    _gamePlayer.PreviousLocationID = _currentLocation.LocationID;
+                    _gamePlayer.LocationID = 3;
+                    _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+                }
+                else if (_currentLocation.LocationID < 4 && _gamePlayer.PreviousLocationID > 3)
+                {
+                    _gamePlayer.LocationID = _gamePlayer.PreviousLocationID;
+                    _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+                }
+                else
+                {
+                    _gameConsoleView.DisplayInvalidTeleport();
+                }
 
-            UpdateLocation();
+                UpdateLocation();
+            }
         }
         
         /// <summary>

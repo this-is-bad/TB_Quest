@@ -999,16 +999,6 @@ namespace TB_Quest
                                // DisplayInputErrorMessage("This item is not effective here.  Try using it somewhere else.");
                             }
                             validGameObjectId = true;
-                            //if (inanimateObject.EffectiveLocations.Contains(0) || inanimateObject.EffectiveLocations.Contains(_gamePlayer.LocationID))
-                            //{
-                            //    validGameObjectId = true;
-                            //}
-                            //else
-                            //{
-                            //    ClearInputBox();
-
-                            //    DisplayInputErrorMessage("This item is not effective here.  Try using it somewhere else.");
-                            //}
                         }
                         else
                         {

@@ -152,18 +152,13 @@ namespace TB_Quest{
 
         public static string PlayerInfo(Player gamePlayer, List<InanimateObject> inventory)
         {
-                        string messageBoxText =
+            string messageBoxText =
                 $"\tPlayer Name: {gamePlayer.Name}\n" +
                 $"\tPlayer Age: {gamePlayer.Age}\n" +
                 $"\tPlayer Race: {gamePlayer.Race}\n" +
                 $"\tPlayer Home Village: {gamePlayer.HomeVillage}\n" +
-                $"\tPlayer Greeting: {gamePlayer.Greeting()}\n" +
-                " \n " +
-                CurrentInventory(inventory);
-
-
-
-
+                $"\tPlayer Greeting: {gamePlayer.Greeting()}";
+                
             return messageBoxText;
         }
 
@@ -217,40 +212,6 @@ namespace TB_Quest{
 
             return messageBoxText;
         }
-
-        ///// <summary>
-        ///// return all Items in the game
-        ///// </summary>
-        ///// <param name="Items"></param>
-        ///// <returns>string</returns>
-        //public static string ListItems(IEnumerable<Item> Items)
-        //{
-        //    string messageBoxText =
-        //        "Items\n" +
-        //        " \n" +
-
-        //        ///
-        //        /// display table header 
-        //        /// 
-        //        "ID".PadRight(10) + "Name".PadRight(50) + "\n" +
-        //        "---".PadRight(10) + "--------------------------------------------".PadRight(50) + "\n";
-
-        //    ///
-        //    /// display all items
-        //    /// 
-        //    string ItemList = null;
-        //    foreach (Item item in Items)
-        //    {
-        //        ItemList +=
-        //            $"{item.LocationID}".PadRight(10) +
-        //            $"{item.Name}".PadRight(50) +
-        //            Environment.NewLine;
-        //    }
-
-        //    messageBoxText += ItemList;
-
-        //    return messageBoxText;
-        //}
 
         public static string ListInventory(IEnumerable<InanimateObject> inanimateObjects)
         {
