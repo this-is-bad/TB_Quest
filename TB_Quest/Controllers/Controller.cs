@@ -784,7 +784,7 @@ namespace TB_Quest
                         "opening in the south wall of the room.  A plaque at the base of the statue that reads \"This way to " +
                                   "the exit\".";
 
-                    npc = _gameUniverse.GetNpcById(2);
+                    npc = _gameUniverse.GetNpcById(5);
 
                     npc.LocationID = -1;
 

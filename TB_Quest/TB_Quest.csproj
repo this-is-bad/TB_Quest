@@ -69,6 +69,8 @@
     <Compile Include="ConsoleUtilities\ConsoleWindowHelper.cs" />
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Friend.cs" />
+    <Compile Include="Models\IModify.cs" />
     <Compile Include="Models\InanimateObject.cs" />
     <Compile Include="Models\InanimateObjectType.cs" />
     <Compile Include="Models\ISpeak.cs" />

@@ -6,14 +6,24 @@ using System.Threading.Tasks;
 
 namespace TB_Quest
 {
-    public class Opponent : NPC, ISpeak
+    public class Friend : NPC, IModify, ISpeak
     {
 
         #region PROPERTIES
+
+        /// <summary>
+        /// the Friend ID
+        /// </summary>
         public override int Id { get; set; }
 
+        /// <summary>
+        /// description of the Friend
+        /// </summary>
         public override string Description { get; set; }
 
+        /// <summary>
+        /// the ISpeak dialog options
+        /// </summary>
         public List<string> Messages { get; set; }
 
         /// <summary>
@@ -60,6 +70,6 @@ namespace TB_Quest
             return _healthModifier;
         }
 
-#endregion
+        #endregion
     }
 }

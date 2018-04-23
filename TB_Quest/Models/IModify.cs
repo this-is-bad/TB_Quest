@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace TB_Quest
 {
-    interface ISpeak
+    interface IModify
     {
         /// <summary>
-        /// list of dialog options
+        /// a value that changes health
         /// </summary>
-        List<string> Messages { get; set; }
+        int HealthModifier { get; set; }
 
         /// <summary>
-        /// speech
+        /// adjust health
         /// </summary>
-        /// <returns>string</returns>
-        string Speak();
+        /// <returns>int</returns>
+        int AdjustHealth();
     }
 }
