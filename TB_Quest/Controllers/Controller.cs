@@ -59,7 +59,12 @@ namespace TB_Quest
             _playingGame = true;
 
             //
-            // add the event handler for adding/subtracting to/from inventory
+            // add the event handler for modifying player's health
+            //
+            _gamePlayer.HealthModified += HandleHealthModified;
+
+            //
+            // add the event handler for adding/subtracting to/from inventory and for using objects
             //
             foreach (GameObject gameObject in _gameUniverse.GameObjects)
             {
@@ -305,7 +310,7 @@ namespace TB_Quest
             _gamePlayer.ObjectID = 0;
             _gamePlayer.ExperiencePoints = 0;
             _gamePlayer.Health = 100;
-            _gamePlayer.Lives = 3;
+            _gamePlayer.Lives = 1;
             _gamePlayer.Name = "random guy";
             _gamePlayer.Age = 33;
             _gamePlayer.Race = Character.RaceType.Human;
@@ -518,14 +523,6 @@ namespace TB_Quest
 
                             _gamePlayer.Health += inanimateObject.Value;
 
-                            //
-                            // add life if health greater than 100
-                            //
-                            if (_gamePlayer.Health >= 100)
-                            {
-                                _gamePlayer.Health = 100;
-                                _gamePlayer.Lives += 1;
-                            }
                             break;
                         case InanimateObjectType.Weapon:
                             break;
@@ -558,6 +555,50 @@ namespace TB_Quest
                     _gameConsoleView.DisplayConfirmInanimateObjectUsed(inanimateObject);
 
                     SpecialUseCases(inanimateObject);
+                }
+            }
+        }
+
+        /// <summary>
+        /// method called by the ObjectAddedToInventory event 
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="e"></param>
+        private void HandleHealthModified(object player, EventArgs e)
+        {
+            if (player.GetType() == typeof(Player))
+            {
+                Player gamePlayer = player as Player;
+
+                //
+                // add life if health greater than 100
+                //
+                if (gamePlayer.Health > 100)
+                {
+                    gamePlayer.Lives += 1;
+                    gamePlayer.Health = 100;
+                }
+
+                if (gamePlayer.Health <= 0 && gamePlayer.Lives > 0)
+                {
+                    gamePlayer.Lives -= 1;
+
+                    if (gamePlayer.Lives < 1)
+                    {
+                        //gamePlayer.Lives = 0;
+                        //gamePlayer.Health = 0;
+
+                        //
+                        // notify the player that the game is over
+                        //
+                        _gameConsoleView.DisplayKillScreen();
+
+                        QuitQuest();
+                    }
+                    else
+                    {
+                        gamePlayer.Health = 100;
+                    }
                 }
             }
         }

@@ -22,6 +22,7 @@ namespace TB_Quest
         private List<int> _locationsVisited;
         private bool _verboseGreeting;
         private int _previousLocationId;
+        private int _health;
         #endregion
 
         #region PROPERTIES
@@ -72,6 +73,19 @@ namespace TB_Quest
         }
         #endregion
 
+        public override int Health
+        {
+            get { return _health; }
+            set {
+                    int i = _health;
+                    _health = value;
+                    if (value != i)
+                    {
+                        OnHealthModified();
+                    }                
+                }
+        }
+
         #region CONSTRUCTORS
 
         public Player()
@@ -86,7 +100,18 @@ namespace TB_Quest
 
         #endregion
 
+        #region EVENT HANDLERS
+
+        /// <summary>
+        /// health is modified
+        /// </summary>
+        public event EventHandler HealthModified;
+
+        #endregion
+
         #region METHODS
+
+        public void OnHealthModified() => HealthModified?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// a more verbose greeting that overrides the bash character greeting

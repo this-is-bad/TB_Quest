@@ -65,9 +65,10 @@ namespace TB_Quest
         /// returns an integer to be applied to the player's health
         /// </summary>
         /// <returns>int</returns>
-        public int AdjustHealth()
+        public int ReturnHealthModifier()
         {
-            return _healthModifier;
+
+            return this.HealthModifier;
         }
 
         #endregion

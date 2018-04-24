@@ -174,12 +174,19 @@ namespace TB_Quest
         #endregion
 
         #region EVENT HANDLERS
+        /// <summary>
+        /// an InanimateObject is added to inventory
+        /// </summary>
         public event EventHandler ObjectAddedToInventory;
 
+        /// <summary>
+        /// an InanimateObject is used
+        /// </summary>
         public event EventHandler ObjectUsed;
         #endregion
 
         #region METHODS
+
         public void OnObjectAddedToInventory() => ObjectAddedToInventory?.Invoke(this, EventArgs.Empty);
 
         public void OnObjectUsed() => ObjectUsed?.Invoke(this, EventArgs.Empty);

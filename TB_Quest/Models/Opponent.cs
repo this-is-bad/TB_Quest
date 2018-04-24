@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TB_Quest
 {
-    public class Opponent : NPC, ISpeak
+    public class Opponent : NPC, IModify, ISpeak
     {
 
         #region PROPERTIES
@@ -55,11 +55,22 @@ namespace TB_Quest
         /// returns an integer to be applied to the player's health
         /// </summary>
         /// <returns>int</returns>
-        public int AdjustHealth()
+        public int ReturnHealthModifier()
         {
-            return _healthModifier;
+            
+            return this.HealthModifier;
         }
 
-#endregion
+        /// <summary>
+        /// returns an integer to be applied to the player's health
+        /// </summary>
+        /// <returns>int</returns>
+        private int GetHealthModifier()
+        {
+            int healthMod = this.HealthModifier;
+            return healthMod;
+        }
+
+        #endregion
     }
 }

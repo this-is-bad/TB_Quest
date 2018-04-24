@@ -17,6 +17,6 @@ namespace TB_Quest
         /// adjust health
         /// </summary>
         /// <returns>int</returns>
-        int AdjustHealth();
+        int ReturnHealthModifier();
     }
 }

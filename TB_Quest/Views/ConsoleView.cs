@@ -209,7 +209,6 @@ namespace TB_Quest
             Console.Clear();
             Console.CursorVisible = false;
 
-
             Console.SetCursorPosition(0, 10);
             string tabSpace = new String(' ', 35);
 
@@ -240,7 +239,6 @@ namespace TB_Quest
 
                 playing = false;
             }
-
 
             return playing;
         }
@@ -1096,6 +1094,7 @@ namespace TB_Quest
         public void DisplayTalkTo(NPC npc)
         {
             ISpeak speakingNpc = npc as ISpeak;
+            IModify modifyingNpc = npc as IModify;
 
             string message = speakingNpc.Speak();
 
@@ -1105,8 +1104,13 @@ namespace TB_Quest
             }
 
             DisplayGamePlayScreen("Speak to Character", message, ActionMenu.NpcMenu, "");
+
+            _gamePlayer.Health += modifyingNpc.HealthModifier;
         }
 
+        /// <summary>
+        /// display message when an invalid teleport is attempted
+        /// </summary>
         public void DisplayInvalidTeleport()
         {
             DisplayInputErrorMessage("You may not teleport to another location inside the wizard's tower." + 
@@ -1115,6 +1119,9 @@ namespace TB_Quest
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// display the end game info and wrap up the game
+        /// </summary>
         public void EndGame()
         {
             string message = "Moments away from death, you prepare to meet your fate.  Perhaps facing death " +
@@ -1141,6 +1148,18 @@ namespace TB_Quest
             DisplayGamePlayScreen("Oh $#!%!", message, ActionMenu.QuestIntro, "Press any key to continue.");
 
             Console.ReadKey();
+        }
+
+
+        /// <summary>
+        /// display the notification that the player has expended all lives, ending the game
+        /// </summary>
+        public void DisplayKillScreen()
+        {
+            DisplayGamePlayScreen("Game Over, Man!", "You died.  You're dead.  Maybe next time, don't die so much.", ActionMenu.QuestIntro, "Press any key to continue.");
+
+            Console.ReadKey();
+            
         }
 
         #endregion

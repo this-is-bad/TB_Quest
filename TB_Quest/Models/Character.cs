@@ -27,8 +27,7 @@ namespace TB_Quest
         #endregion
 
         #region FIELDS
-
-        private int _experiencePoints;
+        
         private int _age;
         private int _health;
         private RaceType _race;
@@ -38,10 +37,29 @@ namespace TB_Quest
 
         #region PROPERTIES
 
+        /// <summary>
+        /// the character's description
+        /// </summary>
         public override string Description { get; set; }
+
+        /// <summary>
+        /// the character's location ID
+        /// </summary>
         public override int LocationID { get; set; }
+
+        /// <summary>
+        /// the character's name
+        /// </summary>
         public override string Name { get; set; }
+
+        /// <summary>
+        /// the character's object ID
+        /// </summary>
         public override int ObjectID { get; set; }
+
+        /// <summary>
+        /// the character's experience points
+        /// </summary>
         public override int ExperiencePoints { get; set; }
 
         /// <summary>
@@ -56,7 +74,7 @@ namespace TB_Quest
         /// <summary>
         /// the character's health
         /// </summary>
-        public int Health
+        public virtual int Health
         {
             get { return _health; }
             set { _health = value; }
