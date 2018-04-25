@@ -585,9 +585,6 @@ namespace TB_Quest
 
                     if (gamePlayer.Lives < 1)
                     {
-                        //gamePlayer.Lives = 0;
-                        //gamePlayer.Health = 0;
-
                         //
                         // notify the player that the game is over
                         //
@@ -599,6 +596,11 @@ namespace TB_Quest
                     {
                         gamePlayer.Health = 100;
                     }
+                }
+
+                if (gamePlayer.Lives != 0)
+                {
+                    _gameConsoleView.DisplayStatusBox();
                 }
             }
         }

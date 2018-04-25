@@ -145,6 +145,7 @@ namespace TB_Quest
             DisplayInputBoxPrompt(prompt);
             while (!validResponse)
             {
+
                 if (int.TryParse(Console.ReadLine(), out integerChoice))
                 {
                     if (validateRange)
@@ -359,6 +360,7 @@ namespace TB_Quest
         /// </summary>
         public void DisplayStatusBox()
         {
+            ClearStatusBox();
             Console.BackgroundColor = ConsoleTheme.InputBoxBackgroundColor;
             Console.ForegroundColor = ConsoleTheme.InputBoxBorderColor;
 
@@ -466,6 +468,22 @@ namespace TB_Quest
                 DisplayInputBoxPrompt(backgroundColorString);
             }
             Console.ForegroundColor = ConsoleTheme.InputBoxForegroundColor;
+        }
+
+        /// <summary>
+        /// clear the status box
+        /// </summary>
+        private void ClearStatusBox()
+        {
+            int i = ConsoleLayout.StatusBoxWidth - 3;
+            string str = " ".PadRight(i);
+            Console.ForegroundColor = ConsoleTheme.StatusBoxBackgroundColor;
+            for (int row = 1; row < ConsoleLayout.StatusBoxHeight - 2; row++)
+            {
+                Console.SetCursorPosition(ConsoleLayout.StatusBoxPositionLeft + 2, ConsoleLayout.StatusBoxPositionTop + row);
+                Console.Write(str);
+            }
+            Console.ForegroundColor = ConsoleTheme.StatusBoxForegroundColor;
         }
 
         /// <summary>

@@ -61,16 +61,6 @@ namespace TB_Quest
             return this.HealthModifier;
         }
 
-        /// <summary>
-        /// returns an integer to be applied to the player's health
-        /// </summary>
-        /// <returns>int</returns>
-        private int GetHealthModifier()
-        {
-            int healthMod = this.HealthModifier;
-            return healthMod;
-        }
-
         #endregion
     }
 }
