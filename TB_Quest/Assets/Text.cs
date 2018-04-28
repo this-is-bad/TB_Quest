@@ -129,7 +129,7 @@ namespace TB_Quest{
             string messageBoxText =
                 $"Very good then {gamePlayer.Name}.\n" +
                 " \n" +
-                "It appears we have all the necessary data to begin your quest. You will find it" +
+                "It appears we have all the necessary information to begin your quest. You will find it" +
                 " listed below.\n" +
                 " \n" +
                 $"\tPlayer Name: {gamePlayer.Name}\n" +

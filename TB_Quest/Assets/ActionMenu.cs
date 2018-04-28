@@ -27,10 +27,8 @@ namespace TB_Quest
         public static CurrentMenu currentMenu = CurrentMenu.MainMenu;
 
         /// <summary>
-        /// global variable used to change the menu to the setup menu when current LocationID is "1"
+        /// blank menu
         /// </summary>
-        //public static Menu CurrentActionMenu { get; set; }
-
         public static Menu QuestIntro = new Menu()
         {
             MenuName = "QuestIntro",
@@ -41,6 +39,9 @@ namespace TB_Quest
                     }
         };
 
+        /// <summary>
+        /// menu to configure up the player's information
+        /// </summary>
         public static Menu InitializeQuest = new Menu()
         {
             MenuName = "InitializeQuest",
@@ -107,22 +108,8 @@ namespace TB_Quest
         };
 
         /// <summary>
-        /// item interaction menu for the game
+        /// player information menu for the game
         /// </summary>
-        public static Menu ItemMenu = new Menu()
-        {
-            MenuName = "ItemMenu",
-            MenuTitle = "Item Menu",
-            MenuChoices = new Dictionary<char, PlayerAction>()
-                {
-                    { '1', PlayerAction.LookAt },
-                    { '2', PlayerAction.PickUp },
-                    { '3', PlayerAction.PutDown },
-                    { '6', PlayerAction.Inventory },
-                    { '0', PlayerAction.ReturnMainMenu }
-                }
-        };
-
         public static Menu PlayerMenu = new Menu()
         {
             MenuName = "PlayerMenu",
@@ -183,22 +170,8 @@ namespace TB_Quest
 
         #region METHODS
 
-        public static Menu ReturnMenu(Menu menu)
-        {
-            Menu newMenu = new Menu();
-            if (Program.Setup)
-            {
-                newMenu = PlayerSetup;
-            }
-            else
-            {
-                newMenu = (menu ?? MainMenu);
-            }
-            
-            return newMenu;
-        }
 
-#endregion
+        #endregion
 
     }
 }

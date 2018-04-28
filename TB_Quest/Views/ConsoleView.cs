@@ -500,47 +500,47 @@ namespace TB_Quest
             DisplayGamePlayScreen("Quest Preparation", Text.InitializeQuestIntro(), ActionMenu.QuestIntro, "");
             GetContinueKey();
 
-            ////
-            //// get player's name
-            ////
-            //DisplayGamePlayScreen("Quest Preparation - Name", Text.InitializeQuestGetPlayerName(), ActionMenu.QuestIntro, "");
-            //DisplayInputBoxPrompt("Enter your name: ");
-            //player.Name = GetString();
+            //
+            // get player's name
+            //
+            DisplayGamePlayScreen("Quest Preparation - Name", Text.InitializeQuestGetPlayerName(), ActionMenu.QuestIntro, "");
+            DisplayInputBoxPrompt("Enter your name: ");
+            player.Name = GetString();
 
-            ////
-            //// get player's age
-            ////
-            //DisplayGamePlayScreen("Quest Preparation - Age", Text.InitializeQuestGetPlayerAge(player.Name), ActionMenu.QuestIntro, "");
-            //int gamePlayerAge;
-            //GetInteger($"Enter your age {player.Name}: ", 0, 1000000, out gamePlayerAge);
-            //player.Age = gamePlayerAge;
+            //
+            // get player's age
+            //
+            DisplayGamePlayScreen("Quest Preparation - Age", Text.InitializeQuestGetPlayerAge(player.Name), ActionMenu.QuestIntro, "");
+            int gamePlayerAge;
+            GetInteger($"Enter your age {player.Name}: ", 0, 1000000, out gamePlayerAge);
+            player.Age = gamePlayerAge;
 
-            ////
-            //// get player's race
-            ////
-            //DisplayGamePlayScreen("Quest Preparation - Race", Text.InitializeQuestGetPlayerRace(player), ActionMenu.QuestIntro, "");
-            //DisplayInputBoxPrompt($"Enter your race {player.Name}: ");
-            //player.Race = GetRace();
+            //
+            // get player's race
+            //
+            DisplayGamePlayScreen("Quest Preparation - Race", Text.InitializeQuestGetPlayerRace(player), ActionMenu.QuestIntro, "");
+            DisplayInputBoxPrompt($"Enter your race {player.Name}: ");
+            player.Race = GetRace();
 
-            ////
-            //// get player's home village
-            ////
-            //DisplayGamePlayScreen("Quest Preparation - Home Village", Text.InitializeQuestGetPlayerHomeVillage(player.Name), ActionMenu.QuestIntro, "");
-            //DisplayInputBoxPrompt($"Enter your home village: ");
-            //player.HomeVillage = GetString();
+            //
+            // get player's home village
+            //
+            DisplayGamePlayScreen("Quest Preparation - Home Village", Text.InitializeQuestGetPlayerHomeVillage(player.Name), ActionMenu.QuestIntro, "");
+            DisplayInputBoxPrompt($"Enter your home village: ");
+            player.HomeVillage = GetString();
 
-            ////
-            //// get player's choice of greeting
-            ////
-            //DisplayGamePlayScreen("Quest Preparation - Home Village", Text.InitializeQuestGetPlayerGreeting(), ActionMenu.QuestIntro, "");
-            //DisplayInputBoxPrompt($"Would you like a verbose greeting? ");
-            //player.VerboseGreeting = (GetString().ToLower() == "y" ? true : false);
+            //
+            // get player's choice of greeting
+            //
+            DisplayGamePlayScreen("Quest Preparation - Home Village", Text.InitializeQuestGetPlayerGreeting(), ActionMenu.QuestIntro, "");
+            DisplayInputBoxPrompt($"Would you like a verbose greeting? ");
+            player.VerboseGreeting = (GetString().ToLower() == "y" ? true : false);
 
-            ////
-            //// echo the player's info
-            ////
-            //DisplayGamePlayScreen("Quest Initialization - Complete", Text.InitializeQuestEchoPlayerInfo(player), ActionMenu.QuestIntro, "");
-            //GetContinueKey();
+            //
+            // echo the player's info
+            //
+            DisplayGamePlayScreen("Quest Initialization - Complete", Text.InitializeQuestEchoPlayerInfo(player), ActionMenu.QuestIntro, "");
+            GetContinueKey();
 
             // 
             // change view status to playing game
@@ -733,6 +733,9 @@ namespace TB_Quest
             // get a list of game objects in the current location
             //
             List<GameObject> gameObjectsInLocation = _gameUniverse.GetGameObjectsByLocationId(_gamePlayer.LocationID);
+            List<GameObject> gameObjectsInInventory = _gameUniverse.GetGameObjectsByLocationId(0);
+
+            gameObjectsInLocation.AddRange(gameObjectsInInventory);
 
             if (gameObjectsInLocation.Count > 0)
             {
@@ -748,7 +751,7 @@ namespace TB_Quest
                     //
                     // validate integer as a valid game object id and in current location
                     //
-                    if (_gameUniverse.IsValidObjectByLocationId(gameObjectId, _gamePlayer.LocationID))
+                    if (_gameUniverse.IsValidObjectByLocationId(gameObjectId, _gamePlayer.LocationID) || _gameUniverse.IsValidObjectByLocationId(gameObjectId, 0))
                     {
                         validGameObjectId = true;
                     }
@@ -892,13 +895,13 @@ namespace TB_Quest
         }
 
         /// <summary>
-        /// display a message confirming that an object was added to the player's inventory
+        /// display a message confirming that an object was used
         /// </summary>
-        /// <param name="objectAddedToInventory"></param>
-        public void DisplayConfirmInanimateObjectUsed(InanimateObject objectAddedToInventory)
+        /// <param name="objectUsed"></param>
+        public void DisplayConfirmInanimateObjectUsed(InanimateObject objectUsed)
         {
 
-            string msg = (objectAddedToInventory.PickUpMessage ?? $"The {objectAddedToInventory.Name} has been used.  " +
+            string msg = (objectUsed.PickUpMessage ?? $"The {objectUsed.Name} has been used.  " +
                 "Press any key to continue.");
 
             DisplayGamePlayScreen("Use Game Object", msg, ActionMenu.ObjectMenu, "");
@@ -987,6 +990,8 @@ namespace TB_Quest
             // remove inanimate objects that cannot be used
             //
             currentInanimateObjects.RemoveAll(inanimateObject => !inanimateObject.IsUsable);
+
+            currentInanimateObjects.RemoveAll(inanimateObject => (inanimateObject.CanInventory && inanimateObject.LocationID != 0));
 
             if (currentInanimateObjects.Count > 0)
             {
@@ -1160,7 +1165,7 @@ namespace TB_Quest
             message = "Your victory appears to be short-lived.  Even as the last of Jeedub'ex's body dissolves away, " + 
                 "the ground in all directions appears to boil.  Thousands of juvenile Jeedub'ex dragons erupt from " + 
                 "the ground.  The evil wizard Mikrozoff has permeated the land with copies of his dragon.  Soon, they " +
-                "invade every corner of the realm.  No place is safe from their ravenous appetites.  You wail in " +
+                "will invade every corner of the realm.  No place is safe from their ravenous appetites.  You wail in " +
                 "despair as a mass of dragons quickly devours you.";
 
             DisplayGamePlayScreen("Oh $#!%!", message, ActionMenu.QuestIntro, "Press any key to continue.");

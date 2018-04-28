@@ -144,143 +144,144 @@ namespace TB_Quest
                         {
                             _gameConsoleView.EndGame();
 
+                            _playingGame = false;
+
+                            playerActionChoice = PlayerAction.None;
+
                             QuitQuest();
                         }
                     }
-                    else
+                  
+                    //
+                    // choose an action based on the player's menu choice
+                    //
+                    switch (playerActionChoice)
                     {
-                        //
-                        // choose an action based on the player's menu choice
-                        //
-                        switch (playerActionChoice)
-                        {
-                            case PlayerAction.None:
-                                break;
-                            case PlayerAction.PlayerSetup:
-                                ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerSetup;
-                                _gameConsoleView.DisplayGamePlayScreen("Player Menu", "Select an action from the menu.",
-                                    ActionMenu.PlayerSetup, "");
-                                break;
-                            case PlayerAction.PlayerMenu:
-                                ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerMenu;
-                                _gameConsoleView.DisplayGamePlayScreen("Player Menu", "Select an action from the menu.",
-                                    ActionMenu.PlayerMenu, "");
-                                break;
-                            case PlayerAction.PlayerNameChange:
-                                _gameConsoleView.DisplayUpdatePlayerName();
-                                break;
-                            case PlayerAction.PlayerAgeChange:
-                                _gameConsoleView.DisplayUpdatePlayerAge();
-                                break;
-                            case PlayerAction.PlayerRaceChange:
-                                _gameConsoleView.DisplayUpdatePlayerRace();
-                                break;
-                            case PlayerAction.PlayerInfo:
-                                _gameConsoleView.DisplayPlayerInfo();
-                                break;
-                            case PlayerAction.ListNonPlayerCharacters:
-                                _gameConsoleView.DisplayListOfAllNpcObjects();
-                                break;
-                            case PlayerAction.ListGameObjects:
-                                _gameConsoleView.DisplayListOfAllGameObjects();
-                                break;
-                            case PlayerAction.ListLocations:
-                                _gameConsoleView.DisplayListOfLocations();
-                                break;
-                            case PlayerAction.ReturnMainMenu:
-                                ActionMenu.currentMenu = ActionMenu.CurrentMenu.MainMenu;
-                                _gameConsoleView.DisplayGamePlayScreen("Main Menu", Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
-                                break;
-                            case PlayerAction.AdminMenu:
-                                ActionMenu.currentMenu = ActionMenu.CurrentMenu.AdminMenu;
-                                _gameConsoleView.DisplayGamePlayScreen("Admin Menu", "Select an action from the menu.", ActionMenu.AdminMenu, "");
-                                break;
-                            case PlayerAction.ObjectMenu:
-                                ActionMenu.currentMenu = ActionMenu.CurrentMenu.ObjectMenu;
-                                _gameConsoleView.DisplayGamePlayScreen("Object Menu", "Select an action from the menu", ActionMenu.ObjectMenu, "");
-                                break;
-                            case PlayerAction.NonplayerCharacterMenu:
-                                ActionMenu.currentMenu = ActionMenu.CurrentMenu.NpcMenu;
-                                _gameConsoleView.DisplayGamePlayScreen("NPC Menu", "Select an action from the menu", ActionMenu.NpcMenu, "");
-                                break;
-                            case PlayerAction.TalkTo:
-                                TalkToAction();
-                                break;
-                            case PlayerAction.LookAround:
-                                _gameConsoleView.DisplayLookAround();
-                                break;
-                            case PlayerAction.PlayerLocationsVisited:
-                                _gameConsoleView.DisplayLocationsVisited();
-                                break;
-                            case PlayerAction.LookAt:
-                                LookAtAction();
-                                break;
-                            case PlayerAction.PickUp:
-                                PickUpAction();
-                                break;
-                            case PlayerAction.UseObject:
-                                UseObjectAction();
-                                break;
-                            case PlayerAction.PutDown:
-                                PutDownAction();
-                                break;
-                            case PlayerAction.Inventory:
-                                _gameConsoleView.DisplayInventory();
-                                break;
-                            case PlayerAction.Travel:
+                        case PlayerAction.None:
+                            break;
+                        case PlayerAction.PlayerSetup:
+                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerSetup;
+                            _gameConsoleView.DisplayGamePlayScreen("Player Menu", "Select an action from the menu.",
+                                ActionMenu.PlayerSetup, "");
+                            break;
+                        case PlayerAction.PlayerMenu:
+                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.PlayerMenu;
+                            _gameConsoleView.DisplayGamePlayScreen("Player Menu", "Select an action from the menu.",
+                                ActionMenu.PlayerMenu, "");
+                            break;
+                        case PlayerAction.PlayerNameChange:
+                            _gameConsoleView.DisplayUpdatePlayerName();
+                            break;
+                        case PlayerAction.PlayerAgeChange:
+                            _gameConsoleView.DisplayUpdatePlayerAge();
+                            break;
+                        case PlayerAction.PlayerRaceChange:
+                            _gameConsoleView.DisplayUpdatePlayerRace();
+                            break;
+                        case PlayerAction.PlayerInfo:
+                            _gameConsoleView.DisplayPlayerInfo();
+                            break;
+                        case PlayerAction.ListNonPlayerCharacters:
+                            _gameConsoleView.DisplayListOfAllNpcObjects();
+                            break;
+                        case PlayerAction.ListGameObjects:
+                            _gameConsoleView.DisplayListOfAllGameObjects();
+                            break;
+                        case PlayerAction.ListLocations:
+                            _gameConsoleView.DisplayListOfLocations();
+                            break;
+                        case PlayerAction.ReturnMainMenu:
+                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.MainMenu;
+                            _gameConsoleView.DisplayGamePlayScreen("Main Menu", Text.CurrentLocationInfo(_currentLocation), ActionMenu.MainMenu, "");
+                            break;
+                        case PlayerAction.AdminMenu:
+                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.AdminMenu;
+                            _gameConsoleView.DisplayGamePlayScreen("Admin Menu", "Select an action from the menu.", ActionMenu.AdminMenu, "");
+                            break;
+                        case PlayerAction.ObjectMenu:
+                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.ObjectMenu;
+                            _gameConsoleView.DisplayGamePlayScreen("Object Menu", "Select an action from the menu", ActionMenu.ObjectMenu, "");
+                            break;
+                        case PlayerAction.NonplayerCharacterMenu:
+                            ActionMenu.currentMenu = ActionMenu.CurrentMenu.NpcMenu;
+                            _gameConsoleView.DisplayGamePlayScreen("NPC Menu", "Select an action from the menu", ActionMenu.NpcMenu, "");
+                            break;
+                        case PlayerAction.TalkTo:
+                            TalkToAction();
+                            break;
+                        case PlayerAction.LookAround:
+                            _gameConsoleView.DisplayLookAround();
+                            break;
+                        case PlayerAction.PlayerLocationsVisited:
+                            _gameConsoleView.DisplayLocationsVisited();
+                            break;
+                        case PlayerAction.LookAt:
+                            LookAtAction();
+                            break;
+                        case PlayerAction.PickUp:
+                            PickUpAction();
+                            break;
+                        case PlayerAction.UseObject:
+                            UseObjectAction();
+                            break;
+                        case PlayerAction.PutDown:
+                            PutDownAction();
+                            break;
+                        case PlayerAction.Inventory:
+                            _gameConsoleView.DisplayInventory();
+                            break;
+                        case PlayerAction.Travel:
 
-                                if (_currentLocation.LocationID == 18)
-                                {
-                                    _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                                        "Oh no you don't.  You have to stay and defeat this dragon.", ActionMenu.MainMenu, "");
-                                }
-                                else
-                                {
-                                    //
-                                    // get new location choice and update the current location property
-                                    //
-                                    _gamePlayer.LocationID = _gameConsoleView.DisplayGetNextLocation();
+                            if (_currentLocation.LocationID == 18)
+                            {
+                                _gameConsoleView.DisplayGamePlayScreen("Current Location",
+                                    "Oh no you don't.  You have to stay and defeat this dragon.", ActionMenu.MainMenu, "");
+                            }
+                            else
+                            {
+                                //
+                                // get new location choice and update the current location property
+                                //
+                                _gamePlayer.LocationID = _gameConsoleView.DisplayGetNextLocation();
 
-                                    _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
-                                    //
-                                    // set the game play screen to the current location info format
-                                    //
-                                    UpdateLocation();
-                                }
-                                break;
-                            case PlayerAction.WizardExit:
+                                _currentLocation = _gameUniverse.GetLocationById(_gamePlayer.LocationID);
+                                //
+                                // set the game play screen to the current location info format
+                                //
+                                UpdateLocation();
+                            }
+                            break;
+                        case PlayerAction.WizardExit:
 
-                                NPC npc = _gameUniverse.GetNpcById(1);
-                                npc.LocationID = -1;
+                            NPC npc = _gameUniverse.GetNpcById(1);
+                            npc.LocationID = -1;
 
-                                Location location = _gameUniverse.GetLocationByLocationID(6);
-                                location.IsAccessible = true;
+                            Location location = _gameUniverse.GetLocationByLocationID(6);
+                            location.IsAccessible = true;
 
-                                if (_currentLocation.LocationID == 4)
-                                {
-                                    _currentLocation.Description = $"The {npc.Name} Menu exits the game.  The entrance into the Magical " +
-                                        "Hedge Maze is now accessible.";
+                            if (_currentLocation.LocationID == 4)
+                            {
+                                _currentLocation.Description = $"The {npc.Name} Menu exits the game.  The entrance into the Magical " +
+                                    "Hedge Maze is now accessible.";
 
-                                    UpdateLocation();
+                                UpdateLocation();
 
-                                    _currentLocation.Description = "Here you are, at the entrance to the Magical Hedge Maze.  Look, " +
-                                        "I know you did a lot of things to get here but I've got better ways to spend my time than " +
-                                        "narrating the litany of your mediocre achievements.  Just take satisfaction in knowing you " +
-                                        "got here.";
+                                _currentLocation.Description = "Here you are, at the entrance to the Magical Hedge Maze.  Look, " +
+                                    "I know you did a lot of things to get here but I've got better ways to spend my time than " +
+                                    "narrating the litany of your mediocre achievements.  Just take satisfaction in knowing you " +
+                                    "got here.";
 
-                                    _currentLocation.GeneralContents = "In front of you stands the Long Wall, measuring 15 feet high and hundreds of miles long.  But, your path does not end here.  " +
-                                      "It continues through an opening in the wall, beyond which lies the Magic Hedge Maze.";
-                                }
+                                _currentLocation.GeneralContents = "In front of you stands the Long Wall, measuring 15 feet high and hundreds of miles long.  But, your path does not end here.  " +
+                                    "It continues through an opening in the wall, beyond which lies the Magic Hedge Maze.";
+                            }
 
+                            break;
+                        case PlayerAction.Exit:
+                            _playingGame = false;
+                            break;
 
-                                break;
-                            case PlayerAction.Exit:
-                                _playingGame = false;
-                                break;
-
-                            default:
-                                break;
-                        }
+                        default:
+                            break;
                     }
                 }
 
@@ -296,26 +297,32 @@ namespace TB_Quest
         /// </summary>
         private void InitializeQuest()
         {
-            //_gamePlayer.Name = player.Name;
-            //_gamePlayer.Age = player.Age;
-            //_gamePlayer.Race = player.Race;
-            //_gamePlayer.HomeVillage = player.HomeVillage;
-            //_gamePlayer.LocationID = 1;
-            //_gamePlayer.PreviousLocationID = 1;
-            //Player player = new Player();
 
-
-            // comment this out after it is fully implemented
             Player player = _gameConsoleView.GetInitialPlayerInfo();
+
+            _gamePlayer.Name = (player.Name != "" ? player.Name : "Debian");
+            _gamePlayer.Age = player.Age;
+            _gamePlayer.Race = (player.Race != Character.RaceType.None ? player.Race : Character.RaceType.Human);
+            _gamePlayer.HomeVillage = (player.HomeVillage != "" ? player.HomeVillage : "home");
             _gamePlayer.ObjectID = 0;
+            _gamePlayer.LocationID = 1;
+            _gamePlayer.PreviousLocationID = 1;
             _gamePlayer.ExperiencePoints = 0;
             _gamePlayer.Health = 100;
-            _gamePlayer.Lives = 1;
-            _gamePlayer.Name = "random guy";
-            _gamePlayer.Age = 33;
-            _gamePlayer.Race = Character.RaceType.Human;
-            _gamePlayer.HomeVillage = "hoth";
-            _gamePlayer.LocationID = 1;
+            _gamePlayer.Lives = 3;
+
+
+            // testing code to skip user-configured player setup
+            //Player player = _gameConsoleView.GetInitialPlayerInfo();
+            //_gamePlayer.ObjectID = 0;
+            //_gamePlayer.ExperiencePoints = 0;
+            //_gamePlayer.Health = 100;
+            //_gamePlayer.Lives = 3;
+            //_gamePlayer.Name = "random guy";
+            //_gamePlayer.Age = 33;
+            //_gamePlayer.Race = Character.RaceType.Human;
+            //_gamePlayer.HomeVillage = "hoth";
+            //_gamePlayer.LocationID = 1;
         }
 
         /// <summary>
@@ -509,52 +516,63 @@ namespace TB_Quest
         /// <param name="e"></param>
         private void HandleObjectUsed(object gameObject, EventArgs e)
         {
+            string message;
+
             if (gameObject.GetType() == typeof(InanimateObject))
             {
                 InanimateObject inanimateObject = gameObject as InanimateObject;
 
                 if (inanimateObject.IsUsable)
                 {
-                    switch (inanimateObject.InanimateObjType)
+                    if ((inanimateObject.CanInventory && inanimateObject.LocationID == 0) || !inanimateObject.CanInventory)
                     {
-                        case InanimateObjectType.Food:
-                            break;
-                        case InanimateObjectType.Medicine:
+                        switch (inanimateObject.InanimateObjType)
+                        {
+                            case InanimateObjectType.Food:
+                                break;
+                            case InanimateObjectType.Medicine:
 
-                            _gamePlayer.Health += inanimateObject.Value;
+                                _gamePlayer.Health += inanimateObject.Value;
 
-                            break;
-                        case InanimateObjectType.Weapon:
-                            break;
-                        case InanimateObjectType.Treasure:
-                            break;
-                        case InanimateObjectType.Information:
-                            break;
-                        default:
-                            break;
+                                break;
+                            case InanimateObjectType.Weapon:
+                                break;
+                            case InanimateObjectType.Treasure:
+                                break;
+                            case InanimateObjectType.Information:
+                                break;
+                            default:
+                                break;
+                        }
+
+                        //
+                        // recalculate number of uses
+                        // 
+                        inanimateObject.UseCount += (inanimateObject.IsUsable && inanimateObject.UseCount > 0 ? -1 : 0);
+
+                        //
+                        // remove object from the game if it is consumable and has 0 uses remaining
+                        //
+                        inanimateObject.LocationID = (inanimateObject.IsConsumable && inanimateObject.UseCount == 0 ? -1 : inanimateObject.LocationID);
+
+                        if (inanimateObject.LocationID == -1)
+                        {
+                            _gameConsoleView.DisplayConfirmInanimateObjectRemovedFromInventory(inanimateObject);
+                        }
+
+                        //
+                        // display confirmation message
+                        //
+                        _gameConsoleView.DisplayConfirmInanimateObjectUsed(inanimateObject);
+
+                        SpecialUseCases(inanimateObject);
                     }
-
-                    //
-                    // recalculate number of uses
-                    // 
-                    inanimateObject.UseCount += (inanimateObject.IsUsable && inanimateObject.UseCount > 0 ? -1 : 0);
-
-                    //
-                    // remove object from the game if it is consumable and has 0 uses remaining
-                    //
-                    inanimateObject.LocationID = (inanimateObject.IsConsumable && inanimateObject.UseCount == 0 ? -1 : inanimateObject.LocationID);
-
-                    if (inanimateObject.LocationID == -1)
+                    else
                     {
-                        _gameConsoleView.DisplayConfirmInanimateObjectRemovedFromInventory(inanimateObject);
+                        message = $"The {inanimateObject.Name} must be in your inventory before you can use it.";
+
+                        _gameConsoleView.DisplayGamePlayScreen("Use Game Object", message, ActionMenu.ObjectMenu, "");
                     }
-
-                    //
-                    // display confirmation message
-                    //
-                    _gameConsoleView.DisplayConfirmInanimateObjectUsed(inanimateObject);
-
-                    SpecialUseCases(inanimateObject);
                 }
             }
         }
@@ -693,15 +711,42 @@ namespace TB_Quest
         private void SpecialUseCases(InanimateObject inanimateObject)
         {
             NPC npc;
-
+            string message;
             switch (inanimateObject.ObjectID)
-            {   
+            {
                 // magic wand
                 case 23:
+
+                    message = "After a few moments of wildly flailing your arm around, you get bored and stop waving your wand.";
+
+                    _gameConsoleView.DisplayGamePlayScreen("Use Game Object", message, ActionMenu.ObjectMenu, "");
+
                     break;
                 // Professor Pluperfect's Primer Promoting Practical Panic
                 case 24:
-                    break;
+                    switch (_currentLocation.LocationID)
+                    {
+                        case 18:
+                           message = "If only you had studied this primer more earnestly when you had the chance.  Now, you're "+ 
+                                "better off using it to prop up a couch that has a broken leg, and there don't appear to be many " +
+                                "of those lying around here.";
+                        break;
+                        default:
+    
+                            message = $"Wizards wield great power.  They can bend the laws of the universe to their will and alter " +
+                                "reality itself.  Regrettably, and much to the detriment of many a wizard, a power that is often " +
+                                "overlooked is the power to panic.  Knowing how and when to panic is one of the most important  " +
+                                "skills a wizard can possess.  So, when is the right time to panic?  Every wizard knows that there " +
+                                "is never a wrong time to panic.  But, the best wizards know that the best way to panic depends on " +
+                                "circumstance.  As Volume 1 in Sage Susurrant's Sorceror Survival Series, Professor Pluperfect's " +
+                                "Primer Promoting Practical Panic aims to ground wizards in the basic methods of panicking and " +
+                                "how to determine the best method of panicking for most common situations.  Let's begin with one " +
+                                "of the most difficult, and yet, universally useful, methods for panicking -- playing dead while " +
+                                "running away screaming.  The most important thing to know about this method is...   ";
+                            break;
+                    }
+                    _gameConsoleView.DisplayGamePlayScreen("Use Game Object", message, ActionMenu.ObjectMenu, "");
+                break;
                 // Portable Hole
                 case 25:
 
@@ -711,15 +756,25 @@ namespace TB_Quest
                             npc = _gameUniverse.GetNpcById(1);
 
                             if (npc.LocationID == _currentLocation.LocationID)
-                            { 
+                            {
+                                if (inanimateObject.LocationID == 0)
+                                {
+                                    inanimateObject.LocationID = _currentLocation.LocationID;
 
-                            inanimateObject.LocationID = _currentLocation.LocationID;
+                                    message = $"Pulling the portable hole out of your pocket, you throw it at the {npc.Name}.  " +
+                                       $"But, the {npc.Name} casually steps to the side, dodging the portable hole which falls to the ground.  " +
+                                       $"You will have to find some other way to defeat the {npc.Name}";
 
-                            _currentLocation.Description = $"Pulling the portable hole out of your pocket, you throw it at the {npc.Name}.  " +
-                                $"But, the {npc.Name} casually steps to the side, dodging the portable hole which falls to the ground.  " +
-                                $"You will have to find some other way to defeat the {npc.Name}";
+                                    _gameConsoleView.DisplayGamePlayScreen("Use Game Object", message, ActionMenu.ObjectMenu, "");
+                                   
+                                }
+                                else
+                                {
+                                    message = $"The portable hole must be in your inventory before you can use it.";
 
-                            UpdateLocation();
+                                    _gameConsoleView.DisplayGamePlayScreen("Use Game Object", message, ActionMenu.ObjectMenu, "");
+                                }
+                           // UpdateLocation();
                             }
                             break;
                         case 17:
@@ -731,7 +786,7 @@ namespace TB_Quest
                                 "is dissolving the hole as the hole sinks.  Then you notice that the acid appears to be pouring into the hole.  " +
                                 "After an hour, a vortex appears in the lake where the portable hole is resting.  After a few more hours, the " + 
                                 "last of the lake of acid disappears into the portable hole.  Only a few shallow puddles remain.  The path to " +
-                                "the island and what lies beyond is no open to you.  You carefully retrieve the portable hole.";
+                                "the island and what lies beyond is now open to you.  You carefully retrieve the portable hole.";
 
                             UpdateLocation();
 
@@ -749,17 +804,19 @@ namespace TB_Quest
 
                             inanimateObject.LocationID = -1;
 
-                            _currentLocation.Description = $"You throw the portable hole at the dragon.  A gust of wind catches it " +
+                            message  = $"You throw the portable hole at the dragon.  A gust of wind catches it " +
                                 "and lifts it up into the air, before gently depositing it on the dragon's left horn.  I'm not sure " +
                                 "what you thought that would accomplish.  The portable hole is small and there's not even a chance " +
                                 "that the dragon could put a foot in the hole and sprain its ankle.  Even so, you managed to " +
                                 "momentarily distract the dragon, prolonging countless lives by an extra 5 seconds, you hero.  " +
                                 "Got any other ideas?";
 
+                            _gameConsoleView.DisplayGamePlayScreen("Use Game Object", message, ActionMenu.ObjectMenu, "");
+
                             _currentLocation.GeneralContents = "Having one horn hidden by the portable hole doesn't diminish the " +
                                 "dragon's fearsomeness or the sense of your impending doom.";
                             
-                            UpdateLocation();
+                            //UpdateLocation();
 
                             _itsTheFinalCountdown = 3;
 
@@ -849,7 +906,7 @@ namespace TB_Quest
             if (_currentLocation.LocationID == 18)
             {
                 _gameConsoleView.DisplayGamePlayScreen("Current Location",
-                    "You must be too far away from home to use the Teleportation Ring cuz you ain't goin' nowhere.", ActionMenu.MainMenu, "");
+                    "You must be too far away from home to use the Teleportation Ring cuz you ain't goin' nowhere.", ActionMenu.ObjectMenu, "");
             }
             else
             {
