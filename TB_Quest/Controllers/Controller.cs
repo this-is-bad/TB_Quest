@@ -300,10 +300,10 @@ namespace TB_Quest
 
             Player player = _gameConsoleView.GetInitialPlayerInfo();
 
-            _gamePlayer.Name = (player.Name != "" ? player.Name : "Debian");
+            _gamePlayer.Name = player.Name; 
             _gamePlayer.Age = player.Age;
-            _gamePlayer.Race = (player.Race != Character.RaceType.None ? player.Race : Character.RaceType.Human);
-            _gamePlayer.HomeVillage = (player.HomeVillage != "" ? player.HomeVillage : "home");
+            _gamePlayer.Race = player.Race; 
+            _gamePlayer.HomeVillage = player.HomeVillage; 
             _gamePlayer.ObjectID = 0;
             _gamePlayer.LocationID = 1;
             _gamePlayer.PreviousLocationID = 1;

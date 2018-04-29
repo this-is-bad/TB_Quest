@@ -493,7 +493,9 @@ namespace TB_Quest
         public Player GetInitialPlayerInfo()
         {
             Player player = new Player();
-
+            string playerName;
+            Character.RaceType playerRace;
+            string playerVillage;
             //
             // intro
             //
@@ -505,7 +507,8 @@ namespace TB_Quest
             //
             DisplayGamePlayScreen("Quest Preparation - Name", Text.InitializeQuestGetPlayerName(), ActionMenu.QuestIntro, "");
             DisplayInputBoxPrompt("Enter your name: ");
-            player.Name = GetString();
+            playerName = GetString();
+            player.Name = (playerName != "" ? playerName : "Debian");
 
             //
             // get player's age
@@ -520,14 +523,16 @@ namespace TB_Quest
             //
             DisplayGamePlayScreen("Quest Preparation - Race", Text.InitializeQuestGetPlayerRace(player), ActionMenu.QuestIntro, "");
             DisplayInputBoxPrompt($"Enter your race {player.Name}: ");
-            player.Race = GetRace();
+            playerRace = GetRace();
+            player.Race = (playerRace != Character.RaceType.None ? playerRace : Character.RaceType.Human);
 
             //
             // get player's home village
             //
             DisplayGamePlayScreen("Quest Preparation - Home Village", Text.InitializeQuestGetPlayerHomeVillage(player.Name), ActionMenu.QuestIntro, "");
             DisplayInputBoxPrompt($"Enter your home village: ");
-            player.HomeVillage = GetString();
+            playerVillage = GetString();
+            player.HomeVillage = (playerVillage != "" ? playerVillage : "Home");
 
             //
             // get player's choice of greeting
