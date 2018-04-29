@@ -70,7 +70,7 @@ namespace TB_Quest{
             string messageBoxText =
                 "Enter your name, apprentice.\n" +
                 " \n" +
-                "Please use the name you wish to be referred during your quest.";
+                "Please use the name you wish to be referred by during your quest.";
 
             return messageBoxText;
         }
@@ -88,7 +88,7 @@ namespace TB_Quest{
         public static string InitializeQuestGetPlayerRace(Player gamePlayer)
         {
             string messageBoxText =
-                $"{gamePlayer.Name}, it will be important for us to know your race on this quest.\n" +
+                $"{gamePlayer.Name}, tell us what your race is.\n" +
                 " \n" +
                 "Enter your race below. \n";
 
@@ -110,7 +110,7 @@ namespace TB_Quest{
         public static string InitializeQuestGetPlayerHomeVillage(string name)
         {
             string messageBoxText =
-                $"{name}, in case of emergency, it may be necessary to return your remains home.\n" +
+                $"{name}, where were you born?\n" +
                 " \n" +
                 "Enter your home village below.";
 
